@@ -11,6 +11,14 @@ namespace FFXIVClientStructs.FFXIV.Client.Game.Character;
 [StructLayout(LayoutKind.Explicit, Size = 0x2360)]
 [VirtualTable("48 8D 05 ?? ?? ?? ?? 48 89 07 48 8D 8F ?? ?? ?? ?? 48 8D 05 ?? ?? ?? ?? 48 89 87 ?? ?? ?? ?? E8 ?? ?? ?? ?? 48 8D 8F ?? ?? ?? ?? 33 ED 48 8D 05 ?? ?? ?? ??", 3)]
 public unsafe partial struct Character {
+    [FieldOffset(0x5FC)] public MovementStateOptions MovementState;
+    /// <summary>
+    /// <code>
+    /// 0b0010_0000 [0x20] = <see cref="IsSwimming"/>
+    /// </code>
+    /// </summary>
+    [FieldOffset(0x618)] public byte Flags618;
+
     [FieldOffset(0x620)] public EmoteController EmoteController;
     [FieldOffset(0x660)] public MountContainer Mount;
     [FieldOffset(0x6C8)] public CompanionContainer CompanionData;
@@ -67,7 +75,7 @@ public unsafe partial struct Character {
 
     [FieldOffset(0x2328)] public uint NameId;
 
-    [FieldOffset(0x2334)] public uint CompanionOwnerId;
+    [FieldOffset(0x2334)] public uint CompanionOwnerId; // TODO: Find a better name as it is used to index into FurnitureMemory for IndoorHousing
 
     [FieldOffset(0x2340)] public ulong AccountId;
     [FieldOffset(0x2348)] public ulong ContentId;
@@ -77,6 +85,7 @@ public unsafe partial struct Character {
     [FieldOffset(0x2355)] public byte ModeParam; // Different purpose depending on mode. See CharacterModes for more info.
     [FieldOffset(0x2356)] public byte GMRank;
 
+    public bool IsSwimming => (Flags618 & 0x20) != 0; // found in Client::Game::Event::EventSceneModuleUsualImpl.IsSwimming
     public bool IsWeaponDrawn => (Timeline.Flags3 & 0x40) != 0;
     public bool IsOffhandDrawn => (WeaponFlags & 0x1) != 0;
     public bool InCombat => (CharacterData.Flags & 0x2) != 0;
@@ -117,6 +126,9 @@ public unsafe partial struct Character {
     [MemberFunction("E8 ?? ?? ?? ?? 48 3B 47 ?? 75 ?? 48 8B CE")]
     public partial Character* GetParentCharacter();
 
+    [MemberFunction("E8 ?? ?? ?? ?? 38 43 ?? 0F 85")]
+    public partial bool HasStatus(uint statusId);
+
     /// <summary>Check if this character is in a jumping/falling animation.</summary>
     [MemberFunction("E8 ?? ?? ?? ?? 84 C0 75 46 48 8B 4B 08")]
     public partial bool IsJumping();
@@ -132,6 +144,13 @@ public unsafe partial struct Character {
     /// <summary> Check if the character is using the Cross-region Data Center Travel system. </summary>
     [MemberFunction("E8 ?? ?? ?? ?? 84 C0 74 ?? 80 4E ?? ?? ?? ?? ?? 48 8B CB FF 92")]
     public partial bool IsVoyager();
+
+    /// <summary>
+    /// Checks if Character is in a PvP state <br/>
+    /// Will need to be called multiple times before returning correct result
+    /// </summary>
+    [MemberFunction("E8 ?? ?? ?? ?? 84 C0 75 05 8B 4D F4")]
+    public partial bool IsInPvP();
 
     [VirtualFunction(77)]
     public partial StatusManager* GetStatusManager();
@@ -149,6 +168,13 @@ public unsafe partial struct Character {
 
     [VirtualFunction(83)]
     public partial ForayInfo* GetForayInfo();
+}
+
+public enum MovementStateOptions : byte {
+    Normal = 0,
+    Flying = 1,
+    Diving = 2,
+    // Spectating = 3,
 }
 
 // LogMessages for errors starting at 7700

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 using InteropGenerator.Runtime.Attributes;
 
-using static FFXIVClientStructs.FFXIV.Component.GUI.AtkModuleInterface;
+using FFXIVClientStructs.FFXIV.Component.GUI;
 
 namespace FFXIVClientStructs.FFXIV.Client.Game.Event;
 
@@ -15,7 +15,7 @@ namespace FFXIVClientStructs.FFXIV.Client.Game.Event;
 //   Client::Game::Event::EventHandler
 //   Component::GUI::AtkModuleInterface::AtkEventInterface
 [GenerateInterop]
-[Inherits<EventHandler>, Inherits<AtkEventInterface>]
+[Inherits<EventHandler>, Inherits<AtkModuleInterface.AtkEventInterface>]
 [StructLayout(LayoutKind.Explicit, Size = 0x290)]
 public unsafe partial struct FishingEventHandler {
     [FieldOffset(0x220)] public ulong Unk_220; // Have not seen it be anything besides zero.

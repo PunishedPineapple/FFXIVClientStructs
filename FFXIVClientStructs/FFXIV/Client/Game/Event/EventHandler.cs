@@ -6,7 +6,6 @@ using FFXIVClientStructs.FFXIV.Common.Lua;
 namespace FFXIVClientStructs.FFXIV.Client.Game.Event;
 
 // Client::Game::Event::EventHandler
-// ctor "E8 ?? ?? ?? ?? 45 33 D2 48 8D 05 ?? ?? ?? ?? 48 89 03 4C 8D 8B"
 [GenerateInterop(isInherited: true)]
 [StructLayout(LayoutKind.Explicit, Size = 0x218)]
 public unsafe partial struct EventHandler {
@@ -30,6 +29,9 @@ public unsafe partial struct EventHandler {
 
     [VirtualFunction(202)]
     public partial EventId GetEventId();
+
+    [VirtualFunction(204)]
+    public partial uint GetNameplateIconForObject(GameObject* gameObject);
 
     [VirtualFunction(253)]
     public partial void GetDescription(Utf8String* outDescription);
