@@ -13,7 +13,7 @@ namespace FFXIVClientStructs.FFXIV.Client.UI.Agent;
 [StructLayout(LayoutKind.Explicit, Size = 0x400)]
 public unsafe partial struct AgentScreenLog {
 
-    [FieldOffset(0x30)] public long TimeSinceSomething_Milliseconds;
+    [FieldOffset(0x30)] public long TimeSinceSomething_mSec;
     [FieldOffset(0x38)] public void* Unk_38;
     [FieldOffset(0x40)] public uint NumTargetableCharactersInRangeInFoV;  // Caps at eight.
     [FieldOffset(0x48)] public int Unk_48;  // Rarely goes above 255.
@@ -21,7 +21,7 @@ public unsafe partial struct AgentScreenLog {
 
     [FieldOffset(0x50), FixedSizeArray] internal FixedSizeArray20<Unk50Struct> _unk_60;
 
-    [FieldOffset(0x338)] public long AlsoTimeSinceSomething_Milliseconds;   // Seems to match 0x30
+    [FieldOffset(0x338)] public long AlsoTimeSinceSomething_mSec;   // Seems to match 0x30
     [FieldOffset(0x350)] public StdDeque<BalloonInfo> BalloonQueue;
     //[FieldOffset(0x350)] public void* ContainerBase; // iterator base nonsense
     //[FieldOffset(0x358)] public T** Map; // pointer to array of pointers (size MapSize) to arrays of T (size BlockSize)

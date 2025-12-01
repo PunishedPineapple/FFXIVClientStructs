@@ -12,12 +12,12 @@ public struct Balloon {
     [FieldOffset(0x8)] public BalloonType Type;
     [FieldOffset(0xC)] public BalloonState State;
     [FieldOffset(0x10)] public Utf8String Text; // this is "emptied" (first character set to null) when inactive
-    [FieldOffset(0x78)] public byte UnkBool;
+    [FieldOffset(0x78)] public byte UnkBool;    // This is what gets passed to AgentScreenLog.OpenBalloon as the third parameter.
 }
 
 public enum BalloonType : uint {
     Timer = 0, // runs on a simple timer and disappears when the timer ends
-    Unknown = 1 // the non-timer mode, not sure what its called or where its used
+    Unknown = 1 // the non-timer mode, not sure what its called or where its used.  These might skip the "Inactive" state?
 }
 
 public enum BalloonState : uint {

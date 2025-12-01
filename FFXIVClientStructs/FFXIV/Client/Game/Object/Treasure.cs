@@ -40,7 +40,7 @@ public unsafe partial struct Treasure {
     /// </summary>
     [FieldOffset(0x1F0)] public byte ItemCount;
 
-    [FieldOffset(0x1F4)] private int Unk_1F4; // Probably just a bool.  Seems to be something like "has been opened for looting while object exists locally for the current player", but more testing required.
+    [FieldOffset(0x1F4)] public int Unk_1F4; // Probably just a bool.  Seems to be something like "has been opened for looting while object exists locally for the current player", but more testing required.
 
     /// <summary>
     /// How many seconds the treasure has been open.
@@ -58,7 +58,7 @@ public unsafe partial struct Treasure {
     /// <remarks>
     /// Seems to be -1 for treasures that can spawn in non-fixed locations (i.e., enemies dropping coffers, deep dungeon).  Have only otherwise seen zero.
     /// </remarks>
-    [FieldOffset(0x1FE)] private short Unk_1FE;
+    [FieldOffset(0x1FE)] public short Unk_1FE;
 
     [FieldOffset(0x200)] public TreasureKind CofferKind;
 
@@ -66,6 +66,8 @@ public unsafe partial struct Treasure {
     /// Non-zero when the base ID does not have an SGB entry in the Treasure sheet.  So far only seen for treasure hunt coffers.
     /// </remarks>
     [FieldOffset(0x204)] public int ExportedSGRowId;
+
+    [FieldOffset(0x208)] public long Unk_208;
 
     public enum TreasureState : byte {
         Unopened = 0,

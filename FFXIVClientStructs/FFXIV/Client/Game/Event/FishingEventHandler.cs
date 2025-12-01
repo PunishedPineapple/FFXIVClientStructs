@@ -20,7 +20,7 @@ namespace FFXIVClientStructs.FFXIV.Client.Game.Event;
 public unsafe partial struct FishingEventHandler {
     [FieldOffset(0x220)] public ulong Unk_220; // Have not seen it be anything besides zero.
     [FieldOffset(0x228)] public FishingState FishingState;
-    [FieldOffset(0x22C)] public float Heartbeat; // 4 Hz inverse sawtooth between one and zero.  Latches upon cast.  No clue what it is for.
+    [FieldOffset(0x22C)] public float Sawtooth; // 4 Hz inverse sawtooth between one and zero.  Latches upon cast.  No clue what it is for.
     [FieldOffset(0x230)] public bool AtFishingHole; // Only updates when on FSH.
     [FieldOffset(0x231)] public bool CanMoochPreviousCatch; // Returns to false when opportunity is gone (i.e., Spareful Hand is used).
     [FieldOffset(0x232)] public bool CanMooch2PreviousCatch; // Returns to false when opportunity is gone (i.e., 15s elapsed).  Ignores skill cooldown.
@@ -28,7 +28,7 @@ public unsafe partial struct FishingEventHandler {
     [FieldOffset(0x234)] public bool ChangingPosition; // True while in the process of sitting down or standing up.
     [FieldOffset(0x235)] public bool CanIdenticalCastPreviousCatch;
     [FieldOffset(0x236)] public bool CanSurfaceSlapPreviousCatch;
-    [FieldOffset(0x237)] public bool Unk_237;    //	Never seen false.
+    [FieldOffset(0x237)] public bool Unk_237;    //	Never seen false.  vf57 actively sets it to true, whatever that does.
     [FieldOffset(0x238)] public FishingBaitFlags CurrentCastBaitFlags;
     [FieldOffset(0x23C)] public sbyte SelectedSwimBaitIndex; // -1 when none selected.
     [FieldOffset(0x240), FixedSizeArray] internal FixedSizeArray3<uint> _swimBaitItemIDs;
@@ -47,8 +47,7 @@ public unsafe partial struct FishingEventHandler {
 }
 
 [Flags]
-public enum FishingBaitFlags : int	// Numbered like flags, but none of the ones that I have seen can be combined.
-{
+public enum FishingBaitFlags : int {
     Normal = 0,
     AmbitiousLure = 0x1,
     ModestLure = 0x2,
@@ -56,7 +55,7 @@ public enum FishingBaitFlags : int	// Numbered like flags, but none of the ones 
     Swimbait = 0x20,
 }
 
-public enum FishingState : int {
+public enum FishingState : byte {
     None = 0,
     CastingOut = 1,
     PullingPoleIn = 2,      //	When fish slips, there is no bite, briefly after reeling in a fish, and when using Rest.
@@ -68,6 +67,6 @@ public enum FishingState : int {
     ConfirmingCollectable = 8,
     AmbitiousLure = 9,      //	When using the skill.
     ModestLure = 10,        //	When using the skill.
-
+    Unk_11 = 11,
     LineInWater = 12,		//	Or air, sand, etc.; just when you are actually fishing.
 }
