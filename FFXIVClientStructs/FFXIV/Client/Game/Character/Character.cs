@@ -47,6 +47,7 @@ public unsafe partial struct Character {
     [FieldOffset(0x1CD8)] public byte ActorControlFlags;
 
     [FieldOffset(0x21D0)] public Balloon Balloon;
+    [FieldOffset(0x2250)] public NPCYellBalloon YellBalloon; // Named for NPCYell sheet since that is what defines these balloons.
 
     [FieldOffset(0x22D8)] public float Alpha;
 
