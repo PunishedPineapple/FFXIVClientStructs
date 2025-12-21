@@ -45,7 +45,7 @@ public unsafe partial struct FishingEventHandler {
     [FieldOffset(0x238)] public FishingBaitFlags CurrentCastBaitFlags;
 
     /// <summary>
-    /// The index into <see cref="SwimBaitItemIDs"/> of the currently-selected swimbait.
+    /// The index into <see cref="SwimBaitItemIds"/> of the currently-selected swimbait.
     /// </summary>
     /// <remarks>
     /// This is -1 when no swimbait has been selected.
@@ -55,7 +55,7 @@ public unsafe partial struct FishingEventHandler {
     /// <summary>
     /// The item IDs of currently-stored swimbait.
     /// </summary>
-    [FieldOffset(0x240), FixedSizeArray] internal FixedSizeArray3<uint> _swimBaitItemIDs;
+    [FieldOffset(0x240), FixedSizeArray] internal FixedSizeArray3<uint> _swimBaitItemIds;
 
     [FieldOffset(0x24C)] public uint Unk_24C; // Sometimes matches 0x224, but that offset may just be uninitialized padding.
 
@@ -76,6 +76,18 @@ public unsafe partial struct FishingEventHandler {
     //[FieldOffset( 0x278 )] public ulong Unk_278;
     //[FieldOffset( 0x280 )] public uint Unk_280;
     //[FieldOffset( 0x284 )] public ulong Unk_284; // Unaligned, but it disassembles as a qword in the constructor, so idk.
+
+    /// <summary>
+    /// Changes the currently equipped bait.
+    /// </summary>
+    /// <param name="baitId">ItemId of bait to change to.</param>
+    public AtkValue* ChangeBait(int baitId) {
+        var returnValue = new AtkValue();
+        var baitValue = stackalloc AtkValue[2];
+        baitValue[0].SetInt(baitId);
+        baitValue[1].SetBool(false);
+        return ReceiveEvent(&returnValue, baitValue, 2, 2);
+    }
 }
 
 [Flags]
@@ -83,6 +95,8 @@ public enum FishingBaitFlags : int {
     Normal = 0,
     AmbitiousLure = 0x1,
     ModestLure = 0x2,
+    Unk_4 = 0x4, //Associated with the "Your lure no longer seems to have an effect on the fish..." message when using Ambitious Lure.
+    Unk_8 = 0x8, //Associated with the "Your lure no longer seems to have an effect on the fish..." message when using Modest Lure.
     Mooch = 0x10,
     Swimbait = 0x20,
 }

@@ -42,7 +42,7 @@ public unsafe partial struct NPCYellBalloon {
     /// <param name="param7">Unknown purpose.</param>
     /// <param name="ignoreRangeCheck">Ignore whether the character is "in range" when checking whether to display the balloon.</param>
     /// <param name="parentBone">The bone index to which the balloon is visually attached.  A value of 25 is used if the specified bone does not exist.</param>
-    [MemberFunction("E8 ?? ?? ?? ?? 0F 28 B4 24 ?? ?? ?? ?? 48 8D 4D")]
+    [MemberFunction("E8 ?? ?? ?? ?? 0F 28 B4 24 ?? ?? ?? ?? 48 8D 4D"), GenerateStringOverloads]
     public partial void SetupBalloon(CStringPointer str, float playTime, bool param3, float openDelay, bool printToLog, bool param7, bool ignoreRangeCheck, byte parentBone );
 
     /// <summary>
@@ -86,7 +86,13 @@ public enum NPCYellBalloonState : int {
 [Flags]
 public enum NPCYellBalloonFlags : byte {
     None = 0,
-    Unk_1 = 1, // If this is not set, actually opening the bubble will be skipped.  Unsure of purpose.
+    /// <summary>
+    /// All balloons will have this flag while in use.
+    /// </summary>
+    /// <remarks>
+    /// If this is not set, <see cref="NPCYellBalloon.Update"/> will not open the balloon, or will immediately close it.
+    /// </remarks>
+    Valid = 1,
     Unk_2 = 2, // Is passed as the bool third parameter to AgentScreenLog::OpenBalloon, and probably has the same effect as the Balloon EXD's boolean column.
     IgnoreRangeCheck = 4, // Call AgentScreenLog::OpenBalloon regardless of character range test result.
     PrintToLog = 8, // Also call RaptureLogModule::PrintMessage with balloon text when Balloon is opened.
