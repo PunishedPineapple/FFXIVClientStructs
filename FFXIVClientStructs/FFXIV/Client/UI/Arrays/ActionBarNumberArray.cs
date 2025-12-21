@@ -25,13 +25,14 @@ public unsafe partial struct ActionBarNumberArray {
 
         [FieldOffset(0 * 4), FixedSizeArray] internal FixedSizeArray12<ActionBarSlotNumberArray> _slots;
 
+        // TODO: Replace with the Common one.
         [GenerateInterop]
         [StructLayout(LayoutKind.Explicit, Size = 17 * 4)]
         public partial struct ActionBarSlotNumberArray {
             [FieldOffset(0), FixedSizeArray, CExporterIgnore] internal FixedSizeArray17<int> _data;
 
             [FieldOffset(0 * 4)] public int ActionType;
-            [FieldOffset(1 * 4)] public bool Unk1;
+            [FieldOffset(1 * 4)] private bool Unk1;
             [FieldOffset(3 * 4)] public uint ActionId;
             [FieldOffset(4 * 4)] public uint IconId;
             [FieldOffset(5 * 4)] public bool Executable;

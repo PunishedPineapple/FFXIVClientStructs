@@ -8,7 +8,7 @@ namespace FFXIVClientStructs.FFXIV.Client.UI;
 //       Component::GUI::AtkEventListener
 [Addon("_Image")]
 [GenerateInterop(isInherited: true)]
-[Inherits<AtkUnitBase>] // TODO: inherit from AddonScreenInfoChild
+[Inherits<AddonScreenInfoChild>]
 [StructLayout(LayoutKind.Explicit, Size = 0x2B8)]
 public unsafe partial struct AddonImage {
     [FieldOffset(0x288)] public AtkResNode* ResNode1; // Both AtkResNode's appear to be the same node
@@ -17,4 +17,7 @@ public unsafe partial struct AddonImage {
 
     [FieldOffset(0x2A4)] public ushort Width;
     [FieldOffset(0x2A8)] public ushort Height;
+
+    [MemberFunction("48 89 5C 24 ?? 57 48 83 EC 30 48 8B D9 89 91")]
+    public partial void SetImage(int iconId, IconSubFolder iconFolder, int sfxId);
 }

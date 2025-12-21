@@ -106,10 +106,10 @@ public unsafe partial struct AtkUnitBase : ICreatable {
     [FieldOffset(0x1AC)] public uint OpenTransitionDuration;
     [FieldOffset(0x1B0)] public uint CloseTransitionDuration;
     [FieldOffset(0x1B4)] public uint Flags1B4; // used by SetFlag, AddonConfig related?
-    [FieldOffset(0x1B8)] public byte AddonParamUnknown1; // used in RaptureAtkUnitManager.vf18
+    [FieldOffset(0x1B8)] private byte AddonParamUnknown1; // used in RaptureAtkUnitManager.vf18
     [FieldOffset(0x1B9)] public byte NumOpenPopups; // used for dialogs and context menus to block inputs via ShouldIgnoreInputs
-    [FieldOffset(0x1BA)] public byte Unk1BA;
-    [FieldOffset(0x1BB)] public byte Unk1BB;
+    [FieldOffset(0x1BA)] private byte Unk1BA;
+    [FieldOffset(0x1BB)] private byte Unk1BB;
     [FieldOffset(0x1BC)] public float OpenTransitionScale;
     [FieldOffset(0x1C0)] public float CloseTransitionScale;
     [FieldOffset(0x1C4)] public float Scale;
@@ -137,7 +137,7 @@ public unsafe partial struct AtkUnitBase : ICreatable {
     [FieldOffset(0x1D0)] public ushort DrawOrderIndex;
     /// <remarks> Index in <see cref="AtkUnitManager.HudAnchoringTable"/>. </remarks>
     [FieldOffset(0x1D2)] public sbyte HudAnchoringInfoIndex; // -1 = undefined
-    [FieldOffset(0x1D2), Obsolete("Renamed to HudAnchoringInfoIndex")] public byte Unk1D2;
+    [FieldOffset(0x1D2), Obsolete("Renamed to HudAnchoringInfoIndex", true)] public byte Unk1D2;
     // 1 byte padding
     [FieldOffset(0x1D4)] public short X;
     [FieldOffset(0x1D6)] public short Y;
@@ -154,7 +154,7 @@ public unsafe partial struct AtkUnitBase : ICreatable {
     [FieldOffset(0x1EC)] public byte CursorNavigationOwnIndex;
     [FieldOffset(0x1ED)] public byte Alpha;
     [FieldOffset(0x1EE)] public byte ShowHideFlags;
-    [FieldOffset(0x1EF)] public bool Unk1EF; // used in Draw
+    [FieldOffset(0x1EF)] private bool Unk1EF; // used in Draw
     [FieldOffset(0x1F0)] public AtkResNode** CollisionNodeList; // seems to be all collision nodes in tree, may be something else though
     [FieldOffset(0x1F8)] public uint CollisionNodeListCount;
     [FieldOffset(0x1FC), FixedSizeArray] internal FixedSizeArray5<OperationGuide> _operationGuides; // the little button hints in controller mode
@@ -200,7 +200,7 @@ public unsafe partial struct AtkUnitBase : ICreatable {
     [MemberFunction("E8 ?? ?? ?? ?? 44 84 B7")]
     public partial AtkResNode* GetNodeById(uint nodeId);
 
-    [MemberFunction("E8 ?? ?? ?? ?? 8D 56 1E")]
+    [MemberFunction("E8 ?? ?? ?? ?? 41 C1 EF")]
     public partial AtkTextNode* GetTextNodeById(uint nodeId);
 
     [MemberFunction("E8 ?? ?? ?? ?? 8D 55 77")]

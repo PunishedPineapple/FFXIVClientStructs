@@ -8,7 +8,7 @@ namespace FFXIVClientStructs.FFXIV.Component.GUI;
 [GenerateInterop(isInherited: true)]
 [Inherits<AtkEventListener>]
 [VirtualTable("48 8D 05 ?? ?? ?? ?? 48 8B D9 ?? ?? ?? 48 81 C1 ?? ?? ?? ?? E8 ?? ?? ?? ?? 48 8D 15", 3, 43)]
-[StructLayout(LayoutKind.Explicit, Size = 0x9C90)]
+[StructLayout(LayoutKind.Explicit, Size = 0x9CA0)]
 public unsafe partial struct AtkUnitManager {
     [FieldOffset(0x30), FixedSizeArray, CExporterIgnore] internal FixedSizeArray13<AtkUnitList> _depthLayers;
     [FieldOffset(0x30)] public AtkUnitList DepthLayerOneList;
@@ -39,10 +39,10 @@ public unsafe partial struct AtkUnitManager {
     [FieldOffset(0x9188)] public AtkManagedInterface* ManagedScreenFrame;
 
     [FieldOffset(0x92A0)] private AtkResNode Unk92A0;
-    [FieldOffset(0x9350)] public Size LastScreenSize;
+    [FieldOffset(0x9360)] public Size LastScreenSize;
 
-    [FieldOffset(0x9388), FixedSizeArray] internal FixedSizeArray48<HudAnchoringInfo> _hudAnchoringTable;
-    [FieldOffset(0x9C88)] public AtkUnitManagerFlags Flags;
+    [FieldOffset(0x9398), FixedSizeArray] internal FixedSizeArray48<HudAnchoringInfo> _hudAnchoringTable;
+    [FieldOffset(0x9C98)] public AtkUnitManagerFlags Flags;
 
     [VirtualFunction(8)]
     public partial bool SetAddonVisibility(ushort addonId, bool visible);
@@ -101,7 +101,7 @@ public enum AtkUnitManagerFlags : byte {
     None = 0,
     /// <summary> This flag is temporarily set when any AtkUnitList was modified. Cleared in UpdateDrawOrderIndexes. </summary>
     UnitListsChanged = 0x01,
-    [Obsolete($"Renamed to {nameof(UnitListsChanged)}")] Unk01 = 0x01,
+    [Obsolete($"Renamed to {nameof(UnitListsChanged)}", true)] Unk01 = 0x01,
     /// <summary> This flag is temporarily set to call AtkModule CallbackHandler 0, which sets <see cref="AtkModule.IsHudInitialized"/> to <see langword="true"/>. </summary>
     Unk02 = 0x02,
     UiHidden = 0x04,
@@ -109,7 +109,7 @@ public enum AtkUnitManagerFlags : byte {
     Unk10 = 0x10,
     /// <remarks> <see cref="RaptureAtkModule.UIScene"/> == <see cref="GameUIScene.GameMain"/> </remarks>
     InGame = 0x20,
-    [Obsolete($"Renamed to {nameof(InGame)}")] Unk20 = 0x20,
+    [Obsolete($"Renamed to {nameof(InGame)}", true)] Unk20 = 0x20,
     Unk40 = 0x40,
     Unk80 = 0x80,
 }
