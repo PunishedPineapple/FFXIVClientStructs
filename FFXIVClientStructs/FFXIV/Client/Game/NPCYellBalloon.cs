@@ -7,9 +7,9 @@ namespace FFXIVClientStructs.FFXIV.Client.Game;
 // Client::Game::NPCYellBalloon
 // Probably part of Client::Game::Character::Character
 [GenerateInterop]
-[StructLayout(LayoutKind.Explicit, Size = 0x88)]    //***** TEMP: Likely correct size since it would fit perfectly between Balloon and Alpha fields in Character.
+[StructLayout(LayoutKind.Explicit, Size = 0x88)]
 public unsafe partial struct NPCYellBalloon {
-    [FieldOffset(0x0)] public Utf8String FormattedText;
+    [FieldOffset(0x0)] public Utf8String Text;
     [FieldOffset(0x68)] public Character.Character* Character;
     [FieldOffset(0x70)] public float PlayTimer; // Set to starting value during Initializing state, starts counting down in Active state.
     [FieldOffset(0x74)] public float DelayTime; // Will sit in the Waiting state for this long before displaying; however, if this is zero when entering the waiting state, a time of one frame will be used.
@@ -43,7 +43,7 @@ public unsafe partial struct NPCYellBalloon {
     /// <param name="ignoreRangeCheck">Ignore whether the character is "in range" when checking whether to display the balloon.</param>
     /// <param name="parentBone">The bone index to which the balloon is visually attached.  A value of 25 is used if the specified bone does not exist.</param>
     [MemberFunction("E8 ?? ?? ?? ?? 0F 28 B4 24 ?? ?? ?? ?? 48 8D 4D"), GenerateStringOverloads]
-    public partial void SetupBalloon(CStringPointer str, float playTime, bool param3, float openDelay, bool printToLog, bool param7, bool ignoreRangeCheck, byte parentBone );
+    public partial void OpenBalloon(CStringPointer str, float playTime, bool param3, float openDelay, bool printToLog, bool param7, bool ignoreRangeCheck, byte parentBone );
 
     /// <summary>
     /// Closes and resets the balloon.
