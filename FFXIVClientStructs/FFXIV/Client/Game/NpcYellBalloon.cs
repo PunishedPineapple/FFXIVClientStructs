@@ -76,10 +76,10 @@ public unsafe partial struct NpcYellBalloon {
     public partial void Initialize(Character.Character* character);
 
     /// <summary>
-    /// Prepares a balloon to be opened during the next applicable <see cref="Update"/>.
+    /// Prepares the balloon to be opened during the next applicable Update.
     /// </summary>
     /// <param name="str">A null-terminated string containing the text to display.</param>
-    /// <param name="playTime">Time in seconds that the balloon should remain visible.</param>
+    /// <param name="playTime">Time in seconds that the balloon should remain visible.  If zero, the balloon will remain open indefinitely (until <see cref="CloseBalloon"/> is called).</param>
     /// <param name="softOpen">If this is true, the bubble will fade in more gently than the normal "popping" in.</param>
     /// <param name="openDelay">Time in seconds to wait before actually opening the balloon.</param>
     /// <param name="printToLog">Whether the balloon text should also be printed to the chat log.</param>
@@ -172,7 +172,7 @@ public enum NpcYellBalloonFlags : byte {
     /// All balloons will have this flag while in use.
     /// </summary>
     /// <remarks>
-    /// If this is not set, <see cref="NpcYellBalloon.Update"/> will not open the balloon (or will immediately close it).
+    /// If this is not set, the balloon will not be opened (or will be immediately closed).
     /// </remarks>
     Valid = 1,
 
