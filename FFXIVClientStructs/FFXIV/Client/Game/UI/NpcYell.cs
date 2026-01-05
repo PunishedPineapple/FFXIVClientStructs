@@ -8,15 +8,19 @@ namespace FFXIVClientStructs.FFXIV.Client.Game.UI;
 [GenerateInterop]
 [StructLayout(LayoutKind.Explicit, Size = 0x2850)]
 public partial struct NpcYell {
-    [FieldOffset(0x48), FixedSizeArray] internal FixedSizeArray32<NpcYellSlotInfo> _yellSlots;
+    [FieldOffset(0x48), FixedSizeArray] internal FixedSizeArray32<NpcYellSlot> _yellSlots;
     [FieldOffset(0x548), FixedSizeArray] internal FixedSizeArray32<NpcYellInfo> _yellInfo;
     [FieldOffset(0x2848)] private short Unk_2848; // Probably number of unhandled yells.
 
     [StructLayout(LayoutKind.Explicit, Size = 0x28)]
-    public struct NpcYellSlotInfo {
+    public struct NpcYellSlot {
         [FieldOffset(0x0)] public GameObjectId ObjectId;
         [FieldOffset(0xC)] public uint NameId;
-        [FieldOffset(0x10)] private uint Unk_10; // Probably some kind of ID.  Corresponds to the NpcYellInfo field at offset 0xE8.
+
+        /// <remarks>
+        /// Probably some kind of ID.  Matches <see cref="NpcYellInfo.Unk_E8"/> for the <see cref="NpcYellInfo"/> at the same index.
+        /// </remarks>
+        [FieldOffset(0x10)] private uint Unk_10;
         [FieldOffset(0x20)] private float Unk_20; // Probably a delay.  Has effective frame delta subracted each update.
     }
 
@@ -27,8 +31,11 @@ public partial struct NpcYell {
         [FieldOffset(0x10)] public uint NameId;
         [FieldOffset(0x18)] public Utf8String Name;
         [FieldOffset(0x80)] public Utf8String Message;
-        [FieldOffset(0xE8)] private uint Unk_E8; // Probably some kind of ID.  Corresponds to the NpcYellSpeakerInfo field at offset 0x10.
-        [FieldOffset(0x108)] private uint Unk_108; // Controls which UIModule::ShowBattleTalk is called.
+
+        /// <remarks>
+        /// Probably some kind of ID.  Matches <see cref="NpcYellSlot.Unk_10"/> for the <see cref="NpcYellSlot"/> at the same index.
+        /// </remarks>
+        [FieldOffset(0xE8)] private uint Unk_E8;
 
         /// <summary>
         /// How long (in seconds) to display the message as a balloon.
@@ -50,6 +57,11 @@ public partial struct NpcYell {
         /// The method(s) used to show the dialogue to the player.
         /// </summary>
         [FieldOffset(0x104)] public NpcYellOutputFlags OutputType;
+
+        /// <remarks>
+        /// Controls which UIModule::ShowBattleTalk is called.
+        /// </remarks>
+        [FieldOffset(0x108)] private uint Unk_108;
 
         /// <summary>
         /// The index of the character bone to which to attach the <see cref="NpcYellBalloon"/>.
