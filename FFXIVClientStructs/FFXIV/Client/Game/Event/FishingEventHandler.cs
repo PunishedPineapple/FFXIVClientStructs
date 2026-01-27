@@ -60,10 +60,6 @@ public unsafe partial struct FishingEventHandler {
     /// </summary>
     [FieldOffset(0x1E0), FixedSizeArray] internal FixedSizeArray3<uint> _swimBaitItemIds;
 
-    [FieldOffset(0x1E0), Obsolete("Use SwimBaitItemIds[0]", true)] public uint SwimBaitId1;
-    [FieldOffset(0x1E4), Obsolete("Use SwimBaitItemIds[1]", true)] public uint SwimBaitId2;
-    [FieldOffset(0x1E8), Obsolete("Use SwimBaitItemIds[2]", true)] public uint SwimBaitId3;
-
     [FieldOffset(0x1EC)] public uint Unk_24C; // Sometimes matches 0x224, but that offset may just be uninitialized padding.
 
     /// <summary>
@@ -78,11 +74,11 @@ public unsafe partial struct FishingEventHandler {
 
     // An instance of something that looks like it has a 6-function vtable right before this event handler's vtable.  Probably 0x30 bytes long.
     //[FieldOffset( 0x260 )] private void* vTablePtr;
-    //[FieldOffset( 0x268 )] private byte Unk_268;
+    //[FieldOffset( 0x268 )] private byte Unk268;
     //[FieldOffset( 0x270 )] public FishingEventHandler* FishingEventHandlerInstance;
-    //[FieldOffset( 0x278 )] private ulong Unk_278;
-    //[FieldOffset( 0x280 )] private uint Unk_280;
-    //[FieldOffset( 0x284 )] private ulong Unk_284; // Unaligned, but it disassembles as a qword in the constructor, so idk.
+    //[FieldOffset( 0x278 )] private ulong Unk278;
+    //[FieldOffset( 0x280 )] private uint Unk280;
+    //[FieldOffset( 0x284 )] private ulong Unk284; // Unaligned, but it disassembles as a qword in the constructor, so idk.
 
     /// <summary>
     /// Changes the currently equipped bait.
@@ -133,25 +129,12 @@ public enum FishingState : int {
     /// Only during the action's animation.
     /// </remarks>
     ModestLure = 10,
-    Unk_11 = 11,
+    Unk11 = 11,
     /// <remarks>
     /// Or air, sand, etc.; just when you are actually fishing.
     /// </remarks>
     LineInWater = 12,
-    [Obsolete("Use None", true)]
-    NotFishing = 0,
-    [Obsolete("Use CastingOut", true)]
-    PoleOut = 1,
-    [Obsolete("Use PullingPoleIn", true)]
-    PullPoleIn = 2,
-    [Obsolete("Use Quitting", true)]
-    Quit = 3,
-    [Obsolete("Use Hooking", true)]
-    Reeling = 6,
-    [Obsolete("Use ConfirmingCollectable", true)]
-    Waiting = 8,
-    [Obsolete("Use AmbitiousLure", true)]
-    NormalFishing = 9,
-    [Obsolete("Use LineInWaiter", true)]
-    LureFishing = 12,
+
+    [Obsolete("Why are you using this without documenting it in CS?", true)]
+    Unk_11 = 11,
 }
