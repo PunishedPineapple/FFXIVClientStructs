@@ -22,8 +22,8 @@ public partial struct NpcYell {
     /// The number of new <see cref="YellSlots"/> and <see cref="YellInfo"/> entries that have not yet been handled.
     /// </summary>
     [FieldOffset(0x2848)] public byte UnhandledYellCount;
-    [FieldOffset(0x2849)] private byte Unk_2849; // Looks like a counter that has something to do specifically with entries that show a BattleTalk.
-    [FieldOffset(0x284A)] private bool Unk_284A;
+    [FieldOffset(0x2849)] public byte Unk_2849; // Looks like a counter that has something to do specifically with entries that show a BattleTalk.
+    [FieldOffset(0x284A)] public bool Unk_284A;
 
     [StructLayout(LayoutKind.Explicit, Size = 0x28)]
     public struct NpcYellSlot {
