@@ -3775,6 +3775,16 @@ enums:
     "PlayAll": 1
     "Shuffle": 2
     "Repeat": 3
+- type: Client::Game::WKS::WKSManager::MissionRank
+  name: MissionRank
+  underlying: int
+  namespace: Client.Game.WKS
+  flags: False
+  values:
+    "None": 0
+    "Bronze": 1
+    "Silver": 2
+    "Gold": 3
 - type: Client::Game::WKS::WKSMechaEventFlag
   name: WKSMechaEventFlag
   underlying: unsigned int
@@ -3867,6 +3877,14 @@ enums:
     "VisorClosed": 1
     "HeadgearHidden": 2
     "WeaponHidden": 4
+- type: Client::Game::UI::Journal::QuestType
+  name: QuestType
+  underlying: int
+  namespace: Client.Game.UI
+  flags: False
+  values:
+    "NormalQuest": 1
+    "LeveQuest": 2
 - type: Client::Game::UI::RollState
   name: RollState
   underlying: byte
@@ -5817,6 +5835,15 @@ enums:
     "ShroudAttacking": 1
     "ShroudActive": 2
     "ShroudLoading": 256
+- type: Application::Network::ZoneClient::TransportLayers
+  name: TransportLayers
+  underlying: int
+  namespace: Application.Network
+  flags: False
+  values:
+    "TCP": 0
+    "RUDP": 2
+    "RUDP2": 3
 - type: Component::GUI::AtkEventData::AtkMouseData::ModifierFlag
   name: ModifierFlag
   underlying: byte
@@ -6575,13 +6602,6 @@ structs:
     parameters:
     - type: Animation::Rig::hkaSkeleton*
       name: skeleton
-- type: Application::Network::ChatClient
-  name: ChatClient
-  namespace: Application.Network
-  union: False
-  size: 168
-  fields: []
-  member_functions: []
 - type: Application::Network::LogoutCallbackInterface
   name: LogoutCallbackInterface
   namespace: Application.Network
@@ -6635,27 +6655,6 @@ structs:
   - name: Dtor
     offset: 0
   member_functions: []
-- type: Application::Network::ZoneClient
-  name: ZoneClient
-  namespace: Application.Network
-  union: False
-  size: 160
-  fields: []
-  member_functions:
-  - signature: 48 83 EC ?? 48 8B 89 ?? ?? ?? ?? 48 85 C9 74 ?? 44 89 44 24 ?? 4C 8D 44 24 ?? 44 89 4C 24 ?? 44 0F B6 4C 24
-    return_type: byte
-    name: SendPacket
-    parameters:
-    - type: Application::Network::ZoneClient*
-      name: this
-    - type: __int64
-      name: packet
-    - type: unsigned int
-      name: a3
-    - type: unsigned int
-      name: a4
-    - type: byte
-      name: a5
 - type: Application::Network::ZoneLoginCallbackInterface
   name: ZoneLoginCallbackInterface
   namespace: Application.Network
@@ -10597,6 +10596,28 @@ structs:
     return_type: byte
     name: IsInRange
     parameters: []
+- type: Client::Game::OutdoorTerritory::HousingMapMarkerInfo
+  name: HousingMapMarkerInfo
+  namespace: Client.Game
+  union: False
+  size: 20
+  fields:
+  - type: float
+    name: X
+    offset: 0
+  - type: float
+    name: Y
+    offset: 4
+  - type: float
+    name: Z
+    offset: 8
+  - type: float
+    name: Unknown0
+    offset: 12
+  - type: unsigned __int16
+    name: MapId
+    offset: 16
+  member_functions: []
 - type: Client::Game::PlotDetail
   name: PlotDetail
   namespace: Client.Game
@@ -10988,6 +11009,14 @@ structs:
     parameters:
     - type: Client::Game::TitleList*
       name: this
+  - signature: E8 ?? ?? ?? ?? E9 ?? ?? ?? ?? 8B 44 24 ?? B9
+    return_type: void
+    name: SetTitleUnlocked
+    parameters:
+    - type: Client::Game::TitleList*
+      name: this
+    - type: unsigned __int16
+      name: titleId
   - signature: E8 ?? ?? ?? ?? 84 C0 74 1A 8B CB
     return_type: byte
     name: IsTitleUnlocked
@@ -11056,6 +11085,14 @@ structs:
     - type: Client::Game::UI::Achievement*
       name: this
     - type: int
+      name: achievementId
+  - signature: E8 ?? ?? ?? ?? 48 8B 0D ?? ?? ?? ?? E8 ?? ?? ?? ?? 48 8B C8 ?? ?? ?? FF 52 ?? 8B 54 24 ?? 48 8B C8
+    return_type: void
+    name: SetAchievementCompleted
+    parameters:
+    - type: Client::Game::UI::Achievement*
+      name: this
+    - type: unsigned int
       name: achievementId
   static_members:
   - signature: 48 8D 0D ?? ?? ?? ?? E8 ?? ?? ?? ?? 04 30 FF C3
@@ -12075,7 +12112,31 @@ structs:
   size: 18280
   fields: []
   virtual_functions: []
-  member_functions: []
+  member_functions:
+  - signature: E8 ?? ?? ?? ?? 84 C0 75 35 41 8B CE
+    return_type: byte
+    name: IsQuestAccepted
+    parameters:
+    - type: Client::Game::UI::Journal*
+      name: this
+    - type: unsigned __int16
+      name: questId
+  - signature: 48 89 5C 24 ?? 48 89 74 24 ?? 57 48 83 EC 30 41 8B F8 8B DA 48 8B F1 E8 ?? ?? ?? ?? 48 8B C8
+    return_type: void
+    name: AbandonQuest
+    parameters:
+    - type: Client::Game::UI::Journal*
+      name: this
+    - type: Client::Game::UI::Journal::QuestType
+      name: type
+    - type: unsigned int
+      name: questId
+  static_members:
+  - signature: 48 8D 0D ?? ?? ?? ?? 66 89 83
+    relative_follow_offsets:
+    - 3
+    is_pointer: False
+    return_type: Client::Game::UI::Journal
 - type: Client::Game::UI::LimitBreakController
   name: LimitBreakController
   namespace: Client.Game.UI
@@ -14372,6 +14433,34 @@ structs:
       name: packet
   member_functions: []
   static_member_functions:
+  - signature: 40 55 53 57 41 54 41 56 48 8D AC 24 ?? ?? ?? ?? B8 ?? ?? ?? ?? E8 ?? ?? ?? ?? 48 2B E0 48 8B 05 ?? ?? ?? ?? 48 33 C4 48 89 85 ?? ?? ?? ?? 8B 85
+    return_type: void
+    name: HandleActorControlPacket
+    parameters:
+    - type: unsigned int
+      name: entityId
+    - type: unsigned int
+      name: category
+    - type: unsigned int
+      name: arg1
+    - type: unsigned int
+      name: arg2
+    - type: unsigned int
+      name: arg3
+    - type: unsigned int
+      name: arg4
+    - type: unsigned int
+      name: arg5
+    - type: unsigned int
+      name: arg6
+    - type: unsigned int
+      name: arg7
+    - type: unsigned int
+      name: arg8
+    - type: Client::Game::Object::GameObjectId
+      name: targetId
+    - type: byte
+      name: isRecorded
   - signature: 48 89 5C 24 ?? 56 48 83 EC ?? 48 8B 0D ?? ?? ?? ?? 48 8B F2
     return_type: void
     name: HandleSocialPacket
@@ -23513,6 +23602,8 @@ structs:
     offset: 1664
   - name: IsDutyRaidFinderOpen
     offset: 1696
+  - name: ShowAdventureNotice
+    offset: 1728
   - name: ShowRaceCountdownStart
     offset: 1920
   - name: ShowRaceCountdownEnd_2
@@ -36674,6 +36765,9 @@ structs:
     name: BaseRenderer
     offset: 0
     base: true
+  - type: byte
+    name: Wireframe
+    offset: 132489
   virtual_functions: []
   member_functions: []
 - type: Client::Graphics::Render::Material
@@ -37251,6 +37345,9 @@ structs:
     name: BaseRenderer
     offset: 0
     base: true
+  - type: byte
+    name: Wireframe
+    offset: 17345
   virtual_functions: []
   member_functions: []
 - type: Client::Graphics::Render::VerticalFogRenderer
@@ -37294,6 +37391,9 @@ structs:
     name: BaseRenderer
     offset: 0
     base: true
+  - type: byte
+    name: Wireframe
+    offset: 728
   virtual_functions: []
   member_functions: []
 - type: Client::Graphics::Scene::Attach
@@ -44885,6 +44985,16 @@ structs:
     offset: 0
     base: true
   virtual_functions:
+  - name: RespondToInvitation
+    offset: 104
+    return_type: byte
+    parameters:
+    - type: Client::UI::Info::InfoProxyInvitedList*
+      name: this
+    - type: char*
+      name: inviterName
+    - type: byte
+      name: accept
   - name: AddData
     offset: 8
     return_type: __int64
@@ -52991,6 +53101,48 @@ structs:
     offset: 280
   virtual_functions: []
   member_functions: []
+- type: Application::Network::ZoneClient
+  name: ZoneClient
+  namespace: Application.Network
+  union: False
+  size: 160
+  fields:
+  - type: Client::System::String::Utf8String
+    name: Host
+    offset: 0
+  - type: unsigned __int16
+    name: Port
+    offset: 104
+  - type: Application::Network::ZoneClient::TransportLayers
+    name: TransportLayer
+    offset: 108
+  - type: __int16
+    name: Unk72
+    offset: 114
+  - type: StdVector<byte>
+    name: HostFullDetails
+    offset: 120
+  - type: int
+    name: KeepAliveZone
+    offset: 144
+  - type: int
+    name: KeepAliveInvervalZone
+    offset: 148
+  member_functions:
+  - signature: 48 83 EC ?? 48 8B 89 ?? ?? ?? ?? 48 85 C9 74 ?? 44 89 44 24 ?? 4C 8D 44 24 ?? 44 89 4C 24 ?? 44 0F B6 4C 24
+    return_type: byte
+    name: SendPacket
+    parameters:
+    - type: Application::Network::ZoneClient*
+      name: this
+    - type: __int64
+      name: packet
+    - type: unsigned int
+      name: a3
+    - type: unsigned int
+      name: a4
+    - type: byte
+      name: a5
 - type: Client::Game::CSBonusManager
   name: CSBonusManager
   namespace: Client.Game
@@ -55655,58 +55807,6 @@ structs:
     name: InstanceId
     offset: 32
   member_functions: []
-- type: Client::Game::UI::Telepo
-  name: Telepo
-  namespace: Client.Game.UI
-  union: False
-  size: 88
-  fields:
-  - type: StdVector<Client::Game::UI::TeleportInfo>
-    name: TeleportList
-    offset: 16
-  - type: Client::Game::UI::Telepo::SelectUseTicketInvoker
-    name: UseTicketInvoker
-    offset: 40
-  virtual_functions:
-  - name: Dtor
-    offset: 16
-  member_functions:
-  - signature: E8 ?? ?? ?? ?? 48 8B 4B 10 84 C0 48 8B 01 74 2C
-    return_type: byte
-    name: Teleport
-    parameters:
-    - type: Client::Game::UI::Telepo*
-      name: this
-    - type: unsigned int
-      name: aetheryteId
-    - type: byte
-      name: subIndex
-  - signature: E8 ?? ?? ?? ?? 49 89 47 ?? BA
-    return_type: StdVector<Client::Game::UI::TeleportInfo>*
-    name: UpdateAetheryteList
-    parameters:
-    - type: Client::Game::UI::Telepo*
-      name: this
-  - signature: E8 ?? ?? ?? ?? 89 44 24 ?? 49 8D 4D
-    return_type: unsigned int
-    name: GetTeleportCost
-    parameters:
-    - type: Client::Game::UI::Telepo*
-      name: this
-    - type: Component::Exd::Sheets::Aetheryte*
-      name: aetheryteRow
-    - type: __int16
-      name: multiplier
-    - type: byte
-      name: favored
-    - type: byte
-      name: residentArea
-  static_members:
-  - signature: 48 8D 0D ?? ?? ?? ?? 48 8B 12
-    relative_follow_offsets:
-    - 3
-    is_pointer: False
-    return_type: Client::Game::UI::Telepo
 - type: Client::Game::UI::TeleportInfo
   name: TeleportInfo
   namespace: Client.Game.UI
@@ -55769,6 +55869,18 @@ structs:
   - type: unsigned __int16
     name: CurrentMissionUnitRowId
     offset: 3096
+  - type: unsigned __int16
+    name: CurrentScore
+    offset: 3104
+  - type: Client::Game::WKS::WKSManager::MissionRank
+    name: CurrentRank
+    offset: 3108
+  - type: unsigned __int16
+    name: CollectedTotal
+    offset: 3114
+  - type: byte
+    name: CollectedIndividual
+    offset: 3116
   - type: unsigned int
     name: FishingBait
     offset: 3156
@@ -67394,6 +67506,9 @@ structs:
     name: AgentInterface
     offset: 0
     base: true
+  - type: byte
+    name: PendingAetheryteId
+    offset: 92
   - type: int
     name: AetheryteCount
     offset: 96
@@ -73137,6 +73252,17 @@ structs:
     parameters:
     - type: Animation::Rig::hkaPose*
       name: this
+- type: Application::Network::ChatClient
+  name: ChatClient
+  namespace: Application.Network
+  union: False
+  size: 168
+  fields:
+  - type: Application::Network::ZoneClient
+    name: ZoneClient
+    offset: 0
+    base: true
+  member_functions: []
 - type: Client::Game::Character::ActionEffectHandler::EffectEntry
   name: EffectEntry
   namespace: Client.Game.Character
@@ -74985,6 +75111,93 @@ structs:
     name: DurabilityFactor
     offset: 1016
   member_functions: []
+- type: Client::Game::UI::Telepo
+  name: Telepo
+  namespace: Client.Game.UI
+  union: False
+  size: 88
+  fields:
+  - type: Component::GUI::AtkModuleInterface::AtkEventInterface
+    name: AtkEventInterface
+    offset: 0
+    base: true
+  - type: StdVector<Client::Game::UI::TeleportInfo>
+    name: TeleportList
+    offset: 16
+  - type: Client::Game::UI::Telepo::SelectUseTicketInvoker
+    name: UseTicketInvoker
+    offset: 40
+  - type: byte
+    name: ActiveTeleportRequest
+    offset: 81
+  virtual_functions:
+  - name: ReceiveEvent
+    offset: 0
+    return_type: Component::GUI::AtkValue*
+    parameters:
+    - type: Client::Game::UI::Telepo*
+      name: this
+    - type: Component::GUI::AtkValue*
+      name: returnValue
+    - type: Component::GUI::AtkValue*
+      name: values
+    - type: unsigned int
+      name: valueCount
+    - type: unsigned __int64
+      name: eventKind
+  - name: ReceiveEventWithResult
+    offset: 8
+    return_type: Component::GUI::AtkValue*
+    parameters:
+    - type: Client::Game::UI::Telepo*
+      name: this
+    - type: Component::GUI::AtkValue*
+      name: returnValue
+    - type: Component::GUI::AtkValue*
+      name: values
+    - type: unsigned int
+      name: valueCount
+    - type: unsigned __int64
+      name: eventKind
+  - name: Dtor
+    offset: 16
+  member_functions:
+  - signature: E8 ?? ?? ?? ?? 48 8B 4B 10 84 C0 48 8B 01 74 2C
+    return_type: byte
+    name: Teleport
+    parameters:
+    - type: Client::Game::UI::Telepo*
+      name: this
+    - type: unsigned int
+      name: aetheryteId
+    - type: byte
+      name: subIndex
+  - signature: E8 ?? ?? ?? ?? 49 89 47 ?? BA
+    return_type: StdVector<Client::Game::UI::TeleportInfo>*
+    name: UpdateAetheryteList
+    parameters:
+    - type: Client::Game::UI::Telepo*
+      name: this
+  - signature: E8 ?? ?? ?? ?? 89 44 24 ?? 49 8D 4D
+    return_type: unsigned int
+    name: GetTeleportCost
+    parameters:
+    - type: Client::Game::UI::Telepo*
+      name: this
+    - type: Component::Exd::Sheets::Aetheryte*
+      name: aetheryteRow
+    - type: __int16
+      name: multiplier
+    - type: byte
+      name: favored
+    - type: byte
+      name: residentArea
+  static_members:
+  - signature: 48 8D 0D ?? ?? ?? ?? 48 8B 12
+    relative_follow_offsets:
+    - 3
+    is_pointer: False
+    return_type: Client::Game::UI::Telepo
 - type: Client::Game::WKS::WKSContentInventoryContainer
   name: WKSContentInventoryContainer
   namespace: Client.Game.WKS
@@ -79745,6 +79958,139 @@ structs:
       name: this
     - type: unsigned __int64
       name: accountId
+- type: Client::UI::Agent::AgentPartyInvite
+  name: AgentPartyInvite
+  namespace: Client.UI.Agent
+  union: False
+  size: 168
+  fields:
+  - type: Client::UI::Agent::AgentInterface
+    name: AgentInterface
+    offset: 0
+    base: true
+  - type: Client::UI::Info::InfoProxyPartyInvite*
+    name: InfoProxyPartyInvite
+    offset: 40
+  - type: Client::System::String::Utf8String
+    name: InviterName
+    offset: 56
+  - type: unsigned int
+    name: ConfirmAddonId
+    offset: 160
+  virtual_functions:
+  - name: ReceiveEvent
+    offset: 0
+    return_type: Component::GUI::AtkValue*
+    parameters:
+    - type: Client::UI::Agent::AgentPartyInvite*
+      name: this
+    - type: Component::GUI::AtkValue*
+      name: returnValue
+    - type: Component::GUI::AtkValue*
+      name: values
+    - type: unsigned int
+      name: valueCount
+    - type: unsigned __int64
+      name: eventKind
+  - name: ReceiveEventWithResult
+    offset: 8
+    return_type: Component::GUI::AtkValue*
+    parameters:
+    - type: Client::UI::Agent::AgentPartyInvite*
+      name: this
+    - type: Component::GUI::AtkValue*
+      name: returnValue
+    - type: Component::GUI::AtkValue*
+      name: values
+    - type: unsigned int
+      name: valueCount
+    - type: unsigned __int64
+      name: eventKind
+  - name: Dtor
+    offset: 16
+    return_type: void
+    parameters:
+    - type: Client::UI::Agent::AgentPartyInvite*
+      name: this
+    - type: byte
+      name: freeFlags
+  - name: Show
+    offset: 24
+    return_type: void
+    parameters:
+    - type: Client::UI::Agent::AgentPartyInvite*
+      name: this
+  - name: ShowFromLua
+    offset: 32
+    return_type: void
+    parameters:
+    - type: Client::UI::Agent::AgentPartyInvite*
+      name: this
+    - type: int
+      name: id
+    - type: int*
+      name: args
+    - type: __int64
+      name: argCount
+  - name: Hide
+    offset: 40
+    return_type: void
+    parameters:
+    - type: Client::UI::Agent::AgentPartyInvite*
+      name: this
+  - name: IsAgentActive
+    offset: 48
+    return_type: byte
+    parameters:
+    - type: Client::UI::Agent::AgentPartyInvite*
+      name: this
+  - name: Update
+    offset: 56
+    return_type: void
+    parameters:
+    - type: Client::UI::Agent::AgentPartyInvite*
+      name: this
+    - type: unsigned int
+      name: frameCount
+  - name: IsActivatable
+    offset: 64
+    return_type: byte
+    parameters:
+    - type: Client::UI::Agent::AgentPartyInvite*
+      name: this
+  - name: GetAddonId
+    offset: 72
+    return_type: unsigned int
+    parameters:
+    - type: Client::UI::Agent::AgentPartyInvite*
+      name: this
+  - name: OnGameEvent
+    offset: 80
+    return_type: void
+    parameters:
+    - type: Client::UI::Agent::AgentPartyInvite*
+      name: this
+    - type: Client::UI::Agent::AgentInterface::GameEvent
+      name: gameEvent
+  - name: OnLevelChange
+    offset: 88
+    return_type: void
+    parameters:
+    - type: Client::UI::Agent::AgentPartyInvite*
+      name: this
+    - type: byte
+      name: classJobId
+    - type: unsigned __int16
+      name: level
+  - name: OnClassJobChange
+    offset: 96
+    return_type: void
+    parameters:
+    - type: Client::UI::Agent::AgentPartyInvite*
+      name: this
+    - type: byte
+      name: classJobId
+  member_functions: []
 - type: Client::UI::Agent::AgentPvpProfile
   name: AgentPvpProfile
   namespace: Client.UI.Agent
@@ -86844,8 +87190,8 @@ structs:
       name: index
     - type: unsigned int
       name: levelId
-    - type: Common::Math::Vector3*
-      name: pos
+    - type: Client::Game::OutdoorTerritory::HousingMapMarkerInfo*
+      name: housingMapMarkerInfo
     - type: unsigned __int16
       name: territoryTypeId
     - type: int
@@ -90782,6 +91128,16 @@ structs:
     parameters:
     - type: Client::UI::Info::InfoProxyFreeCompanyInvite*
       name: this
+  - name: RespondToInvitation
+    offset: 104
+    return_type: byte
+    parameters:
+    - type: Client::UI::Info::InfoProxyFreeCompanyInvite*
+      name: this
+    - type: char*
+      name: inviterName
+    - type: byte
+      name: accept
   member_functions: []
 - type: Client::UI::Info::InfoProxyPartyInvite
   name: InfoProxyPartyInvite
@@ -90844,6 +91200,16 @@ structs:
     parameters:
     - type: Client::UI::Info::InfoProxyPartyInvite*
       name: this
+  - name: RespondToInvitation
+    offset: 104
+    return_type: byte
+    parameters:
+    - type: Client::UI::Info::InfoProxyPartyInvite*
+      name: this
+    - type: char*
+      name: inviterName
+    - type: byte
+      name: accept
   member_functions:
   - signature: E8 ?? ?? ?? ?? 44 8B FF 48 8D 4D
     return_type: byte
@@ -96858,6 +97224,18 @@ structs:
       name: targetIndex
     - type: byte
       name: doUpdate
+  - signature: E8 ?? ?? ?? ?? 40 88 B7 ?? ?? ?? ?? EB 0B C6 87 ?? ?? ?? ?? ??
+    return_type: byte
+    name: DisbandParty
+    parameters:
+    - type: Client::UI::Info::InfoProxyPartyMember*
+      name: this
+  - signature: E8 ?? ?? ?? ?? 33 C0 48 83 C4 20 5B C3 B8 ?? ?? ?? ??
+    return_type: byte
+    name: LeaveParty
+    parameters:
+    - type: Client::UI::Info::InfoProxyPartyMember*
+      name: this
 - type: Client::UI::Info::InfoProxySearch
   name: InfoProxySearch
   namespace: Client.UI.Info
@@ -147599,6 +147977,30 @@ structs:
   - type: Client::UI::Agent::AgentTryon::TryonCharaView
     name: CharaView
     offset: 40
+  - type: byte
+    name: Unknown360
+    offset: 864
+  - type: byte
+    name: Unknown361
+    offset: 865
+  - type: byte
+    name: Unknown362
+    offset: 866
+  - type: byte
+    name: Unknown363
+    offset: 867
+  - type: byte
+    name: Unknown364
+    offset: 868
+  - type: byte
+    name: Unknown365
+    offset: 869
+  - type: byte
+    name: SaveDeleteOutfit
+    offset: 870
+  - type: byte
+    name: DisplayGear
+    offset: 871
   virtual_functions:
   - name: ReceiveEvent
     offset: 0
@@ -158140,7 +158542,7 @@ structs:
     is_string: False
   - type: int
     name: NumItems
-    offset: 1460
+    offset: 1452
   - type: int
     name: SelectedItemIndex
     offset: 1464
@@ -162123,7 +162525,7 @@ structs:
   name: AddonTrade
   namespace: Client.UI
   union: False
-  size: 600
+  size: 888
   fields:
   - type: Component::GUI::AtkUnitBase
     name: AtkUnitBase
@@ -203295,121 +203697,6 @@ structs:
     - type: byte
       name: a3
   member_functions: []
-- type: Client::Game::OutdoorTerritory
-  name: OutdoorTerritory
-  namespace: Client.Game
-  union: False
-  size: 44672
-  fields:
-  - type: Client::Game::HousingTerritory
-    name: HousingTerritory
-    offset: 0
-    base: true
-  - type: Client::Game::HousingFurnitureManager
-    name: FurnitureStruct
-    offset: 16
-  - type: Common::Component::Excel::ExcelSheetWaiter*
-    name: ItemExcelSheetWaiter
-    offset: 38544
-  - type: Common::Component::Excel::ExcelSheet*
-    name: ItemExcelSheet
-    offset: 38552
-  - type: Client::Game::HouseId
-    name: HouseId
-    offset: 38560
-  - type: Client::Game::HouseUnit
-    name: HouseUnit
-    offset: 38568
-  - type: __int8
-    name: EditingFixturesOfPlot
-    offset: 38570
-  - type: __int8
-    name: EditingFurnishingsOfPlot
-    offset: 38576
-  - type: __int8
-    name: EditingEstateHallOfPlot
-    offset: 38578
-  - type: Client::Game::PlotDetail
-    name: Plots
-    offset: 38584
-    size: 60
-    is_string: False
-  - type: Client::Game::ApartmentBuildingState
-    name: ApartmentBuildings
-    offset: 39544
-    size: 2
-    is_string: False
-  - type: Client::Game::HousingTemporaryObject
-    name: TemporaryObject
-    offset: 39552
-  - type: Client::Game::Object::HousingObject*
-    name: TargetedHousingObject
-    offset: 39616
-  - type: Client::Game::Object::HousingObject*
-    name: HoveredHousingObject
-    offset: 39624
-  - type: Client::Game::Object::HousingObject*
-    name: MovingHousingObject
-    offset: 39632
-  - type: unsigned int
-    name: UnkEntityIds
-    offset: 39640
-    size: 30
-    is_string: False
-  - type: unsigned int
-    name: Unk9B50
-    offset: 39760
-  - type: Client::Game::HousingTerritory::HousingTerritoryUIEventListener
-    name: UIEventListener1
-    offset: 39768
-  - type: Client::Game::HousingTerritory::HousingTerritoryUIEventListener
-    name: UIEventListener2
-    offset: 39808
-  - type: Client::LayoutEngine::OutdoorPlotExteriorData
-    name: EditingPlotExteriorDataBackup
-    offset: 39848
-  - type: Client::Game::HouseBuddy
-    name: HouseBuddy
-    offset: 39920
-  - type: Client::Game::HousingGuestBookData
-    name: GuestBook
-    offset: 42640
-  virtual_functions:
-  - name: Dtor
-    offset: 0
-    return_type: void
-    parameters:
-    - type: Client::Game::OutdoorTerritory*
-      name: this
-    - type: byte
-      name: freeFlags
-  - name: Update
-    offset: 8
-    return_type: void
-    parameters:
-    - type: Client::Game::OutdoorTerritory*
-      name: this
-  - name: IsLoaded
-    offset: 16
-    return_type: byte
-    parameters:
-    - type: Client::Game::OutdoorTerritory*
-      name: this
-  - name: GetTerritoryType
-    offset: 48
-    return_type: Client::Game::HousingTerritoryType
-    parameters:
-    - type: Client::Game::OutdoorTerritory*
-      name: this
-  member_functions:
-  - signature: 48 89 6C 24 ?? 48 89 74 24 ?? 57 41 56 41 57 48 83 EC 30 0F B6 FA
-    return_type: int
-    name: GetPlotIcon
-    parameters:
-    - type: Client::Game::OutdoorTerritory*
-      name: this
-    - type: byte
-      name: plot
 - type: Client::Game::InstanceContent::InstanceContentDeepDungeon
   name: InstanceContentDeepDungeon
   namespace: Client.Game.InstanceContent
@@ -203881,6 +204168,126 @@ structs:
     name: Gunbreaker
     offset: 0
   member_functions: []
+- type: Client::Game::OutdoorTerritory
+  name: OutdoorTerritory
+  namespace: Client.Game
+  union: False
+  size: 44672
+  fields:
+  - type: Client::Game::HousingTerritory
+    name: HousingTerritory
+    offset: 0
+    base: true
+  - type: Client::Game::HousingFurnitureManager
+    name: FurnitureStruct
+    offset: 16
+  - type: Common::Component::Excel::ExcelSheetWaiter*
+    name: ItemExcelSheetWaiter
+    offset: 38544
+  - type: Common::Component::Excel::ExcelSheet*
+    name: ItemExcelSheet
+    offset: 38552
+  - type: Client::Game::HouseId
+    name: HouseId
+    offset: 38560
+  - type: Client::Game::HouseUnit
+    name: HouseUnit
+    offset: 38568
+  - type: __int8
+    name: EditingFixturesOfPlot
+    offset: 38570
+  - type: __int8
+    name: EditingFurnishingsOfPlot
+    offset: 38576
+  - type: __int8
+    name: EditingEstateHallOfPlot
+    offset: 38578
+  - type: Client::Game::PlotDetail
+    name: Plots
+    offset: 38584
+    size: 60
+    is_string: False
+  - type: Client::Game::ApartmentBuildingState
+    name: ApartmentBuildings
+    offset: 39544
+    size: 2
+    is_string: False
+  - type: Client::Game::HousingTemporaryObject
+    name: TemporaryObject
+    offset: 39552
+  - type: Client::Game::Object::HousingObject*
+    name: TargetedHousingObject
+    offset: 39616
+  - type: Client::Game::Object::HousingObject*
+    name: HoveredHousingObject
+    offset: 39624
+  - type: Client::Game::Object::HousingObject*
+    name: MovingHousingObject
+    offset: 39632
+  - type: unsigned int
+    name: UnkEntityIds
+    offset: 39640
+    size: 30
+    is_string: False
+  - type: unsigned int
+    name: Unk9B50
+    offset: 39760
+  - type: Client::Game::HousingTerritory::HousingTerritoryUIEventListener
+    name: UIEventListener1
+    offset: 39768
+  - type: Client::Game::HousingTerritory::HousingTerritoryUIEventListener
+    name: UIEventListener2
+    offset: 39808
+  - type: Client::LayoutEngine::OutdoorPlotExteriorData
+    name: EditingPlotExteriorDataBackup
+    offset: 39848
+  - type: Client::Game::HouseBuddy
+    name: HouseBuddy
+    offset: 39920
+  - type: Client::Game::OutdoorTerritory::HousingMapMarkerInfo
+    name: HousingMapMarkerInfos
+    offset: 41380
+    size: 62
+    is_string: False
+  - type: Client::Game::HousingGuestBookData
+    name: GuestBook
+    offset: 42640
+  virtual_functions:
+  - name: Dtor
+    offset: 0
+    return_type: void
+    parameters:
+    - type: Client::Game::OutdoorTerritory*
+      name: this
+    - type: byte
+      name: freeFlags
+  - name: Update
+    offset: 8
+    return_type: void
+    parameters:
+    - type: Client::Game::OutdoorTerritory*
+      name: this
+  - name: IsLoaded
+    offset: 16
+    return_type: byte
+    parameters:
+    - type: Client::Game::OutdoorTerritory*
+      name: this
+  - name: GetTerritoryType
+    offset: 48
+    return_type: Client::Game::HousingTerritoryType
+    parameters:
+    - type: Client::Game::OutdoorTerritory*
+      name: this
+  member_functions:
+  - signature: 48 89 6C 24 ?? 48 89 74 24 ?? 57 41 56 41 57 48 83 EC 30 0F B6 FA
+    return_type: int
+    name: GetPlotIcon
+    parameters:
+    - type: Client::Game::OutdoorTerritory*
+      name: this
+    - type: byte
+      name: plot
 - type: Client::Game::JobGaugeManager
   name: JobGaugeManager
   namespace: Client.Game
@@ -207480,6 +207887,14 @@ structs:
     parameters:
     - type: Client::Game::UI::UIState*
       name: this
+  - signature: E8 ?? ?? ?? ?? 84 C0 75 24 4D 85 F6
+    return_type: byte
+    name: GetIsAirDismountable
+    parameters:
+    - type: Client::Game::UI::UIState*
+      name: this
+    - type: Common::Math::Vector3*
+      name: outPosition
   static_members:
   - signature: 48 8D 0D ?? ?? ?? ?? E8 ?? ?? ?? ?? 48 8B 8B ?? ?? ?? ?? 48 8B 01
     relative_follow_offsets:
