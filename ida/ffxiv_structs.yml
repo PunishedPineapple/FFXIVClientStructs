@@ -1306,6 +1306,7 @@ enums:
   namespace: Component.GUI
   flags: True
   values:
+    "None": 0
     "AutoAdjustNodeSize": 1
     "Bold": 2
     "Italic": 4
@@ -1455,6 +1456,26 @@ enums:
     "BottomLeft": 6
     "Bottom": 7
     "BottomRight": 8
+- type: Component::GUI::AtkUnitBaseVisibilityState
+  name: AtkUnitBaseVisibilityState
+  underlying: byte
+  namespace: Component.GUI
+  flags: True
+  values:
+    "None": 0
+    "Unk1": 1
+    "IsVisible": 2
+    "IsHiddenDueToModal": 4
+    "Unk4": 8
+- type: Component::GUI::AtkUnitBaseLoadState
+  name: AtkUnitBaseLoadState
+  underlying: byte
+  namespace: Component.GUI
+  flags: False
+  values:
+    "LoadingUldResource": 0
+    "LoadingResources": 1
+    "FullyLoaded": 2
 - type: Component::GUI::AtkUnitManagerFlags
   name: AtkUnitManagerFlags
   underlying: byte
@@ -3254,6 +3275,21 @@ enums:
     "Pressed": 2
     "Released": 4
     "Held": 8
+- type: Client::System::Framework::ClientPlatform
+  name: ClientPlatform
+  underlying: int
+  namespace: Client.System.Framework
+  flags: False
+  values:
+    "Win32": 0
+    "PS3": 1
+    "PS4": 2
+    "Win64": 3
+    "Mac32": 4
+    "Mac64": 5
+    "PS5": 6
+    "XSX": 7
+    "Invalid": 9
 - type: Client::System::File::FileMode
   name: FileMode
   underlying: unsigned int
@@ -3265,6 +3301,40 @@ enums:
     "CreateFileResource": 2
     "LoadIndexResource": 10
     "LoadSqPackResource": 11
+- type: Client::Sound::SoundVolumeCategory
+  name: SoundVolumeCategory
+  underlying: int
+  namespace: Client.Sound
+  flags: False
+  values:
+    "Player": 0
+    "Party": 1
+    "Other": 2
+    "Unk3": 3
+    "Unk4": 4
+    "NoPlay": 5
+    "BypassVolumeRules": 6
+- type: Client::Sound::SoundObjectType
+  name: SoundObjectType
+  underlying: byte
+  namespace: Client.Sound
+  flags: False
+  values:
+    "Null": 0
+    "AmbientSound": 1
+    "DirectionSound": 2
+    "PointSound": 3
+    "PointDirSound": 4
+    "LineSound": 5
+    "PolyLineSound": 6
+    "SurfaceSound": 7
+    "BoardObstruction": 8
+    "BoxObstruction": 9
+    "PolyLineObstruction": 10
+    "PolygonSound": 11
+    "BoxExtController": 12
+    "LineExtController": 13
+    "PolygonObstruction": 14
 - type: Client::LayoutEngine::FileLayerGroupLayerFilter::Op
   name: Op
   underlying: int
@@ -3411,6 +3481,20 @@ enums:
     "HasUmbrella": 65536
     "VieraEarsHidden": 2147483648
     "VieraEarsChanging": 4294967296
+- type: Client::Game::Object::ObjectHighlightColor
+  name: ObjectHighlightColor
+  underlying: byte
+  namespace: Client.Game.Object
+  flags: False
+  values:
+    "None": 0
+    "Red": 1
+    "Green": 2
+    "Blue": 3
+    "Yellow": 4
+    "Orange": 5
+    "Magenta": 6
+    "Black": 7
 - type: Client::Graphics::Physics::BoneSimulator::PhysicsGroup
   name: PhysicsGroup
   underlying: unsigned int
@@ -3756,6 +3840,36 @@ enums:
     "LockedIn": 4
     "WaitingForConfirmation": 5
     "Confirmed": 6
+- type: Client::Game::NpcYellBalloonState
+  name: NpcYellBalloonState
+  underlying: int
+  namespace: Client.Game
+  flags: False
+  values:
+    "Inactive": 0
+    "Waiting": 1
+    "Active": 2
+    "Activating": 3
+- type: Client::Game::NpcYellBalloonCloseType
+  name: NpcYellBalloonCloseType
+  underlying: int
+  namespace: Client.Game
+  flags: False
+  values:
+    "Normal": 0
+    "HoldOpen": 1
+    "ReducedCloseChecks": 2
+- type: Client::Game::NpcYellBalloonFlags
+  name: NpcYellBalloonFlags
+  underlying: byte
+  namespace: Client.Game
+  flags: True
+  values:
+    "None": 0
+    "Valid": 1
+    "SoftOpen": 2
+    "IgnoreRangeCheck": 4
+    "PrintToLog": 8
 - type: Client::Game::OrchestrionMode
   name: OrchestrionMode
   underlying: int
@@ -3775,6 +3889,15 @@ enums:
     "PlayAll": 1
     "Shuffle": 2
     "Repeat": 3
+- type: Client::Game::RaceChocoboManager::RaceChocoboState
+  name: RaceChocoboState
+  underlying: int
+  namespace: Client.Game
+  flags: False
+  values:
+    "Invalid": 0
+    "Requested": 1
+    "Loaded": 2
 - type: Client::Game::WKS::WKSManager::MissionRank
   name: MissionRank
   underlying: int
@@ -3867,6 +3990,15 @@ enums:
     "WaitTime": 3
     "None4": 4
     "None5": 5
+- type: Client::Game::UI::ContentsNote::ContentsNoteState
+  name: ContentsNoteState
+  underlying: int
+  namespace: Client.Game.UI
+  flags: False
+  values:
+    "Invalid": 0
+    "Requested": 1
+    "Loaded": 2
 - type: Client::Game::UI::InspectGearVisibilityFlag
   name: InspectGearVisibilityFlag
   underlying: byte
@@ -4049,20 +4181,6 @@ enums:
     "StoreCraftedItemsInInventory": 32
     "CloseVisor": 64
     "HideVieraEars": 128
-- type: Client::Game::Object::ObjectHighlightColor
-  name: ObjectHighlightColor
-  underlying: byte
-  namespace: Client.Game.Object
-  flags: False
-  values:
-    "None": 0
-    "Red": 1
-    "Green": 2
-    "Blue": 3
-    "Yellow": 4
-    "Orange": 5
-    "Magenta": 6
-    "Black": 7
 - type: Client::Game::Object::TargetType
   name: TargetType
   underlying: int
@@ -5835,7 +5953,7 @@ enums:
     "ShroudAttacking": 1
     "ShroudActive": 2
     "ShroudLoading": 256
-- type: Application::Network::ZoneClient::TransportLayers
+- type: Application::Network::TransportLayers
   name: TransportLayers
   underlying: int
   namespace: Application.Network
@@ -5892,6 +6010,36 @@ enums:
     "GatheringPoint": 7
     "BattleNpcSubkind6": 8
     "Other": 9
+- type: Client::UI::SpearfishSize
+  name: SpearfishSize
+  underlying: byte
+  namespace: Client.UI
+  flags: False
+  values:
+    "Unknown": 0
+    "Small": 1
+    "Average": 2
+    "Large": 3
+    "None": 255
+- type: Client::UI::SpearfishSpeed
+  name: SpearfishSpeed
+  underlying: unsigned __int16
+  namespace: Client.UI
+  flags: False
+  values:
+    "Unknown": 0
+    "SuperSlow": 100
+    "ExtremelySlow": 150
+    "VerySlow": 200
+    "Slow": 250
+    "Average": 300
+    "Fast": 350
+    "VeryFast": 400
+    "ExtremelyFast": 450
+    "SuperFast": 500
+    "HyperFast": 550
+    "LynFast": 600
+    "None": 65535
 - type: Client::UI::ListPanel::Alignment
   name: Alignment
   underlying: int
@@ -6270,6 +6418,30 @@ enums:
   values:
     "ContentRoulette": 1
     "ContentFinderCondition": 2
+- type: Client::Game::UI::NpcYell::NpcYellOutputFlags
+  name: NpcYellOutputFlags
+  underlying: byte
+  namespace: Client.Game.UI
+  flags: True
+  values:
+    "None": 0
+    "PrintToLog": 1
+    "ShowBalloon": 2
+    "ShowBattleTalk": 4
+- type: Client::Game::UI::NpcYell::NpcYellFlags
+  name: NpcYellFlags
+  underlying: byte
+  namespace: Client.Game.UI
+  flags: True
+  values:
+    "None": 0
+    "SkipCloseChecks": 1
+    "SkipRangeCheck": 2
+    "Unk4": 4
+    "HideSpeakerName": 8
+    "SlotAvailable": 16
+    "Unk20": 32
+    "Unk40": 64
 - type: Client::UI::Arrays::InventoryNumberArray::InventoryItemNumberArray::ItemFlag::ItemWearableIcon
   name: ItemWearableIcon
   underlying: byte
@@ -6877,6 +7049,18 @@ structs:
     name: Hairstyle
     offset: 6
   - type: byte
+    name: Data7
+    offset: 7
+    bits:
+    - type: byte
+      offset: 0
+      size: 7
+      name: UnkBits0
+    - type: byte
+      offset: 7
+      size: 1
+      name: Highlights
+  - type: byte
     name: SkinColor
     offset: 8
   - type: byte
@@ -6889,6 +7073,42 @@ structs:
     name: HighlightsColor
     offset: 11
   - type: byte
+    name: DataC
+    offset: 12
+    bits:
+    - type: byte
+      offset: 0
+      size: 1
+      name: FacialFeature1
+    - type: byte
+      offset: 1
+      size: 1
+      name: FacialFeature2
+    - type: byte
+      offset: 2
+      size: 1
+      name: FacialFeature3
+    - type: byte
+      offset: 3
+      size: 1
+      name: FacialFeature4
+    - type: byte
+      offset: 4
+      size: 1
+      name: FacialFeature5
+    - type: byte
+      offset: 5
+      size: 1
+      name: FacialFeature6
+    - type: byte
+      offset: 6
+      size: 1
+      name: FacialFeature7
+    - type: byte
+      offset: 7
+      size: 1
+      name: LegacyTattoo
+  - type: byte
     name: TattooColor
     offset: 13
   - type: byte
@@ -6898,11 +7118,35 @@ structs:
     name: EyeColorLeft
     offset: 15
   - type: byte
+    name: Data10
+    offset: 16
+    bits:
+    - type: byte
+      offset: 0
+      size: 7
+      name: EyeShape
+    - type: byte
+      offset: 7
+      size: 1
+      name: SmallIris
+  - type: byte
     name: Nose
     offset: 17
   - type: byte
     name: Jaw
     offset: 18
+  - type: byte
+    name: Data13
+    offset: 19
+    bits:
+    - type: byte
+      offset: 0
+      size: 7
+      name: Mouth
+    - type: byte
+      offset: 7
+      size: 1
+      name: Lipstick
   - type: byte
     name: LipColorFurPattern
     offset: 20
@@ -6915,6 +7159,18 @@ structs:
   - type: byte
     name: BustSize
     offset: 23
+  - type: byte
+    name: Data18
+    offset: 24
+    bits:
+    - type: byte
+      offset: 0
+      size: 7
+      name: FacePaint
+    - type: byte
+      offset: 7
+      size: 1
+      name: FacePaintReversed
   - type: byte
     name: FacePaintColor
     offset: 25
@@ -9067,6 +9323,15 @@ structs:
   - type: byte
     name: Value
     offset: 0
+    bits:
+    - type: byte
+      offset: 0
+      size: 7
+      name: ApartmentDivision
+    - type: byte
+      offset: 0
+      size: 7
+      name: PlotIndex
   member_functions: []
 - type: Client::Game::HousingGuestBookData::HousingGuestBookEntry
   name: HousingGuestBookEntry
@@ -9593,6 +9858,15 @@ structs:
   - type: byte
     name: Flags
     offset: 2
+    bits:
+    - type: byte
+      offset: 0
+      size: 1
+      name: IsUsable
+    - type: byte
+      offset: 1
+      size: 1
+      name: IsActive
   member_functions: []
 - type: Client::Game::InstanceContent::InstanceContentDeepDungeon::DeepDungeonPartyInfo
   name: DeepDungeonPartyInfo
@@ -10278,12 +10552,114 @@ structs:
     name: SourceObjectId
     offset: 8
   member_functions: []
+- type: Client::Game::Network::InventoryItemCurrencyPacket
+  name: InventoryItemCurrencyPacket
+  namespace: Client.Game.Network
+  union: False
+  size: 20
+  fields:
+  - type: unsigned int
+    name: ContextId
+    offset: 0
+  - type: unsigned __int16
+    name: InventoryType
+    offset: 4
+  - type: unsigned __int16
+    name: Slot
+    offset: 6
+  - type: unsigned int
+    name: Quantity
+    offset: 8
+  - type: unsigned int
+    name: ItemId
+    offset: 16
+  member_functions: []
+- type: Client::Game::Network::InventoryItemPacket
+  name: InventoryItemPacket
+  namespace: Client.Game.Network
+  union: False
+  size: 61
+  fields:
+  - type: unsigned int
+    name: ContextId
+    offset: 0
+  - type: unsigned __int16
+    name: InventoryType
+    offset: 8
+  - type: unsigned __int16
+    name: Slot
+    offset: 10
+  - type: unsigned int
+    name: Quantity
+    offset: 12
+  - type: unsigned int
+    name: ItemId
+    offset: 16
+  - type: unsigned __int64
+    name: CrafterContentId
+    offset: 24
+  - type: byte
+    name: ItemFlags
+    offset: 32
+  - type: unsigned __int16
+    name: Condition
+    offset: 34
+  - type: unsigned __int16
+    name: SpiritbondOrCollectability
+    offset: 36
+  - type: unsigned int
+    name: GlamourId
+    offset: 40
+  - type: unsigned __int16
+    name: Materia
+    offset: 44
+    size: 5
+    is_string: False
+  - type: byte
+    name: MateriaGrades
+    offset: 54
+    size: 5
+    is_string: False
+  - type: byte
+    name: Stains
+    offset: 59
+    size: 2
+    is_string: False
+  member_functions: []
+- type: Client::Game::Network::InventoryItemSymbolicPacket
+  name: InventoryItemSymbolicPacket
+  namespace: Client.Game.Network
+  union: False
+  size: 16
+  fields:
+  - type: unsigned int
+    name: ContextId
+    offset: 0
+  - type: unsigned __int16
+    name: InventoryType
+    offset: 4
+  - type: unsigned __int16
+    name: Slot
+    offset: 6
+  - type: unsigned int
+    name: Quantity
+    offset: 8
+  - type: unsigned __int16
+    name: TargetInventoryType
+    offset: 12
+  - type: unsigned __int16
+    name: TargetSlot
+    offset: 14
+  member_functions: []
 - type: Client::Game::Network::UpdateInventorySlotPacket
   name: UpdateInventorySlotPacket
   namespace: Client.Game.Network
   union: False
   size: 61
   fields:
+  - type: unsigned int
+    name: ContextId
+    offset: 0
   - type: unsigned __int16
     name: InventoryType
     offset: 8
@@ -10640,79 +11016,28 @@ structs:
     name: OwnerType
     offset: 4
   member_functions: []
-- type: Client::Game::RaceChocoboManager
-  name: RaceChocoboManager
+- type: Client::Game::RaceChocoboAttributeValues
+  name: RaceChocoboAttributeValues
   namespace: Client.Game
   union: False
-  size: 38
+  size: 20
   fields:
-  - type: byte
+  - type: unsigned int
     name: MaximumSpeed
-    offset: 8
-  - type: byte
+    offset: 0
+  - type: unsigned int
     name: Acceleration
-    offset: 9
-  - type: byte
+    offset: 4
+  - type: unsigned int
     name: Endurance
-    offset: 10
-  - type: byte
+    offset: 8
+  - type: unsigned int
     name: Stamina
-    offset: 11
-  - type: byte
-    name: Cunning
     offset: 12
-  - type: byte
-    name: Parameters
-    offset: 13
-  - type: __int16
-    name: Father
-    offset: 14
-  - type: __int16
-    name: Mother
+  - type: unsigned int
+    name: Cunning
     offset: 16
-  - type: byte
-    name: AbilityHereditary
-    offset: 18
-  - type: byte
-    name: AbilityLearned
-    offset: 19
-  - type: __int16
-    name: NameFirst
-    offset: 22
-  - type: __int16
-    name: NameLast
-    offset: 24
-  - type: byte
-    name: Rank
-    offset: 26
-  - type: __int16
-    name: ExperienceCurrent
-    offset: 28
-  - type: __int16
-    name: ExperienceMax
-    offset: 30
-  - type: byte
-    name: Color
-    offset: 32
-  - type: byte
-    name: GearHead
-    offset: 33
-  - type: byte
-    name: GearBody
-    offset: 34
-  - type: byte
-    name: GearLegs
-    offset: 35
-  - type: byte
-    name: SessionsAvailable
-    offset: 36
   member_functions: []
-  static_members:
-  - signature: 48 8D 0D ?? ?? ?? ?? E8 ?? ?? ?? ?? 83 F8 02 75 08
-    relative_follow_offsets:
-    - 3
-    is_pointer: False
-    return_type: Client::Game::RaceChocoboManager
 - type: Client::Game::RankData
   name: RankData
   namespace: Client.Game
@@ -11934,8 +12259,11 @@ structs:
   - type: byte
     name: CompletionFlags
     offset: 8
-    size: 11
+    size: 13
     is_string: False
+  - type: Client::Game::UI::ContentsNote::ContentsNoteState
+    name: State
+    offset: 24
   - type: byte
     name: SelectedTab
     offset: 28
@@ -12233,14 +12561,6 @@ structs:
     offset: 0
     size: 5
     is_string: False
-  member_functions: []
-- type: Client::Game::UI::NpcYell
-  name: NpcYell
-  namespace: Client.Game.UI
-  union: False
-  size: 5968
-  fields: []
-  virtual_functions: []
   member_functions: []
 - type: Client::Game::UI::PetInfo
   name: PetInfo
@@ -12856,7 +13176,10 @@ structs:
   namespace: Client.Graphics.Environment
   union: False
   size: 104
-  fields: []
+  fields:
+  - type: Client::Sound::SoundData*
+    name: SoundData
+    offset: 32
   virtual_functions: []
   member_functions: []
 - type: Client::Graphics::Environment::EnvState
@@ -13731,6 +14054,15 @@ structs:
   - type: unsigned __int16
     name: SkeletonIdxBoneIdx
     offset: 0
+    bits:
+    - type: unsigned __int16
+      offset: 0
+      size: 12
+      name: BoneIdx
+    - type: byte
+      offset: 12
+      size: 4
+      name: PartialSkeletonIdx
   member_functions: []
 - type: Client::Graphics::Render::SubView
   name: SubView
@@ -14509,6 +14841,38 @@ structs:
       name: targetId
     - type: Client::Game::Network::UpdateInventorySlotPacket*
       name: packet
+  - signature: 48 89 5C 24 ?? 57 48 81 EC ?? ?? ?? ?? 48 8B 05 ?? ?? ?? ?? 48 33 C4 48 89 44 24 ?? 0F B7 5A
+    return_type: void
+    name: HandleInventoryItemUpdatePacket
+    parameters:
+    - type: unsigned int
+      name: targetId
+    - type: Client::Game::Network::InventoryItemPacket*
+      name: packet
+  - signature: E8 ?? ?? ?? ?? EB ?? 3D ?? ?? ?? ?? 75 ?? 48 8D 53 ?? 81 FE
+    return_type: void
+    name: HandleInventoryItemPacket
+    parameters:
+    - type: unsigned int
+      name: targetId
+    - type: Client::Game::Network::InventoryItemPacket*
+      name: packet
+  - signature: E8 ?? ?? ?? ?? EB 13 3D
+    return_type: void
+    name: HandleInventoryItemCurrencyPacket
+    parameters:
+    - type: unsigned int
+      name: targetId
+    - type: Client::Game::Network::InventoryItemCurrencyPacket*
+      name: packet
+  - signature: E8 ?? ?? ?? ?? 48 8B 5B ?? 48 85 DB 0F 85 ?? ?? ?? ?? 4D 85 FF
+    return_type: void
+    name: HandleInventoryItemSymbolicPacket
+    parameters:
+    - type: unsigned int
+      name: targetId
+    - type: Client::Game::Network::InventoryItemSymbolicPacket*
+      name: packet
   - signature: 48 89 5C 24 ?? 57 48 81 EC ?? ?? ?? ?? 48 8B DA 8B F9 0F B6 92
     return_type: void
     name: HandleSpawnPlayerPacket
@@ -14557,6 +14921,21 @@ structs:
       name: payloadSize
     - type: __int64
       name: a6
+- type: Client::Sound::ClipSoundManager
+  name: ClipSoundManager
+  namespace: Client.Sound
+  union: False
+  size: 48
+  fields:
+  - type: Client::Sound::SoundManager*
+    name: SoundManager
+    offset: 0
+  - type: byte
+    name: CriticalSection
+    offset: 8
+    size: 40
+    is_string: False
+  member_functions: []
 - type: Client::Sound::ISoundData
   name: ISoundData
   namespace: Client.Sound
@@ -14569,7 +14948,212 @@ structs:
   - type: byte
     name: IsActive
     offset: 36
-  virtual_functions: []
+  virtual_functions:
+  - name: GetSoundController
+    offset: 24
+    return_type: Client::Sound::SoundDataSoundController*
+    parameters:
+    - type: Client::Sound::ISoundData*
+      name: this
+  - name: SetIsLoadingSoundResource
+    offset: 40
+    return_type: void
+    parameters:
+    - type: Client::Sound::ISoundData*
+      name: this
+    - type: byte
+      name: isLoading
+  - name: GetIsLoadingSoundResource
+    offset: 48
+    return_type: byte
+    parameters:
+    - type: Client::Sound::ISoundData*
+      name: this
+  - name: GetFadeInDuration
+    offset: 56
+    return_type: unsigned int
+    parameters:
+    - type: Client::Sound::ISoundData*
+      name: this
+  - name: SetFadeInDuration
+    offset: 64
+    return_type: void
+    parameters:
+    - type: Client::Sound::ISoundData*
+      name: this
+    - type: unsigned int
+      name: fadeInDuration
+  - name: GetVolume
+    offset: 72
+    return_type: float
+    parameters:
+    - type: Client::Sound::ISoundData*
+      name: this
+  - name: SetVolume
+    offset: 80
+    return_type: void
+    parameters:
+    - type: Client::Sound::ISoundData*
+      name: this
+    - type: float
+      name: volume
+    - type: unsigned int
+      name: fadeDuration
+  - name: GetIsPositional
+    offset: 88
+    return_type: byte
+    parameters:
+    - type: Client::Sound::ISoundData*
+      name: this
+  - name: SetPosition
+    offset: 96
+    return_type: void
+    parameters:
+    - type: Client::Sound::ISoundData*
+      name: this
+    - type: byte
+      name: isPositional
+    - type: float
+      name: x
+    - type: float
+      name: y
+    - type: float
+      name: z
+  - name: GetPositionX
+    offset: 104
+    return_type: float
+    parameters:
+    - type: Client::Sound::ISoundData*
+      name: this
+  - name: GetPositionY
+    offset: 112
+    return_type: float
+    parameters:
+    - type: Client::Sound::ISoundData*
+      name: this
+  - name: GetPositionZ
+    offset: 120
+    return_type: float
+    parameters:
+    - type: Client::Sound::ISoundData*
+      name: this
+  - name: GetSpeed
+    offset: 128
+    return_type: float
+    parameters:
+    - type: Client::Sound::ISoundData*
+      name: this
+  - name: SetSpeed
+    offset: 136
+    return_type: void
+    parameters:
+    - type: Client::Sound::ISoundData*
+      name: this
+    - type: float
+      name: speed
+    - type: unsigned int
+      name: a3
+  - name: Stop
+    offset: 288
+    return_type: void
+    parameters:
+    - type: Client::Sound::ISoundData*
+      name: this
+    - type: unsigned int
+      name: fadeOutDuration
+  - name: IsPlaying
+    offset: 304
+    return_type: byte
+    parameters:
+    - type: Client::Sound::ISoundData*
+      name: this
+  - name: GetIsFadingOut
+    offset: 320
+    return_type: byte
+    parameters:
+    - type: Client::Sound::ISoundData*
+      name: this
+  - name: GetFadeInEnabled
+    offset: 328
+    return_type: byte
+    parameters:
+    - type: Client::Sound::ISoundData*
+      name: this
+  - name: GetIsAutoReleaseEnabled
+    offset: 336
+    return_type: byte
+    parameters:
+    - type: Client::Sound::ISoundData*
+      name: this
+  - name: SetFadeInEnabled
+    offset: 344
+    return_type: void
+    parameters:
+    - type: Client::Sound::ISoundData*
+      name: this
+    - type: byte
+      name: enable
+  - name: GetFileName
+    offset: 392
+    return_type: char*
+    parameters:
+    - type: Client::Sound::ISoundData*
+      name: this
+  - name: GetSoundNumber
+    offset: 400
+    return_type: unsigned int
+    parameters:
+    - type: Client::Sound::ISoundData*
+      name: this
+  - name: GetSoundResourceHandle
+    offset: 432
+    return_type: Client::System::Resource::Handle::SoundResourceHandle*
+    parameters:
+    - type: Client::Sound::ISoundData*
+      name: this
+  - name: SetSoundResourceHandle
+    offset: 440
+    return_type: void
+    parameters:
+    - type: Client::Sound::ISoundData*
+      name: this
+    - type: Client::System::Resource::Handle::SoundResourceHandle*
+      name: handle
+  - name: LoadSoundResourceHandle
+    offset: 448
+    return_type: void
+    parameters:
+    - type: Client::Sound::ISoundData*
+      name: this
+    - type: Client::System::Resource::Handle::SoundResourceHandle*
+      name: handle
+  - name: GetElapsedTime
+    offset: 456
+    return_type: float
+    parameters:
+    - type: Client::Sound::ISoundData*
+      name: this
+  - name: GetMidiNote
+    offset: 488
+    return_type: int
+    parameters:
+    - type: Client::Sound::ISoundData*
+      name: this
+  - name: IsPlaying
+    offset: 296
+  member_functions: []
+- type: Client::Sound::SoundLayoutOptions
+  name: SoundLayoutOptions
+  namespace: Client.Sound
+  union: False
+  size: 3
+  fields:
+  - type: unsigned __int16
+    name: Size
+    offset: 0
+  - type: Client::Sound::SoundObjectType
+    name: Type
+    offset: 2
   member_functions: []
 - type: Client::SupportDesk::HttpConnection
   name: HttpConnection
@@ -15557,6 +16141,23 @@ structs:
   - type: unsigned __int16
     name: Flags
     offset: 10
+    bits:
+    - type: byte
+      offset: 0
+      size: 5
+      name: Index1
+    - type: byte
+      offset: 5
+      size: 5
+      name: Index2
+    - type: byte
+      offset: 10
+      size: 5
+      name: Index3
+    - type: byte
+      offset: 15
+      size: 1
+      name: IsDX11
   member_functions: []
 - type: Client::System::Resource::Handle::ResourceHandleType
   name: ResourceHandleType
@@ -17611,6 +18212,28 @@ structs:
     name: Unknown28
     offset: 40
   member_functions: []
+- type: Client::UI::AddonSpearFishing::FishInfo
+  name: FishInfo
+  namespace: Client.UI
+  union: False
+  size: 28
+  fields:
+  - type: byte
+    name: Available
+    offset: 0
+  - type: byte
+    name: InverseDirection
+    offset: 8
+  - type: byte
+    name: GuaranteedLarge
+    offset: 9
+  - type: Client::UI::SpearfishSize
+    name: Size
+    offset: 10
+  - type: Client::UI::SpearfishSpeed
+    name: Speed
+    offset: 12
+  member_functions: []
 - type: Client::UI::AddonSynthesis::CraftEffect
   name: CraftEffect
   namespace: Client.UI
@@ -18674,6 +19297,35 @@ structs:
   - type: int
     name: ItemId
     offset: 8
+  member_functions: []
+- type: Client::UI::Agent::AgentRetainerTask::Data
+  name: Data
+  namespace: Client.UI.Agent
+  union: False
+  size: 40
+  fields:
+  - type: unsigned __int16
+    name: RewardRetainerTaskId
+    offset: 0
+  - type: unsigned int
+    name: RewardXP
+    offset: 4
+  - type: unsigned int
+    name: Unk8
+    offset: 8
+  - type: byte
+    name: RewardItemCount2
+    offset: 12
+  - type: unsigned int
+    name: RewardItemIds
+    offset: 16
+    size: 2
+    is_string: False
+  - type: unsigned int
+    name: RewardItemCount
+    offset: 24
+    size: 2
+    is_string: False
   member_functions: []
 - type: Client::UI::Agent::AgentSatisfactionSupply::ItemInfo
   name: ItemInfo
@@ -20082,9 +20734,18 @@ structs:
   - type: unsigned int
     name: IconId
     offset: 0
-  - type: int
+  - type: unsigned int
     name: _stackCount
     offset: 4
+    bits:
+    - type: unsigned __int16
+      offset: 0
+      size: 16
+      name: UnkBits0
+    - type: unsigned __int16
+      offset: 16
+      size: 16
+      name: StackCount
   - type: unsigned int
     name: CrystalIndex
     offset: 8
@@ -20575,6 +21236,90 @@ structs:
     name: TradePartnerName
     offset: 88
   member_functions: []
+- type: Client::UI::Atk2DAreaMap::AreaMapMarker
+  name: AreaMapMarker
+  namespace: Client.UI
+  union: False
+  size: 56
+  fields:
+  - type: Component::GUI::MapMarkerNodeContainer*
+    name: NodeContainer
+    offset: 0
+  - type: byte
+    name: Type
+    offset: 12
+  - type: __int16
+    name: X
+    offset: 20
+  - type: __int16
+    name: Y
+    offset: 22
+  member_functions: []
+- type: Client::UI::Atk2DMap
+  name: Atk2DMap
+  namespace: Client.UI
+  union: False
+  size: 80
+  fields:
+  - type: __int64
+    name: VTable
+    offset: 0
+  - type: Component::GUI::AtkComponentNode*
+    name: PlayerPin
+    offset: 8
+  - type: Component::GUI::AtkImageNode*
+    name: PlayerCone
+    offset: 16
+  - type: float
+    name: Unk18
+    offset: 24
+  - type: float
+    name: Unk1C
+    offset: 28
+  - type: float
+    name: X
+    offset: 32
+  - type: float
+    name: Y
+    offset: 36
+  - type: float
+    name: MarkerRadiusScale
+    offset: 40
+  - type: float
+    name: MarkerPositionScaling
+    offset: 44
+  - type: float
+    name: PlayerPinRotation
+    offset: 48
+  - type: float
+    name: PlayerConeRotation
+    offset: 52
+  - type: float
+    name: CrosshairOriginX
+    offset: 56
+  - type: float
+    name: CrosshairOriginY
+    offset: 60
+  - type: unsigned __int16
+    name: Width
+    offset: 64
+  - type: unsigned __int16
+    name: Height
+    offset: 66
+  - type: unsigned __int16
+    name: Unk44
+    offset: 68
+  - type: unsigned __int16
+    name: Unk46
+    offset: 70
+  - type: __int16
+    name: Unk48
+    offset: 72
+  - type: byte
+    name: Unk4A
+    offset: 74
+  virtual_functions: []
+  member_functions: []
 - type: Client::UI::DutySlot
   name: DutySlot
   namespace: Client.UI
@@ -20708,6 +21453,27 @@ structs:
   - type: unsigned int
     name: ExtraFlags
     offset: 32
+    bits:
+    - type: byte
+      offset: 0
+      size: 6
+      name: UnkBits0
+    - type: byte
+      offset: 6
+      size: 1
+      name: WaitingForFriendListApproval
+    - type: unsigned __int16
+      offset: 7
+      size: 9
+      name: UnkBits7
+    - type: byte
+      offset: 16
+      size: 8
+      name: Group
+    - type: byte
+      offset: 24
+      size: 1
+      name: IsOtherServer
   - type: byte
     name: Sort
     offset: 36
@@ -26200,6 +26966,17 @@ structs:
     name: RowTemplateNodeList
     offset: 0
   member_functions: []
+- type: Component::GUI::AtkComponentMap::DiscoveryRenderer
+  name: DiscoveryRenderer
+  namespace: Component.GUI
+  union: False
+  size: 24
+  fields:
+  - type: Component::GUI::AtkComponentMap*
+    name: ComponentMap
+    offset: 16
+  virtual_functions: []
+  member_functions: []
 - type: Component::GUI::AtkCrestManager
   name: AtkCrestManager
   namespace: Component.GUI
@@ -26834,6 +27611,14 @@ structs:
   - type: unsigned int
     name: RemappedIconId
     offset: 4
+  member_functions: []
+- type: Component::GUI::AtkGrid
+  name: AtkGrid
+  namespace: Component.GUI
+  union: False
+  size: 56
+  fields: []
+  virtual_functions: []
   member_functions: []
 - type: Component::GUI::AtkGroupManager
   name: AtkGroupManager
@@ -27964,6 +28749,16 @@ structs:
     - type: byte
       name: freeFlags
   member_functions: []
+- type: Component::GUI::MapMarkerNodeContainer
+  name: MapMarkerNodeContainer
+  namespace: Component.GUI
+  union: False
+  size: 136
+  fields:
+  - type: byte
+    name: Unk80
+    offset: 128
+  member_functions: []
 - type: Component::GUI::OperationGuide
   name: OperationGuide
   namespace: Component.GUI
@@ -27976,6 +28771,15 @@ structs:
   - type: byte
     name: PositionFlags
     offset: 1
+    bits:
+    - type: byte
+      offset: 0
+      size: 4
+      name: RelativePoint
+    - type: byte
+      offset: 4
+      size: 4
+      name: Point
   - type: __int16
     name: OffsetX
     offset: 2
@@ -28145,6 +28949,23 @@ structs:
   - type: unsigned __int64
     name: RawSteamId
     offset: 0
+    bits:
+    - type: unsigned int
+      offset: 0
+      size: 32
+      name: AccountId
+    - type: unsigned int
+      offset: 32
+      size: 20
+      name: AccountInstance
+    - type: byte
+      offset: 52
+      size: 4
+      name: AccountType
+    - type: byte
+      offset: 56
+      size: 8
+      name: Universe
   member_functions: []
 - type: Component::SteamApi::SteamTypes::GamepadTextInputDismissedData
   name: GamepadTextInputDismissedData
@@ -28488,6 +29309,13 @@ structs:
   - type: ContainerInterface::IteratorBase12<StdPair<unsigned __int64, unsigned __int64>>*
     name: MyNextIter
     offset: 8
+  member_functions: []
+- type: FFXIVClientStructs::SQEX::CDev::Engine::Sd::SdMemoryAllocator
+  name: SdMemoryAllocator
+  namespace: CDev.Engine.Sd
+  union: False
+  size: 8
+  fields: []
   member_functions: []
 - type: RedBlackTree::Node<Client::Game::Object::GameObject*>
   name: Node
@@ -31399,6 +32227,11 @@ structs:
   - type: byte
     name: Flags
     offset: 10
+    bits:
+    - type: byte
+      offset: 0
+      size: 1
+      name: IsCompleted
   virtual_functions: []
   member_functions: []
 - type: Application::Network::WorkDefinitions::LeveWork
@@ -31420,6 +32253,19 @@ structs:
   - type: unsigned __int16
     name: Flags
     offset: 12
+    bits:
+    - type: unsigned __int16
+      offset: 0
+      size: 14
+      name: UnkBits0
+    - type: byte
+      offset: 14
+      size: 1
+      name: IsHidden
+    - type: byte
+      offset: 15
+      size: 1
+      name: IsPriority
   - type: unsigned __int16
     name: LeveSeed
     offset: 14
@@ -31447,6 +32293,19 @@ structs:
   - type: byte
     name: Flags
     offset: 11
+    bits:
+    - type: byte
+      offset: 0
+      size: 1
+      name: IsPriority
+    - type: byte
+      offset: 1
+      size: 2
+      name: RewardItemArrayIndex
+    - type: byte
+      offset: 3
+      size: 1
+      name: IsHidden
   - type: byte
     name: Variables
     offset: 12
@@ -31667,6 +32526,15 @@ structs:
   - type: byte
     name: Flags
     offset: 32
+    bits:
+    - type: byte
+      offset: 0
+      size: 1
+      name: ShowInLog
+    - type: byte
+      offset: 1
+      size: 1
+      name: ForceAnimationLock
   - type: byte
     name: NumTargets
     offset: 33
@@ -31752,6 +32620,15 @@ structs:
   - type: byte
     name: Flags
     offset: 52
+    bits:
+    - type: byte
+      offset: 0
+      size: 1
+      name: IsHostile
+    - type: byte
+      offset: 1
+      size: 1
+      name: InCombat
   - type: byte
     name: CombatTagType
     offset: 53
@@ -31932,6 +32809,15 @@ structs:
   - type: byte
     name: State
     offset: 96
+    bits:
+    - type: byte
+      offset: 0
+      size: 1
+      name: UnkBits0
+    - type: byte
+      offset: 1
+      size: 1
+      name: IsHidden
   - type: unsigned __int16
     name: Flags1
     offset: 98
@@ -33324,6 +34210,15 @@ structs:
   - type: unsigned __int16
     name: Data2
     offset: 2
+    bits:
+    - type: byte
+      offset: 0
+      size: 6
+      name: WardIndex
+    - type: unsigned __int16
+      offset: 6
+      size: 10
+      name: RoomNumber
   - type: unsigned __int16
     name: TerritoryTypeId
     offset: 4
@@ -33932,6 +34827,65 @@ structs:
     size: 16
     is_string: False
   member_functions: []
+- type: Client::Game::NpcYellBalloon
+  name: NpcYellBalloon
+  namespace: Client.Game
+  union: False
+  size: 136
+  fields:
+  - type: Client::System::String::Utf8String
+    name: Text
+    offset: 0
+  - type: Client::Game::Character::Character*
+    name: Character
+    offset: 104
+  - type: float
+    name: PlayTimer
+    offset: 112
+  - type: float
+    name: DelayTime
+    offset: 116
+  - type: Client::Game::NpcYellBalloonState
+    name: State
+    offset: 120
+  - type: Client::Game::NpcYellBalloonCloseType
+    name: CloseType
+    offset: 124
+  - type: byte
+    name: ParentBone
+    offset: 128
+  - type: Client::Game::NpcYellBalloonFlags
+    name: Flags
+    offset: 129
+  member_functions:
+  - signature: E8 ?? ?? ?? ?? 0F 28 B4 24 ?? ?? ?? ?? 48 8D 4D
+    return_type: void
+    name: OpenBalloon
+    parameters:
+    - type: Client::Game::NpcYellBalloon*
+      name: this
+    - type: char*
+      name: str
+    - type: float
+      name: playTime
+    - type: byte
+      name: softOpen
+    - type: float
+      name: openDelay
+    - type: byte
+      name: printToLog
+    - type: byte
+      name: reducedCloseChecks
+    - type: byte
+      name: ignoreRangeCheck
+    - type: byte
+      name: parentBone
+  - signature: E8 ?? ?? ?? ?? 66 3B BB ?? ?? ?? ?? 75
+    return_type: void
+    name: CloseBalloon
+    parameters:
+    - type: Client::Game::NpcYellBalloon*
+      name: this
 - type: Client::Game::Object::ClientObjectManager
   name: ClientObjectManager
   namespace: Client.Game.Object
@@ -34099,6 +35053,214 @@ structs:
     - 4
     is_pointer: False
     return_type: Client::Game::OrchestrionSampleState
+- type: Client::Game::RaceChocoboManager
+  name: RaceChocoboManager
+  namespace: Client.Game
+  union: False
+  size: 38
+  fields:
+  - type: Client::Game::Event::EventId
+    name: EventId
+    offset: 0
+  - type: Client::Game::RaceChocoboManager::RaceChocoboState
+    name: State
+    offset: 4
+  - type: byte
+    name: MaximumSpeed
+    offset: 8
+  - type: byte
+    name: Acceleration
+    offset: 9
+  - type: byte
+    name: Endurance
+    offset: 10
+  - type: byte
+    name: Stamina
+    offset: 11
+  - type: byte
+    name: Cunning
+    offset: 12
+  - type: byte
+    name: Parameters
+    offset: 13
+    bits:
+    - type: byte
+      offset: 0
+      size: 1
+      name: IsMaximumSpeedFromMother
+    - type: byte
+      offset: 1
+      size: 1
+      name: IsAccelerationFromMother
+    - type: byte
+      offset: 2
+      size: 1
+      name: IsEnduranceFromMother
+    - type: byte
+      offset: 3
+      size: 1
+      name: IsStaminaFromMother
+    - type: byte
+      offset: 4
+      size: 1
+      name: IsCunningFromMother
+    - type: byte
+      offset: 5
+      size: 1
+      name: IsWeatherFoul
+    - type: byte
+      offset: 6
+      size: 1
+      name: IsFemale
+  - type: unsigned __int16
+    name: FatherParameters
+    offset: 14
+    bits:
+    - type: byte
+      offset: 0
+      size: 2
+      name: FatherCunning
+    - type: byte
+      offset: 2
+      size: 2
+      name: FatherStamina
+    - type: byte
+      offset: 4
+      size: 2
+      name: FatherEndurance
+    - type: byte
+      offset: 6
+      size: 2
+      name: FatherAcceleration
+    - type: byte
+      offset: 8
+      size: 2
+      name: FatherMaximumSpeed
+    - type: byte
+      offset: 10
+      size: 2
+      name: UnkBits10
+    - type: byte
+      offset: 12
+      size: 4
+      name: FatherPedigree
+  - type: unsigned __int16
+    name: MotherParameters
+    offset: 16
+    bits:
+    - type: byte
+      offset: 0
+      size: 2
+      name: MotherCunning
+    - type: byte
+      offset: 2
+      size: 2
+      name: MotherStamina
+    - type: byte
+      offset: 4
+      size: 2
+      name: MotherEndurance
+    - type: byte
+      offset: 6
+      size: 2
+      name: MotherAcceleration
+    - type: byte
+      offset: 8
+      size: 2
+      name: MotherMaximumSpeed
+    - type: byte
+      offset: 10
+      size: 2
+      name: UnkBits10
+    - type: byte
+      offset: 12
+      size: 4
+      name: MotherPedigree
+  - type: byte
+    name: AbilityHereditary
+    offset: 18
+  - type: byte
+    name: AbilityLearned
+    offset: 19
+  - type: byte
+    name: Unk14
+    offset: 20
+  - type: __int16
+    name: NameFirst
+    offset: 22
+  - type: __int16
+    name: NameLast
+    offset: 24
+  - type: byte
+    name: Rank
+    offset: 26
+  - type: __int16
+    name: ExperienceCurrent
+    offset: 28
+  - type: __int16
+    name: ExperienceMax
+    offset: 30
+  - type: byte
+    name: Color
+    offset: 32
+  - type: byte
+    name: GearHead
+    offset: 33
+  - type: byte
+    name: GearBody
+    offset: 34
+  - type: byte
+    name: GearLegs
+    offset: 35
+  - type: byte
+    name: SessionsAvailable
+    offset: 36
+  - type: byte
+    name: Unk25
+    offset: 37
+  member_functions:
+  - signature: E8 ?? ?? ?? ?? 48 8D 55 ?? 48 8B CF E8 ?? ?? ?? ?? 48 8D 77
+    return_type: void
+    name: GetAttributesCurrent
+    parameters:
+    - type: Client::Game::RaceChocoboManager*
+      name: this
+    - type: Client::Game::RaceChocoboAttributeValues*
+      name: outValues
+  - signature: E8 ?? ?? ?? ?? 48 8D 77 ?? 41 BF
+    return_type: void
+    name: GetAttributesMaximum
+    parameters:
+    - type: Client::Game::RaceChocoboManager*
+      name: this
+    - type: Client::Game::RaceChocoboAttributeValues*
+      name: outValues
+  - signature: 48 83 EC ?? 48 8B 05 ?? ?? ?? ?? 48 33 C4 48 89 44 24 ?? 4C 8B D2 4C 8B C9
+    return_type: void
+    name: GetAttributesStars
+    parameters:
+    - type: Client::Game::RaceChocoboManager*
+      name: this
+    - type: Client::Game::RaceChocoboAttributeValues*
+      name: outValues
+  - signature: E8 ?? ?? ?? ?? 8B CE 48 6B D1
+    return_type: int
+    name: GetRating
+    parameters:
+    - type: Client::Game::RaceChocoboManager*
+      name: this
+  - signature: 80 79 ?? 00 77 ?? 33 C0
+    return_type: int
+    name: GetPedigreeLevel
+    parameters:
+    - type: Client::Game::RaceChocoboManager*
+      name: this
+  static_members:
+  - signature: 48 8D 0D ?? ?? ?? ?? E8 ?? ?? ?? ?? 83 F8 02 75 08
+    relative_follow_offsets:
+    - 3
+    is_pointer: False
+    return_type: Client::Game::RaceChocoboManager
 - type: Client::Game::RetainerManager
   name: RetainerManager
   namespace: Client.Game
@@ -35819,6 +36981,33 @@ structs:
   - type: byte
     name: Stackable
     offset: 141
+  member_functions: []
+- type: Client::Game::UI::NpcYell::NpcYellSlot
+  name: NpcYellSlot
+  namespace: Client.Game.UI
+  union: False
+  size: 40
+  fields:
+  - type: Client::Game::Object::GameObjectId
+    name: ObjectId
+    offset: 0
+  - type: unsigned int
+    name: NpcYellRowId
+    offset: 8
+  - type: unsigned int
+    name: NameId
+    offset: 12
+  - type: unsigned int
+    name: MessageParams
+    offset: 16
+    size: 4
+    is_string: False
+  - type: float
+    name: Delay
+    offset: 32
+  - type: byte
+    name: Unk24
+    offset: 36
   member_functions: []
 - type: Client::Game::UI::PublicInstance::Listener
   name: Listener
@@ -37575,6 +38764,15 @@ structs:
   - type: byte
     name: Flags1
     offset: 41
+    bits:
+    - type: byte
+      offset: 0
+      size: 4
+      name: UnkBits0
+    - type: byte
+      offset: 4
+      size: 3
+      name: NestingLevel
   - type: byte
     name: Flags2
     offset: 42
@@ -38002,21 +39200,6 @@ structs:
       name: this
     - type: float*
       name: dt
-  member_functions: []
-- type: Client::Sound::SoundData
-  name: SoundData
-  namespace: Client.Sound
-  union: False
-  size: 208
-  fields:
-  - type: Client::Sound::ISoundData
-    name: ISoundData
-    offset: 0
-    base: true
-  - type: Client::System::Resource::Handle::SoundResourceHandle*
-    name: SoundResourceHandle
-    offset: 40
-  virtual_functions: []
   member_functions: []
 - type: Client::SupportDesk::HttpConnectionImpl
   name: HttpConnectionImpl
@@ -41895,6 +43078,26 @@ structs:
     name: NeedsToBeBaked
     offset: 113
   member_functions: []
+- type: Client::UI::AddonTeleportTownListCallback
+  name: AddonTeleportTownListCallback
+  namespace: Client.UI
+  union: False
+  size: 24
+  fields:
+  - type: Component::GUI::ListComponentCallBackInterface
+    name: ListComponentCallBackInterface
+    offset: 0
+    base: true
+  virtual_functions:
+  - name: Dtor
+    offset: 0
+    return_type: Component::GUI::ListComponentCallBackInterface*
+    parameters:
+    - type: Client::UI::AddonTeleportTownListCallback*
+      name: this
+    - type: byte
+      name: freeFlags
+  member_functions: []
 - type: Client::UI::AddonWeeklyPuzzle::GameTileRow
   name: GameTileRow
   namespace: Client.UI
@@ -43146,6 +44349,11 @@ structs:
   - type: byte
     name: Flags
     offset: 240
+    bits:
+    - type: byte
+      offset: 0
+      size: 1
+      name: Unlocked
   member_functions: []
 - type: Client::UI::Agent::AgentMacro::TextCommandEntry
   name: TextCommandEntry
@@ -44557,6 +45765,142 @@ structs:
     name: IsLockedIn
     offset: 256
   member_functions: []
+- type: Client::UI::Atk2DAreaMap
+  name: Atk2DAreaMap
+  namespace: Client.UI
+  union: False
+  size: 168
+  fields:
+  - type: Client::UI::Atk2DMap
+    name: Atk2DMap
+    offset: 0
+    base: true
+  - type: float
+    name: SavedMarkerRadiusScale
+    offset: 80
+  - type: float
+    name: MapOffsetX
+    offset: 84
+  - type: float
+    name: MapOffsetY
+    offset: 88
+  - type: float
+    name: MapScale
+    offset: 92
+  - type: float
+    name: DragSpeed
+    offset: 96
+  - type: float
+    name: DragCursorX
+    offset: 100
+  - type: float
+    name: DragCursorY
+    offset: 104
+  - type: float
+    name: PlayerMarkerX
+    offset: 108
+  - type: float
+    name: PlayerMarkerY
+    offset: 112
+  - type: float
+    name: FollowedPlayerMarkerX
+    offset: 116
+  - type: float
+    name: FollowedPlayerMarkerY
+    offset: 120
+  - type: float
+    name: MapCenterX
+    offset: 124
+  - type: float
+    name: MapCenterY
+    offset: 128
+  - type: Component::GUI::AtkComponentMap*
+    name: ComponentMap
+    offset: 136
+  - type: Client::UI::Atk2DAreaMap::AreaMapMarker*
+    name: MarkerMemory
+    offset: 144
+  - type: unsigned __int16
+    name: MarkerMemorySize
+    offset: 152
+  - type: __int16
+    name: Unk9A
+    offset: 154
+  - type: byte
+    name: Unk9C
+    offset: 156
+  - type: byte
+    name: Unk9D
+    offset: 157
+  - type: unsigned __int16
+    name: UnkTimelineLabelIdsMaybe
+    offset: 158
+    size: 5
+    is_string: False
+  virtual_functions: []
+  member_functions:
+  - signature: E8 ?? ?? ?? ?? 49 8D 4F ?? E8 ?? ?? ?? ?? 8B C8
+    return_type: void
+    name: CreateMarkerArray
+    parameters:
+    - type: Client::UI::Atk2DAreaMap*
+      name: this
+    - type: unsigned int
+      name: size
+  - signature: E8 ?? ?? ?? ?? 48 85 C0 74 ?? 44 38 70 ?? 74
+    return_type: Client::UI::Atk2DAreaMap::AreaMapMarker*
+    name: GetMarker
+    parameters:
+    - type: Client::UI::Atk2DAreaMap*
+      name: this
+    - type: unsigned int
+      name: index
+  - signature: E8 ?? ?? ?? ?? 48 85 C0 74 ?? 48 8B C8 E8 ?? ?? ?? ?? 33 D2 48 8B C8 E8 ?? ?? ?? ?? FF C7
+    return_type: Component::GUI::MapMarkerNodeContainer*
+    name: GetMarkerNodeContainer
+    parameters:
+    - type: Client::UI::Atk2DAreaMap*
+      name: this
+    - type: unsigned int
+      name: index
+  - signature: E8 ?? ?? ?? ?? 0F 28 B4 24 ?? ?? ?? ?? 49 8D 8F
+    return_type: void
+    name: SetComponentMap
+    parameters:
+    - type: Client::UI::Atk2DAreaMap*
+      name: this
+    - type: Component::GUI::AtkComponentMap*
+      name: component
+  - signature: E8 ?? ?? ?? ?? 8B 86 ?? ?? ?? ?? 0F 28 D6
+    return_type: byte
+    name: ClampPosition
+    parameters:
+    - type: Client::UI::Atk2DAreaMap*
+      name: this
+  - signature: E8 ?? ?? ?? ?? 48 8B 43 ?? 45 32 E4
+    return_type: byte
+    name: SetMarkerRadiusScale
+    parameters:
+    - type: Client::UI::Atk2DAreaMap*
+      name: this
+    - type: float
+      name: value
+  - signature: E8 ?? ?? ?? ?? 48 8D 8F ?? ?? ?? ?? 0F 28 F0 E8 ?? ?? ?? ?? 48 8D 8F ?? ?? ?? ?? 0F B6 D8
+    return_type: void
+    name: HandleDragPosition
+    parameters:
+    - type: Client::UI::Atk2DAreaMap*
+      name: this
+    - type: float
+      name: x
+    - type: float
+      name: y
+  - signature: E8 ?? ?? ?? ?? 8B 86 ?? ?? ?? ?? 89 86 ?? ?? ?? ?? 8B 86 ?? ?? ?? ?? 89 86 ?? ?? ?? ?? 48 8B 45
+    return_type: void
+    name: CenterOnPlayer
+    parameters:
+    - type: Client::UI::Atk2DAreaMap*
+      name: this
 - type: Client::UI::DutySlotList
   name: DutySlotList
   namespace: Client.UI
@@ -47979,6 +49323,15 @@ structs:
   - type: unsigned __int16
     name: BPMSetting
     offset: 74
+    bits:
+    - type: unsigned __int16
+      offset: 0
+      size: 9
+      name: BeatsPerMinute
+    - type: byte
+      offset: 9
+      size: 4
+      name: BeatsPerMeasure
   - type: Client::UI::Misc::PerformanceModule::PerformanceSetting1Flag
     name: Settings1
     offset: 76
@@ -49761,6 +51114,9 @@ structs:
     name: ExcelModuleInterface
     offset: 0
     base: true
+  - type: Common::Component::Excel::ExcelSheet**
+    name: SheetsByIndex
+    offset: 1968
   virtual_functions:
   - name: GetSheetByIndex
     offset: 8
@@ -51955,6 +53311,26 @@ structs:
     name: Value
     offset: 16
   member_functions: []
+- type: FFXIVClientStructs::SQEX::CDev::Engine::Sd::Driver::SoundController
+  name: SoundController
+  namespace: CDev.Engine.Sd.Driver
+  union: False
+  size: 32
+  fields:
+  - type: FFXIVClientStructs::SQEX::CDev::Engine::Sd::SdMemoryAllocator
+    name: SdMemoryAllocator
+    offset: 0
+    base: true
+  - type: int
+    name: Unk08
+    offset: 8
+  - type: __int64
+    name: Unk10
+    offset: 16
+  - type: __int64
+    name: SharedMutex
+    offset: 24
+  member_functions: []
 - type: RedBlackTree::Node<StdPair<Client::LayoutEngine::InstanceType, StdMap<unsigned __int64, Client::LayoutEngine::ILayoutInstance*>*>>
   name: Node
   namespace: Helper
@@ -52844,6 +54220,34 @@ structs:
     name: Annotation
     offset: 8
   member_functions: []
+- type: Application::Network::ClientBase
+  name: ClientBase
+  namespace: Application.Network
+  union: False
+  size: 160
+  fields:
+  - type: Client::System::String::Utf8String
+    name: Host
+    offset: 0
+  - type: unsigned __int16
+    name: Port
+    offset: 104
+  - type: Application::Network::TransportLayers
+    name: TransportLayer
+    offset: 108
+  - type: __int16
+    name: Unk72
+    offset: 114
+  - type: StdVector<byte>
+    name: HostFullDetails
+    offset: 120
+  - type: int
+    name: KeepAliveZone
+    offset: 144
+  - type: int
+    name: KeepAliveInvervalZone
+    offset: 148
+  member_functions: []
 - type: Application::Network::NetworkModule
   name: NetworkModule
   namespace: Application.Network
@@ -53101,48 +54505,6 @@ structs:
     offset: 280
   virtual_functions: []
   member_functions: []
-- type: Application::Network::ZoneClient
-  name: ZoneClient
-  namespace: Application.Network
-  union: False
-  size: 160
-  fields:
-  - type: Client::System::String::Utf8String
-    name: Host
-    offset: 0
-  - type: unsigned __int16
-    name: Port
-    offset: 104
-  - type: Application::Network::ZoneClient::TransportLayers
-    name: TransportLayer
-    offset: 108
-  - type: __int16
-    name: Unk72
-    offset: 114
-  - type: StdVector<byte>
-    name: HostFullDetails
-    offset: 120
-  - type: int
-    name: KeepAliveZone
-    offset: 144
-  - type: int
-    name: KeepAliveInvervalZone
-    offset: 148
-  member_functions:
-  - signature: 48 83 EC ?? 48 8B 89 ?? ?? ?? ?? 48 85 C9 74 ?? 44 89 44 24 ?? 4C 8D 44 24 ?? 44 89 4C 24 ?? 44 0F B6 4C 24
-    return_type: byte
-    name: SendPacket
-    parameters:
-    - type: Application::Network::ZoneClient*
-      name: this
-    - type: __int64
-      name: packet
-    - type: unsigned int
-      name: a3
-    - type: unsigned int
-      name: a4
-    - type: byte
-      name: a5
 - type: Client::Game::CSBonusManager
   name: CSBonusManager
   namespace: Client.Game
@@ -54842,6 +56204,60 @@ structs:
     offset: 8
     size: 5
     is_string: False
+  member_functions: []
+- type: Client::Game::UI::NpcYell::NpcYellInfo
+  name: NpcYellInfo
+  namespace: Client.Game.UI
+  union: False
+  size: 280
+  fields:
+  - type: unsigned int
+    name: NpcYellRowId
+    offset: 0
+  - type: Client::Game::Object::GameObjectId
+    name: ObjectId
+    offset: 8
+  - type: unsigned int
+    name: NameId
+    offset: 16
+  - type: Client::System::String::Utf8String
+    name: Name
+    offset: 24
+  - type: Client::System::String::Utf8String
+    name: Message
+    offset: 128
+  - type: unsigned int
+    name: MessageParams
+    offset: 232
+    size: 4
+    is_string: False
+  - type: float
+    name: Delay
+    offset: 248
+  - type: float
+    name: BalloonTime
+    offset: 252
+  - type: float
+    name: BattleTalkTime
+    offset: 256
+  - type: Client::Game::UI::NpcYell::NpcYellOutputFlags
+    name: OutputType
+    offset: 260
+  - type: byte
+    name: BattleTalkStyle
+    offset: 261
+  - type: unsigned int
+    name: BattleTalkImage
+    offset: 264
+  - type: byte
+    name: ParentBone
+    offset: 268
+  - type: unsigned __int16
+    name: Unk10E
+    offset: 270
+  - type: Client::Game::UI::NpcYell::NpcYellFlags
+    name: Flags
+    offset: 272
   member_functions: []
 - type: Client::Game::UI::PartyContent
   name: PartyContent
@@ -57406,6 +58822,20 @@ structs:
     base: true
   virtual_functions: []
   member_functions: []
+- type: Client::Sound::SoundDataSoundController
+  name: SoundDataSoundController
+  namespace: Client.Sound
+  union: False
+  size: 40
+  fields:
+  - type: FFXIVClientStructs::SQEX::CDev::Engine::Sd::Driver::SoundController
+    name: SoundController
+    offset: 0
+    base: true
+  - type: byte
+    name: Unk20
+    offset: 32
+  member_functions: []
 - type: Client::Sound::SoundManager
   name: SoundManager
   namespace: Client.Sound
@@ -57480,12 +58910,59 @@ structs:
   - type: Client::Sound::SoundData*
     name: ActiveSoundDataListHead
     offset: 552
+  - type: int
+    name: Unk260
+    offset: 608
   - type: __int64
     name: CriticalSection
     offset: 672
   - type: __int64
     name: EventHandle2
     offset: 712
+  - type: float
+    name: FFTRed1
+    offset: 856
+    size: 256
+    is_string: False
+  - type: float
+    name: FFTRed2
+    offset: 1880
+    size: 256
+    is_string: False
+  - type: float
+    name: FFTGreen1
+    offset: 2904
+    size: 256
+    is_string: False
+  - type: float
+    name: FFTGreen2
+    offset: 3928
+    size: 256
+    is_string: False
+  - type: float
+    name: FFTBlue1
+    offset: 4952
+    size: 256
+    is_string: False
+  - type: float
+    name: FFTBlue2
+    offset: 5976
+    size: 256
+    is_string: False
+  - type: float
+    name: OrchestrionPosX
+    offset: 7136
+  - type: float
+    name: OrchestrionPosY
+    offset: 7140
+  - type: float
+    name: OrchestrionPosZ
+    offset: 7144
+  - type: byte
+    name: OrchestrionPath
+    offset: 7148
+    size: 260
+    is_string: True
   virtual_functions:
   - name: Dtor
     offset: 0
@@ -57578,24 +59055,170 @@ structs:
       name: this
     - type: byte
       name: enabled
+  - signature: E8 ?? ?? ?? ?? 83 FB ?? 41 BF
+    return_type: Client::Sound::SoundData*
+    name: PlaySound
+    parameters:
+    - type: Client::Sound::SoundManager*
+      name: this
+    - type: char*
+      name: path
+    - type: float
+      name: volume
+    - type: unsigned int
+      name: fadeInDuration
+    - type: float
+      name: posX
+    - type: float
+      name: posY
+    - type: float
+      name: posZ
+    - type: float
+      name: speed
+    - type: int
+      name: a9
+    - type: unsigned int
+      name: soundNumber
+    - type: byte
+      name: autoRelease
+    - type: Client::Sound::SoundVolumeCategory
+      name: volumeCategory
+    - type: byte
+      name: a13
+    - type: int
+      name: midiNote
+    - type: byte
+      name: a15
+    - type: byte
+      name: defaultFadeOut
+    - type: byte
+      name: isPositional
+    - type: byte
+      name: a18
+  - signature: E8 ?? ?? ?? ?? 48 85 C0 74 ?? 48 89 43 ?? 48 8B 4B ?? 48 85 C9 74 ?? ?? ?? ?? FF 50 ?? 84 C0 75
+    return_type: Client::Sound::SoundData*
+    name: PlayClipSound
+    parameters:
+    - type: Client::Sound::SoundManager*
+      name: this
+    - type: char*
+      name: path
+    - type: float
+      name: volume
+    - type: unsigned int
+      name: fadeInDuration
+    - type: float
+      name: posX
+    - type: float
+      name: posY
+    - type: float
+      name: posZ
+    - type: float
+      name: playbackSpeed
+    - type: int
+      name: a9
+    - type: unsigned int
+      name: soundNumber
+    - type: byte
+      name: autoRelease
+    - type: byte
+      name: a12
+  - signature: E8 ?? ?? ?? ?? 48 8B AC 24 ?? ?? ?? ?? 48 89 43
+    return_type: Client::Sound::SoundData*
+    name: PlayLayoutSound
+    parameters:
+    - type: Client::Sound::SoundManager*
+      name: this
+    - type: Client::System::Resource::Handle::SoundResourceHandle*
+      name: resourceHandle
+    - type: Client::Sound::SoundLayoutOptions*
+      name: options
+    - type: unsigned __int16
+      name: size
+  - signature: E8 ?? ?? ?? ?? 48 89 43 ?? 48 8B C8 48 85 C0 74 ?? 80 7B ?? 00
+    return_type: Client::Sound::SoundData*
+    name: PlayBGMSound
+    parameters:
+    - type: Client::Sound::SoundManager*
+      name: this
+    - type: char*
+      name: path
+  - signature: E8 ?? ?? ?? ?? 48 89 47 ?? 89 5F ?? 48 8B 9C 24
+    return_type: Client::Sound::SoundData*
+    name: PlayGAYATitleSound
+    parameters:
+    - type: Client::Sound::SoundManager*
+      name: this
+    - type: char*
+      name: path
+    - type: float
+      name: volume
+    - type: unsigned int
+      name: fadeInDuration
+  - signature: 48 89 6C 24 ?? 56 48 83 EC ?? 80 79 ?? 00 48 8B EA
+    return_type: Client::Sound::SoundData*
+    name: PlayOrchestrionSound
+    parameters:
+    - type: Client::Sound::SoundManager*
+      name: this
+    - type: char*
+      name: path
+    - type: float
+      name: posX
+    - type: float
+      name: posY
+    - type: float
+      name: posZ
+    - type: byte
+      name: enableFadeIn
+  - signature: E8 ?? ?? ?? ?? 48 0F BE 46 ?? 41 B1
+    return_type: Client::Sound::SoundData*
+    name: PlaySystemSound
+    parameters:
+    - type: Client::Sound::SoundManager*
+      name: this
+    - type: char*
+      name: path
+    - type: float
+      name: volume
+    - type: unsigned int
+      name: soundNumber
+    - type: unsigned int
+      name: fadeInDuration
+    - type: byte
+      name: autoRelease
+    - type: Client::Sound::SoundVolumeCategory
+      name: volumeCategory
+  - signature: E8 ?? ?? ?? ?? 48 89 43 ?? 48 8D 8D
+    return_type: Client::Sound::SoundData*
+    name: PlayMovieSound
+    parameters:
+    - type: Client::Sound::SoundManager*
+      name: this
+    - type: char*
+      name: path
+    - type: float
+      name: volume
+    - type: unsigned int
+      name: soundNumber
+    - type: unsigned int
+      name: fadeInDuration
+    - type: byte
+      name: autoRelease
+  - signature: E8 ?? ?? ?? ?? 48 8B CB 48 8B F8 FF 15 ?? ?? ?? ?? EB
+    return_type: Client::Sound::SoundData*
+    name: PlayCutsceneVoSound
+    parameters:
+    - type: Client::Sound::SoundManager*
+      name: this
+    - type: char*
+      name: path
   static_members:
   - signature: 48 89 35 ?? ?? ?? ?? 48 83 C4 20
     relative_follow_offsets:
     - 3
     is_pointer: True
     return_type: Client::Sound::SoundManager
-- type: Client::Sound::SoundManager::SoundDataMemory
-  name: SoundDataMemory
-  namespace: Client.Sound
-  union: False
-  size: 53248
-  fields:
-  - type: Client::Sound::SoundData
-    name: Entries
-    offset: 0
-    size: 256
-    is_string: False
-  member_functions: []
 - type: Client::System::Input::ClipBoard
   name: ClipBoard
   namespace: Client.System.Input
@@ -63625,6 +65248,130 @@ structs:
       name: stain0Id
     - type: byte
       name: stain1Id
+- type: Client::UI::Agent::AgentItemDetailBase
+  name: AgentItemDetailBase
+  namespace: Client.UI.Agent
+  union: False
+  size: 80
+  fields:
+  - type: Client::UI::Agent::AgentInterface
+    name: AgentInterface
+    offset: 0
+    base: true
+  virtual_functions:
+  - name: ReceiveEvent
+    offset: 0
+    return_type: Component::GUI::AtkValue*
+    parameters:
+    - type: Client::UI::Agent::AgentItemDetailBase*
+      name: this
+    - type: Component::GUI::AtkValue*
+      name: returnValue
+    - type: Component::GUI::AtkValue*
+      name: values
+    - type: unsigned int
+      name: valueCount
+    - type: unsigned __int64
+      name: eventKind
+  - name: ReceiveEventWithResult
+    offset: 8
+    return_type: Component::GUI::AtkValue*
+    parameters:
+    - type: Client::UI::Agent::AgentItemDetailBase*
+      name: this
+    - type: Component::GUI::AtkValue*
+      name: returnValue
+    - type: Component::GUI::AtkValue*
+      name: values
+    - type: unsigned int
+      name: valueCount
+    - type: unsigned __int64
+      name: eventKind
+  - name: Dtor
+    offset: 16
+    return_type: void
+    parameters:
+    - type: Client::UI::Agent::AgentItemDetailBase*
+      name: this
+    - type: byte
+      name: freeFlags
+  - name: Show
+    offset: 24
+    return_type: void
+    parameters:
+    - type: Client::UI::Agent::AgentItemDetailBase*
+      name: this
+  - name: ShowFromLua
+    offset: 32
+    return_type: void
+    parameters:
+    - type: Client::UI::Agent::AgentItemDetailBase*
+      name: this
+    - type: int
+      name: id
+    - type: int*
+      name: args
+    - type: __int64
+      name: argCount
+  - name: Hide
+    offset: 40
+    return_type: void
+    parameters:
+    - type: Client::UI::Agent::AgentItemDetailBase*
+      name: this
+  - name: IsAgentActive
+    offset: 48
+    return_type: byte
+    parameters:
+    - type: Client::UI::Agent::AgentItemDetailBase*
+      name: this
+  - name: Update
+    offset: 56
+    return_type: void
+    parameters:
+    - type: Client::UI::Agent::AgentItemDetailBase*
+      name: this
+    - type: unsigned int
+      name: frameCount
+  - name: IsActivatable
+    offset: 64
+    return_type: byte
+    parameters:
+    - type: Client::UI::Agent::AgentItemDetailBase*
+      name: this
+  - name: GetAddonId
+    offset: 72
+    return_type: unsigned int
+    parameters:
+    - type: Client::UI::Agent::AgentItemDetailBase*
+      name: this
+  - name: OnGameEvent
+    offset: 80
+    return_type: void
+    parameters:
+    - type: Client::UI::Agent::AgentItemDetailBase*
+      name: this
+    - type: Client::UI::Agent::AgentInterface::GameEvent
+      name: gameEvent
+  - name: OnLevelChange
+    offset: 88
+    return_type: void
+    parameters:
+    - type: Client::UI::Agent::AgentItemDetailBase*
+      name: this
+    - type: byte
+      name: classJobId
+    - type: unsigned __int16
+      name: level
+  - name: OnClassJobChange
+    offset: 96
+    return_type: void
+    parameters:
+    - type: Client::UI::Agent::AgentItemDetailBase*
+      name: this
+    - type: byte
+      name: classJobId
+  member_functions: []
 - type: Client::UI::Agent::AgentLinkshell
   name: AgentLinkshell
   namespace: Client.UI.Agent
@@ -66930,161 +68677,6 @@ structs:
     size: 140
     is_string: False
   member_functions: []
-- type: Client::UI::Agent::AgentRetainerTask
-  name: AgentRetainerTask
-  namespace: Client.UI.Agent
-  union: False
-  size: 144
-  fields:
-  - type: Client::UI::Agent::AgentInterface
-    name: AgentInterface
-    offset: 0
-    base: true
-  - type: unsigned int
-    name: DisplayType
-    offset: 40
-  - type: unsigned int
-    name: OpenerAddonId
-    offset: 56
-  - type: unsigned int
-    name: RewardXP
-    offset: 68
-  - type: unsigned int
-    name: RewardItemIds
-    offset: 80
-    size: 2
-    is_string: False
-  - type: unsigned int
-    name: RewardItemCount
-    offset: 88
-    size: 2
-    is_string: False
-  - type: unsigned int
-    name: RetainerTaskLvRange
-    offset: 108
-  - type: unsigned int
-    name: RetainerTaskId
-    offset: 116
-  - type: byte
-    name: IsLoading
-    offset: 128
-  - type: unsigned int
-    name: XPToReward
-    offset: 132
-  virtual_functions:
-  - name: ReceiveEvent
-    offset: 0
-    return_type: Component::GUI::AtkValue*
-    parameters:
-    - type: Client::UI::Agent::AgentRetainerTask*
-      name: this
-    - type: Component::GUI::AtkValue*
-      name: returnValue
-    - type: Component::GUI::AtkValue*
-      name: values
-    - type: unsigned int
-      name: valueCount
-    - type: unsigned __int64
-      name: eventKind
-  - name: ReceiveEventWithResult
-    offset: 8
-    return_type: Component::GUI::AtkValue*
-    parameters:
-    - type: Client::UI::Agent::AgentRetainerTask*
-      name: this
-    - type: Component::GUI::AtkValue*
-      name: returnValue
-    - type: Component::GUI::AtkValue*
-      name: values
-    - type: unsigned int
-      name: valueCount
-    - type: unsigned __int64
-      name: eventKind
-  - name: Dtor
-    offset: 16
-    return_type: void
-    parameters:
-    - type: Client::UI::Agent::AgentRetainerTask*
-      name: this
-    - type: byte
-      name: freeFlags
-  - name: Show
-    offset: 24
-    return_type: void
-    parameters:
-    - type: Client::UI::Agent::AgentRetainerTask*
-      name: this
-  - name: ShowFromLua
-    offset: 32
-    return_type: void
-    parameters:
-    - type: Client::UI::Agent::AgentRetainerTask*
-      name: this
-    - type: int
-      name: id
-    - type: int*
-      name: args
-    - type: __int64
-      name: argCount
-  - name: Hide
-    offset: 40
-    return_type: void
-    parameters:
-    - type: Client::UI::Agent::AgentRetainerTask*
-      name: this
-  - name: IsAgentActive
-    offset: 48
-    return_type: byte
-    parameters:
-    - type: Client::UI::Agent::AgentRetainerTask*
-      name: this
-  - name: Update
-    offset: 56
-    return_type: void
-    parameters:
-    - type: Client::UI::Agent::AgentRetainerTask*
-      name: this
-    - type: unsigned int
-      name: frameCount
-  - name: IsActivatable
-    offset: 64
-    return_type: byte
-    parameters:
-    - type: Client::UI::Agent::AgentRetainerTask*
-      name: this
-  - name: GetAddonId
-    offset: 72
-    return_type: unsigned int
-    parameters:
-    - type: Client::UI::Agent::AgentRetainerTask*
-      name: this
-  - name: OnGameEvent
-    offset: 80
-    return_type: void
-    parameters:
-    - type: Client::UI::Agent::AgentRetainerTask*
-      name: this
-    - type: Client::UI::Agent::AgentInterface::GameEvent
-      name: gameEvent
-  - name: OnLevelChange
-    offset: 88
-    return_type: void
-    parameters:
-    - type: Client::UI::Agent::AgentRetainerTask*
-      name: this
-    - type: byte
-      name: classJobId
-    - type: unsigned __int16
-      name: level
-  - name: OnClassJobChange
-    offset: 96
-    return_type: void
-    parameters:
-    - type: Client::UI::Agent::AgentRetainerTask*
-      name: this
-    - type: byte
-      name: classJobId
-  member_functions: []
 - type: Client::UI::Agent::AgentReturn
   name: AgentReturn
   namespace: Client.UI.Agent
@@ -68783,9 +70375,18 @@ structs:
   - type: unsigned int
     name: IconId
     offset: 0
-  - type: int
+  - type: unsigned int
     name: _stackCount
     offset: 8
+    bits:
+    - type: unsigned __int16
+      offset: 0
+      size: 16
+      name: UnkBits0
+    - type: unsigned __int16
+      offset: 16
+      size: 16
+      name: StackCount
   - type: Client::UI::Arrays::InventoryNumberArray::InventoryItemNumberArray::ItemFlag
     name: ItemFlags
     offset: 12
@@ -73258,11 +74859,36 @@ structs:
   union: False
   size: 168
   fields:
-  - type: Application::Network::ZoneClient
-    name: ZoneClient
+  - type: Application::Network::ClientBase
+    name: ClientBase
     offset: 0
     base: true
   member_functions: []
+- type: Application::Network::ZoneClient
+  name: ZoneClient
+  namespace: Application.Network
+  union: False
+  size: 160
+  fields:
+  - type: Application::Network::ClientBase
+    name: ClientBase
+    offset: 0
+    base: true
+  member_functions:
+  - signature: 48 83 EC ?? 48 8B 89 ?? ?? ?? ?? 48 85 C9 74 ?? 44 89 44 24 ?? 4C 8D 44 24 ?? 44 89 4C 24 ?? 44 0F B6 4C 24
+    return_type: byte
+    name: SendPacket
+    parameters:
+    - type: Application::Network::ZoneClient*
+      name: this
+    - type: __int64
+      name: packet
+    - type: unsigned int
+      name: a3
+    - type: unsigned int
+      name: a4
+    - type: byte
+      name: a5
 - type: Client::Game::Character::ActionEffectHandler::EffectEntry
   name: EffectEntry
   namespace: Client.Game.Character
@@ -73354,6 +74980,15 @@ structs:
   - type: byte
     name: Flags3
     offset: 846
+    bits:
+    - type: byte
+      offset: 0
+      size: 6
+      name: UnkBits0
+    - type: byte
+      offset: 6
+      size: 1
+      name: IsWeaponDrawn
   virtual_functions: []
   member_functions:
   - signature: E8 ?? ?? ?? ?? 44 0F B7 E8 45 85 ED
@@ -73599,7 +75234,7 @@ structs:
       name: this
     - type: unsigned int
       name: itemId
-  - signature: E8 ?? ?? ?? ?? 39 06
+  - signature: 44 8B C2 4C 8B D1 48 8B 11
     return_type: unsigned int
     name: GetItemCountRemaining
     parameters:
@@ -75540,6 +77175,27 @@ structs:
   - type: byte
     name: Flags
     offset: 136
+    bits:
+    - type: byte
+      offset: 0
+      size: 4
+      name: UnkBits0
+    - type: byte
+      offset: 4
+      size: 1
+      name: IsCoveredFromRain
+  - type: byte
+    name: OutlineFlags
+    offset: 137
+    bits:
+    - type: byte
+      offset: 0
+      size: 4
+      name: UnkBits0
+    - type: byte
+      offset: 4
+      size: 4
+      name: OutlineColor
   virtual_functions:
   - name: GetObjectType
     offset: 16
@@ -78649,6 +80305,143 @@ structs:
     - type: byte
       name: classJobId
   member_functions: []
+- type: Client::UI::Agent::AgentItemInspection
+  name: AgentItemInspection
+  namespace: Client.UI.Agent
+  union: False
+  size: 104
+  fields:
+  - type: Client::UI::Agent::AgentItemDetailBase
+    name: AgentItemDetailBase
+    offset: 0
+    base: true
+  - type: Client::UI::Agent::AgentItemInspection::Data*
+    name: InspectionData
+    offset: 80
+  virtual_functions:
+  - name: ReceiveEvent
+    offset: 0
+    return_type: Component::GUI::AtkValue*
+    parameters:
+    - type: Client::UI::Agent::AgentItemInspection*
+      name: this
+    - type: Component::GUI::AtkValue*
+      name: returnValue
+    - type: Component::GUI::AtkValue*
+      name: values
+    - type: unsigned int
+      name: valueCount
+    - type: unsigned __int64
+      name: eventKind
+  - name: ReceiveEventWithResult
+    offset: 8
+    return_type: Component::GUI::AtkValue*
+    parameters:
+    - type: Client::UI::Agent::AgentItemInspection*
+      name: this
+    - type: Component::GUI::AtkValue*
+      name: returnValue
+    - type: Component::GUI::AtkValue*
+      name: values
+    - type: unsigned int
+      name: valueCount
+    - type: unsigned __int64
+      name: eventKind
+  - name: Dtor
+    offset: 16
+    return_type: void
+    parameters:
+    - type: Client::UI::Agent::AgentItemInspection*
+      name: this
+    - type: byte
+      name: freeFlags
+  - name: Show
+    offset: 24
+    return_type: void
+    parameters:
+    - type: Client::UI::Agent::AgentItemInspection*
+      name: this
+  - name: ShowFromLua
+    offset: 32
+    return_type: void
+    parameters:
+    - type: Client::UI::Agent::AgentItemInspection*
+      name: this
+    - type: int
+      name: id
+    - type: int*
+      name: args
+    - type: __int64
+      name: argCount
+  - name: Hide
+    offset: 40
+    return_type: void
+    parameters:
+    - type: Client::UI::Agent::AgentItemInspection*
+      name: this
+  - name: IsAgentActive
+    offset: 48
+    return_type: byte
+    parameters:
+    - type: Client::UI::Agent::AgentItemInspection*
+      name: this
+  - name: Update
+    offset: 56
+    return_type: void
+    parameters:
+    - type: Client::UI::Agent::AgentItemInspection*
+      name: this
+    - type: unsigned int
+      name: frameCount
+  - name: IsActivatable
+    offset: 64
+    return_type: byte
+    parameters:
+    - type: Client::UI::Agent::AgentItemInspection*
+      name: this
+  - name: GetAddonId
+    offset: 72
+    return_type: unsigned int
+    parameters:
+    - type: Client::UI::Agent::AgentItemInspection*
+      name: this
+  - name: OnGameEvent
+    offset: 80
+    return_type: void
+    parameters:
+    - type: Client::UI::Agent::AgentItemInspection*
+      name: this
+    - type: Client::UI::Agent::AgentInterface::GameEvent
+      name: gameEvent
+  - name: OnLevelChange
+    offset: 88
+    return_type: void
+    parameters:
+    - type: Client::UI::Agent::AgentItemInspection*
+      name: this
+    - type: byte
+      name: classJobId
+    - type: unsigned __int16
+      name: level
+  - name: OnClassJobChange
+    offset: 96
+    return_type: void
+    parameters:
+    - type: Client::UI::Agent::AgentItemInspection*
+      name: this
+    - type: byte
+      name: classJobId
+  member_functions:
+  - signature: 40 53 56 41 54 48 81 EC ?? ?? ?? ?? 48 8B 05 ?? ?? ?? ?? 48 33 C4 48 89 84 24 ?? ?? ?? ?? 48 8B 01
+    return_type: void
+    name: OpenResult
+    parameters:
+    - type: Client::UI::Agent::AgentItemInspection*
+      name: this
+    - type: int
+      name: a2
+    - type: Client::Game::InventoryItem*
+      name: item
 - type: Client::UI::Agent::AgentJournalAccept
   name: AgentJournalAccept
   namespace: Client.UI.Agent
@@ -80707,6 +82500,167 @@ structs:
     - type: byte
       name: classJobId
   member_functions: []
+- type: Client::UI::Agent::AgentRetainerTask
+  name: AgentRetainerTask
+  namespace: Client.UI.Agent
+  union: False
+  size: 144
+  fields:
+  - type: Client::UI::Agent::AgentInterface
+    name: AgentInterface
+    offset: 0
+    base: true
+  - type: unsigned int
+    name: DisplayType
+    offset: 40
+  - type: Component::GUI::AtkModuleInterface::AtkEventInterface*
+    name: EventInterface
+    offset: 48
+  - type: unsigned int
+    name: OpenerAddonId
+    offset: 56
+  - type: Client::UI::Agent::AgentRetainerTask::Data
+    name: RetainerData
+    offset: 64
+  - type: unsigned int
+    name: RetainerTaskLvRange
+    offset: 108
+  - type: unsigned int
+    name: RetainerTaskId
+    offset: 116
+  - type: unsigned int
+    name: EntityId
+    offset: 124
+  - type: byte
+    name: IsLoading
+    offset: 128
+  - type: unsigned int
+    name: XPToReward
+    offset: 132
+  virtual_functions:
+  - name: ReceiveEvent
+    offset: 0
+    return_type: Component::GUI::AtkValue*
+    parameters:
+    - type: Client::UI::Agent::AgentRetainerTask*
+      name: this
+    - type: Component::GUI::AtkValue*
+      name: returnValue
+    - type: Component::GUI::AtkValue*
+      name: values
+    - type: unsigned int
+      name: valueCount
+    - type: unsigned __int64
+      name: eventKind
+  - name: ReceiveEventWithResult
+    offset: 8
+    return_type: Component::GUI::AtkValue*
+    parameters:
+    - type: Client::UI::Agent::AgentRetainerTask*
+      name: this
+    - type: Component::GUI::AtkValue*
+      name: returnValue
+    - type: Component::GUI::AtkValue*
+      name: values
+    - type: unsigned int
+      name: valueCount
+    - type: unsigned __int64
+      name: eventKind
+  - name: Dtor
+    offset: 16
+    return_type: void
+    parameters:
+    - type: Client::UI::Agent::AgentRetainerTask*
+      name: this
+    - type: byte
+      name: freeFlags
+  - name: Show
+    offset: 24
+    return_type: void
+    parameters:
+    - type: Client::UI::Agent::AgentRetainerTask*
+      name: this
+  - name: ShowFromLua
+    offset: 32
+    return_type: void
+    parameters:
+    - type: Client::UI::Agent::AgentRetainerTask*
+      name: this
+    - type: int
+      name: id
+    - type: int*
+      name: args
+    - type: __int64
+      name: argCount
+  - name: Hide
+    offset: 40
+    return_type: void
+    parameters:
+    - type: Client::UI::Agent::AgentRetainerTask*
+      name: this
+  - name: IsAgentActive
+    offset: 48
+    return_type: byte
+    parameters:
+    - type: Client::UI::Agent::AgentRetainerTask*
+      name: this
+  - name: Update
+    offset: 56
+    return_type: void
+    parameters:
+    - type: Client::UI::Agent::AgentRetainerTask*
+      name: this
+    - type: unsigned int
+      name: frameCount
+  - name: IsActivatable
+    offset: 64
+    return_type: byte
+    parameters:
+    - type: Client::UI::Agent::AgentRetainerTask*
+      name: this
+  - name: GetAddonId
+    offset: 72
+    return_type: unsigned int
+    parameters:
+    - type: Client::UI::Agent::AgentRetainerTask*
+      name: this
+  - name: OnGameEvent
+    offset: 80
+    return_type: void
+    parameters:
+    - type: Client::UI::Agent::AgentRetainerTask*
+      name: this
+    - type: Client::UI::Agent::AgentInterface::GameEvent
+      name: gameEvent
+  - name: OnLevelChange
+    offset: 88
+    return_type: void
+    parameters:
+    - type: Client::UI::Agent::AgentRetainerTask*
+      name: this
+    - type: byte
+      name: classJobId
+    - type: unsigned __int16
+      name: level
+  - name: OnClassJobChange
+    offset: 96
+    return_type: void
+    parameters:
+    - type: Client::UI::Agent::AgentRetainerTask*
+      name: this
+    - type: byte
+      name: classJobId
+  member_functions:
+  - signature: E8 ?? ?? ?? ?? 48 89 9B ?? ?? ?? ?? 48 8B CF 48 8B 17 FF 52 48 89 83 ?? ?? ?? ?? 33 D2 48 8D 4D A0
+    return_type: void
+    name: OpenRetainerTaskResult
+    parameters:
+    - type: Client::UI::Agent::AgentRetainerTask*
+      name: this
+    - type: Component::GUI::AtkModuleInterface::AtkEventInterface*
+      name: eventInterface
+    - type: Client::UI::Agent::AgentRetainerTask::Data*
+      name: resultData
 - type: Client::UI::Agent::AgentRevive
   name: AgentRevive
   namespace: Client.UI.Agent
@@ -82968,16 +84922,16 @@ structs:
       name: this
     - type: int
       name: gearsetId
-  - signature: E8 ?? ?? ?? ?? 8B E8 83 F8 FE 0F 8E ?? ?? ?? ?? 80 BE ?? ?? ?? ?? ?? 74 20 48 8B 16
+  - signature: E8 ?? ?? ?? ?? 8B E8 83 F8 FE 0F 8E ?? ?? ?? ?? 80 BF
     return_type: int
     name: ReassignGearsetId
     parameters:
     - type: Client::UI::Misc::RaptureGearsetModule*
       name: this
     - type: int
-      name: gearsetId
-    - type: int
       name: newGearsetId
+    - type: int
+      name: gearsetId
   - signature: E8 ?? ?? ?? ?? 48 8B 03 48 8B CB FF 50 ?? 41 C6 44 24
     return_type: void
     name: LinkGlamourPlate
@@ -87202,6 +89156,42 @@ structs:
     - 3
     is_pointer: False
     return_type: Client::Game::UI::Map
+- type: Client::Game::UI::NpcYell
+  name: NpcYell
+  namespace: Client.Game.UI
+  union: False
+  size: 10320
+  fields:
+  - type: Common::Component::Excel::ExcelSheet*
+    name: NpcYellSheet
+    offset: 16
+  - type: Client::Game::UI::NpcYell::NpcYellSlot
+    name: YellSlots
+    offset: 72
+    size: 32
+    is_string: False
+  - type: Client::Game::UI::NpcYell::NpcYellInfo
+    name: YellInfo
+    offset: 1352
+    size: 32
+    is_string: False
+  - type: byte
+    name: UnhandledYellCount
+    offset: 10312
+  - type: byte
+    name: UnhandledBattleTalkCount
+    offset: 10313
+  - type: byte
+    name: Unk284A
+    offset: 10314
+  virtual_functions: []
+  member_functions: []
+  static_members:
+  - signature: 48 8D 0D ?? ?? ?? ?? 0F 11 44 24 ?? C6 44 24
+    relative_follow_offsets:
+    - 3
+    is_pointer: False
+    return_type: Client::Game::UI::NpcYell
 - type: Client::Game::UI::PlayerState
   name: PlayerState
   namespace: Client.Game.UI
@@ -87296,6 +89286,15 @@ structs:
   - type: byte
     name: QuestSpecialFlags
     offset: 359
+    bits:
+    - type: byte
+      offset: 0
+      size: 1
+      name: IsLegacy
+    - type: byte
+      offset: 1
+      size: 1
+      name: IsWarriorOfLight
   - type: unsigned __int16
     name: ActiveFestivalIds
     offset: 360
@@ -88309,6 +90308,316 @@ structs:
     - type: float
       name: dt
   member_functions: []
+- type: Client::Sound::SoundData
+  name: SoundData
+  namespace: Client.Sound
+  union: False
+  size: 208
+  fields:
+  - type: Client::Sound::ISoundData
+    name: ISoundData
+    offset: 0
+    base: true
+  - type: Client::System::Resource::Handle::SoundResourceHandle*
+    name: SoundResourceHandle
+    offset: 40
+  - type: int
+    name: FadeInDuration
+    offset: 48
+  - type: Client::Sound::SoundDataSoundController
+    name: SoundController
+    offset: 56
+  - type: float
+    name: Volume
+    offset: 96
+  - type: float
+    name: Unk64
+    offset: 100
+  - type: float
+    name: PosX
+    offset: 104
+  - type: float
+    name: PosY
+    offset: 108
+  - type: float
+    name: PosZ
+    offset: 112
+  - type: float
+    name: Speed
+    offset: 116
+  - type: unsigned int
+    name: Unk78
+    offset: 120
+  - type: unsigned int
+    name: SoundNumber
+    offset: 124
+  - type: float
+    name: Unk80
+    offset: 128
+  - type: float
+    name: Unk84
+    offset: 132
+  - type: float
+    name: FadeOutDuration
+    offset: 136
+  - type: int
+    name: MidiNote
+    offset: 140
+  - type: __int64
+    name: Unk90
+    offset: 144
+  - type: int
+    name: Unk98
+    offset: 152
+  - type: int
+    name: DriverResourceIndex
+    offset: 156
+  - type: Client::Sound::SoundLayoutOptions*
+    name: SoundLayoutOptions
+    offset: 160
+  - type: unsigned int
+    name: UnkB0
+    offset: 176
+  - type: Client::Sound::SoundVolumeCategory
+    name: VolumeCategory
+    offset: 180
+  - type: byte
+    name: IsLoadingSoundResource
+    offset: 184
+  - type: byte
+    name: IsPositional
+    offset: 185
+  - type: byte
+    name: IsFadeInEnabled
+    offset: 186
+  - type: byte
+    name: IsAutoReleaseEnabled
+    offset: 187
+  - type: byte
+    name: UnkBC
+    offset: 188
+  - type: byte
+    name: IsFadeOutEnabled
+    offset: 189
+  - type: byte
+    name: UnkBE
+    offset: 190
+  - type: byte
+    name: UnkBF
+    offset: 191
+  - type: byte
+    name: UnkC0
+    offset: 192
+  - type: byte
+    name: UnkC1
+    offset: 193
+  - type: byte
+    name: UnkC2
+    offset: 194
+  - type: byte
+    name: IsLocalPlayer
+    offset: 195
+  - type: byte
+    name: UnkC4
+    offset: 196
+  - type: byte
+    name: IsDefaultFadeOut
+    offset: 197
+  - type: __int64
+    name: UnkC8
+    offset: 200
+  virtual_functions:
+  - name: GetSoundController
+    offset: 24
+    return_type: Client::Sound::SoundDataSoundController*
+    parameters:
+    - type: Client::Sound::SoundData*
+      name: this
+  - name: SetIsLoadingSoundResource
+    offset: 40
+    return_type: void
+    parameters:
+    - type: Client::Sound::SoundData*
+      name: this
+    - type: byte
+      name: isLoading
+  - name: GetIsLoadingSoundResource
+    offset: 48
+    return_type: byte
+    parameters:
+    - type: Client::Sound::SoundData*
+      name: this
+  - name: GetFadeInDuration
+    offset: 56
+    return_type: unsigned int
+    parameters:
+    - type: Client::Sound::SoundData*
+      name: this
+  - name: SetFadeInDuration
+    offset: 64
+    return_type: void
+    parameters:
+    - type: Client::Sound::SoundData*
+      name: this
+    - type: unsigned int
+      name: fadeInDuration
+  - name: GetVolume
+    offset: 72
+    return_type: float
+    parameters:
+    - type: Client::Sound::SoundData*
+      name: this
+  - name: SetVolume
+    offset: 80
+    return_type: void
+    parameters:
+    - type: Client::Sound::SoundData*
+      name: this
+    - type: float
+      name: volume
+    - type: unsigned int
+      name: fadeDuration
+  - name: GetIsPositional
+    offset: 88
+    return_type: byte
+    parameters:
+    - type: Client::Sound::SoundData*
+      name: this
+  - name: SetPosition
+    offset: 96
+    return_type: void
+    parameters:
+    - type: Client::Sound::SoundData*
+      name: this
+    - type: byte
+      name: isPositional
+    - type: float
+      name: x
+    - type: float
+      name: y
+    - type: float
+      name: z
+  - name: GetPositionX
+    offset: 104
+    return_type: float
+    parameters:
+    - type: Client::Sound::SoundData*
+      name: this
+  - name: GetPositionY
+    offset: 112
+    return_type: float
+    parameters:
+    - type: Client::Sound::SoundData*
+      name: this
+  - name: GetPositionZ
+    offset: 120
+    return_type: float
+    parameters:
+    - type: Client::Sound::SoundData*
+      name: this
+  - name: GetSpeed
+    offset: 128
+    return_type: float
+    parameters:
+    - type: Client::Sound::SoundData*
+      name: this
+  - name: SetSpeed
+    offset: 136
+    return_type: void
+    parameters:
+    - type: Client::Sound::SoundData*
+      name: this
+    - type: float
+      name: speed
+    - type: unsigned int
+      name: a3
+  - name: Stop
+    offset: 288
+    return_type: void
+    parameters:
+    - type: Client::Sound::SoundData*
+      name: this
+    - type: unsigned int
+      name: fadeOutDuration
+  - name: IsPlaying
+    offset: 304
+    return_type: byte
+    parameters:
+    - type: Client::Sound::SoundData*
+      name: this
+  - name: GetIsFadingOut
+    offset: 320
+    return_type: byte
+    parameters:
+    - type: Client::Sound::SoundData*
+      name: this
+  - name: GetFadeInEnabled
+    offset: 328
+    return_type: byte
+    parameters:
+    - type: Client::Sound::SoundData*
+      name: this
+  - name: GetIsAutoReleaseEnabled
+    offset: 336
+    return_type: byte
+    parameters:
+    - type: Client::Sound::SoundData*
+      name: this
+  - name: SetFadeInEnabled
+    offset: 344
+    return_type: void
+    parameters:
+    - type: Client::Sound::SoundData*
+      name: this
+    - type: byte
+      name: enable
+  - name: GetFileName
+    offset: 392
+    return_type: char*
+    parameters:
+    - type: Client::Sound::SoundData*
+      name: this
+  - name: GetSoundNumber
+    offset: 400
+    return_type: unsigned int
+    parameters:
+    - type: Client::Sound::SoundData*
+      name: this
+  - name: GetSoundResourceHandle
+    offset: 432
+    return_type: Client::System::Resource::Handle::SoundResourceHandle*
+    parameters:
+    - type: Client::Sound::SoundData*
+      name: this
+  - name: SetSoundResourceHandle
+    offset: 440
+    return_type: void
+    parameters:
+    - type: Client::Sound::SoundData*
+      name: this
+    - type: Client::System::Resource::Handle::SoundResourceHandle*
+      name: handle
+  - name: LoadSoundResourceHandle
+    offset: 448
+    return_type: void
+    parameters:
+    - type: Client::Sound::SoundData*
+      name: this
+    - type: Client::System::Resource::Handle::SoundResourceHandle*
+      name: handle
+  - name: GetElapsedTime
+    offset: 456
+    return_type: float
+    parameters:
+    - type: Client::Sound::SoundData*
+      name: this
+  - name: GetMidiNote
+    offset: 488
+    return_type: int
+    parameters:
+    - type: Client::Sound::SoundData*
+      name: this
+  member_functions: []
 - type: Client::System::Framework::EnvironmentManager
   name: EnvironmentManager
   namespace: Client.System.Framework
@@ -88402,6 +90711,36 @@ structs:
       name: volume
     - type: byte
       name: saveToConfig
+  - signature: E9 ?? ?? ?? ?? 85 D2 75 ?? 48 8B CB
+    return_type: void
+    name: SetWindowModeFullscreen
+    parameters:
+    - type: Client::System::Framework::EnvironmentManager*
+      name: this
+    - type: __int16
+      name: width
+    - type: __int16
+      name: height
+    - type: __int16
+      name: refreshRate
+  - signature: 44 8B 91 ?? ?? ?? ?? 4C 8D 89
+    return_type: void
+    name: SetWindowModeWindowed
+    parameters:
+    - type: Client::System::Framework::EnvironmentManager*
+      name: this
+    - type: __int16
+      name: width
+    - type: __int16
+      name: height
+  - signature: E8 ?? ?? ?? ?? 48 8B 9F ?? ?? ?? ?? 48 8B CB E8 ?? ?? ?? ?? 8B D0
+    return_type: void
+    name: SetWindowMode
+    parameters:
+    - type: Client::System::Framework::EnvironmentManager*
+      name: this
+    - type: unsigned int
+      name: mode
 - type: Client::System::Input::PadDevice
   name: PadDevice
   namespace: Client.System.Input
@@ -88552,6 +90891,9 @@ structs:
     name: ResourceHandle
     offset: 0
     base: true
+  - type: unsigned int
+    name: SoundDataRefCount
+    offset: 204
   virtual_functions:
   - name: GetUserData
     offset: 48
@@ -92008,6 +94350,59 @@ structs:
   - type: unsigned int
     name: DrawFlags
     offset: 176
+    bits:
+    - type: byte
+      offset: 0
+      size: 1
+      name: IsDirty
+    - type: byte
+      offset: 1
+      size: 3
+      name: UnkBits1
+    - type: byte
+      offset: 4
+      size: 1
+      name: IsStoppingRapidCursorNavigationUp
+    - type: byte
+      offset: 5
+      size: 1
+      name: IsStoppingRapidCursorNavigationDown
+    - type: byte
+      offset: 6
+      size: 1
+      name: IsStoppingRapidCursorNavigationLeft
+    - type: byte
+      offset: 7
+      size: 1
+      name: IsStoppingRapidCursorNavigationRight
+    - type: byte
+      offset: 8
+      size: 1
+      name: UnkBits8
+    - type: byte
+      offset: 9
+      size: 8
+      name: ClipCount
+    - type: byte
+      offset: 17
+      size: 3
+      name: UnkBits17
+    - type: byte
+      offset: 20
+      size: 1
+      name: IsClickableCursorOnHover
+    - type: byte
+      offset: 21
+      size: 1
+      name: UnkBits21
+    - type: byte
+      offset: 22
+      size: 1
+      name: IsTextInputCursorOnHover
+    - type: byte
+      offset: 23
+      size: 1
+      name: IsEllipticalCollision
   vtable_size: 24
   virtual_functions:
   - name: Destroy
@@ -94265,9 +96660,19 @@ structs:
   - type: unsigned int
     name: FlagsType
     offset: 116
+    bits:
+    - type: byte
+      offset: 0
+      size: 4
+      name: Type
   - type: byte
     name: FlagsActive
     offset: 120
+    bits:
+    - type: byte
+      offset: 0
+      size: 1
+      name: ActiveByDefault
   virtual_functions:
   - name: GetLayerMask
     offset: 624
@@ -94551,6 +96956,18 @@ structs:
       name: this
     - type: System::Numerics::Vector4*
       name: result
+  member_functions: []
+- type: Client::Sound::SoundManager::SoundDataMemory
+  name: SoundDataMemory
+  namespace: Client.Sound
+  union: False
+  size: 53248
+  fields:
+  - type: Client::Sound::SoundData
+    name: Entries
+    offset: 0
+    size: 256
+    is_string: False
   member_functions: []
 - type: Client::System::Resource::Handle::ApricotResourceHandle
   name: ApricotResourceHandle
@@ -95930,6 +98347,21 @@ structs:
   - type: byte
     name: DyeCount
     offset: 1343
+  member_functions: []
+- type: Client::UI::Agent::AgentItemInspection::Data
+  name: Data
+  namespace: Client.UI.Agent
+  union: False
+  size: 1640
+  fields:
+  - type: Client::Game::InventoryItem
+    name: Item
+    offset: 0
+  - type: Client::System::String::Utf8String
+    name: Unk50
+    offset: 80
+    size: 11
+    is_string: False
   member_functions: []
 - type: Client::UI::Agent::AgentMJIFarmManagement
   name: AgentMJIFarmManagement
@@ -99426,126 +101858,6 @@ structs:
       name: selectedIndex
     - type: Component::GUI::AtkEventType
       name: eventType
-- type: Component::GUI::AtkComponentMap
-  name: AtkComponentMap
-  namespace: Component.GUI
-  union: False
-  size: 1056
-  fields:
-  - type: Component::GUI::AtkComponentBase
-    name: AtkComponentBase
-    offset: 0
-    base: true
-  virtual_functions:
-  - name: Dtor
-    offset: 0
-    return_type: Component::GUI::AtkEventListener*
-    parameters:
-    - type: Component::GUI::AtkComponentMap*
-      name: this
-    - type: byte
-      name: freeFlags
-  - name: ReceiveGlobalEvent
-    offset: 8
-    return_type: void
-    parameters:
-    - type: Component::GUI::AtkComponentMap*
-      name: this
-    - type: Component::GUI::AtkEventType
-      name: eventType
-    - type: int
-      name: eventParam
-    - type: Component::GUI::AtkEvent*
-      name: atkEvent
-    - type: Component::GUI::AtkEventData*
-      name: atkEventData
-  - name: ReceiveEvent
-    offset: 16
-    return_type: void
-    parameters:
-    - type: Component::GUI::AtkComponentMap*
-      name: this
-    - type: Component::GUI::AtkEventType
-      name: eventType
-    - type: int
-      name: eventParam
-    - type: Component::GUI::AtkEvent*
-      name: atkEvent
-    - type: Component::GUI::AtkEventData*
-      name: atkEventData
-  - name: Initialize
-    offset: 24
-    return_type: void
-    parameters:
-    - type: Component::GUI::AtkComponentMap*
-      name: this
-  - name: Deinitialize
-    offset: 32
-    return_type: void
-    parameters:
-    - type: Component::GUI::AtkComponentMap*
-      name: this
-  - name: Update
-    offset: 40
-    return_type: void
-    parameters:
-    - type: Component::GUI::AtkComponentMap*
-      name: this
-    - type: float
-      name: delta
-  - name: Draw
-    offset: 56
-    return_type: void
-    parameters:
-    - type: Component::GUI::AtkComponentMap*
-      name: this
-  - name: Setup
-    offset: 64
-    return_type: void
-    parameters:
-    - type: Component::GUI::AtkComponentMap*
-      name: this
-  - name: SetEnabledState
-    offset: 80
-    return_type: void
-    parameters:
-    - type: Component::GUI::AtkComponentMap*
-      name: this
-    - type: byte
-      name: enabled
-  - name: PlaySoundEffect
-    offset: 104
-    return_type: void
-    parameters:
-    - type: Component::GUI::AtkComponentMap*
-      name: this
-  - name: GetAtkResNode
-    offset: 112
-    return_type: Component::GUI::AtkResNode*
-    parameters:
-    - type: Component::GUI::AtkComponentMap*
-      name: this
-  - name: GetFocusNode
-    offset: 120
-    return_type: Component::GUI::AtkResNode*
-    parameters:
-    - type: Component::GUI::AtkComponentMap*
-      name: this
-  - name: InitializeFromComponentData
-    offset: 136
-    return_type: void
-    parameters:
-    - type: Component::GUI::AtkComponentMap*
-      name: this
-    - type: __int64
-      name: data
-  member_functions:
-  - signature: 48 89 5C 24 ?? 57 48 83 EC 20 33 FF C7 81 ?? ?? ?? ?? ?? ?? ?? ?? 48 8D 05
-    return_type: void
-    name: Ctor
-    parameters:
-    - type: Component::GUI::AtkComponentMap*
-      name: this
 - type: Component::GUI::AtkComponentMultipurpose
   name: AtkComponentMultipurpose
   namespace: Component.GUI
@@ -101276,9 +103588,31 @@ structs:
   - type: byte
     name: Flags1
     offset: 574
+    bits:
+    - type: byte
+      offset: 0
+      size: 1
+      name: IsHatHidden
   - type: byte
     name: Flags2
     offset: 575
+    bits:
+    - type: byte
+      offset: 0
+      size: 1
+      name: IsWeaponHidden
+    - type: byte
+      offset: 1
+      size: 3
+      name: UnkBits1
+    - type: byte
+      offset: 4
+      size: 1
+      name: IsVisorToggled
+    - type: byte
+      offset: 5
+      size: 1
+      name: VieraEarsHidden
   - type: unsigned __int16
     name: GlassesIds
     offset: 576
@@ -101856,6 +104190,15 @@ structs:
   - type: byte
     name: AllianceFlags
     offset: 32737
+    bits:
+    - type: byte
+      offset: 0
+      size: 1
+      name: IsAlliance
+    - type: byte
+      offset: 1
+      size: 1
+      name: IsSmallGroupAlliance
   member_functions:
   - signature: E8 ?? ?? ?? ?? 84 C0 74 ?? B0 01 E9 ?? ?? ?? ?? E8
     return_type: byte
@@ -108023,6 +110366,27 @@ structs:
   - type: unsigned int
     name: Flags
     offset: 796
+    bits:
+    - type: byte
+      offset: 0
+      size: 1
+      name: IsOtherEquipmentHidden
+    - type: byte
+      offset: 1
+      size: 1
+      name: IsHatHidden
+    - type: byte
+      offset: 2
+      size: 1
+      name: IsWeaponHidden
+    - type: byte
+      offset: 3
+      size: 1
+      name: IsVisorToggled
+    - type: byte
+      offset: 4
+      size: 1
+      name: IsWeaponDrawn
   virtual_functions:
   - name: Dtor
     offset: 0
@@ -110901,6 +113265,11 @@ structs:
   - type: byte
     name: FaceCameraFlag
     offset: 2992
+    bits:
+    - type: byte
+      offset: 0
+      size: 1
+      name: IsFacingCamera
   - type: Common::Math::Vector2
     name: BannerHeadDirection
     offset: 2996
@@ -112217,6 +114586,229 @@ structs:
     size: 17
     is_string: False
   member_functions: []
+- type: Component::GUI::AtkComponentMap
+  name: AtkComponentMap
+  namespace: Component.GUI
+  union: False
+  size: 1056
+  fields:
+  - type: Component::GUI::AtkComponentBase
+    name: AtkComponentBase
+    offset: 0
+    base: true
+  - type: Component::GUI::AtkImageNode*
+    name: PlayerCone
+    offset: 224
+  - type: Component::GUI::AtkComponentNode*
+    name: MarkerTemplate5
+    offset: 232
+  - type: Component::GUI::AtkComponentNode*
+    name: MarkerTemplate6
+    offset: 240
+  - type: Component::GUI::AtkComponentNode*
+    name: MarkerTemplate4
+    offset: 248
+  - type: Component::GUI::AtkComponentNode*
+    name: MarkerTemplate3
+    offset: 256
+  - type: Component::GUI::AtkComponentNode*
+    name: MarkerTemplate2
+    offset: 264
+  - type: Component::GUI::AtkComponentNode*
+    name: MarkerTemplate8
+    offset: 272
+  - type: Component::GUI::AtkResourceRendererManager
+    name: ResourceRendererManager
+    offset: 312
+  - type: Component::GUI::AtkComponentMap::DiscoveryRenderer
+    name: m_DiscoveryRenderer
+    offset: 592
+  - type: float
+    name: MapScale
+    offset: 884
+  - type: float
+    name: MapOffsetX
+    offset: 900
+  - type: float
+    name: MapOffsetY
+    offset: 904
+  - type: float
+    name: MapWidth
+    offset: 908
+  - type: float
+    name: MapHeight
+    offset: 912
+  - type: unsigned int
+    name: NumMarkersType0
+    offset: 940
+  - type: unsigned int
+    name: NumMarkersType1
+    offset: 944
+  - type: unsigned int
+    name: NumMarkersType2
+    offset: 948
+  - type: unsigned int
+    name: NumMarkersType3
+    offset: 952
+  - type: unsigned int
+    name: NumMarkersType4
+    offset: 956
+  - type: Component::GUI::MapMarkerNodeContainer*
+    name: MarkerNodeContainerMemoryType0
+    offset: 960
+  - type: Component::GUI::MapMarkerNodeContainer*
+    name: MarkerNodeContainerMemoryType1
+    offset: 968
+  - type: Component::GUI::MapMarkerNodeContainer*
+    name: MarkerNodeContainerMemoryType2
+    offset: 976
+  - type: Component::GUI::MapMarkerNodeContainer*
+    name: MarkerNodeContainerMemoryType3
+    offset: 984
+  - type: Component::GUI::MapMarkerNodeContainer*
+    name: MarkerNodeContainerMemoryType4
+    offset: 992
+  - type: Component::GUI::AtkGrid
+    name: Grid
+    offset: 1000
+  virtual_functions:
+  - name: Dtor
+    offset: 0
+    return_type: Component::GUI::AtkEventListener*
+    parameters:
+    - type: Component::GUI::AtkComponentMap*
+      name: this
+    - type: byte
+      name: freeFlags
+  - name: ReceiveGlobalEvent
+    offset: 8
+    return_type: void
+    parameters:
+    - type: Component::GUI::AtkComponentMap*
+      name: this
+    - type: Component::GUI::AtkEventType
+      name: eventType
+    - type: int
+      name: eventParam
+    - type: Component::GUI::AtkEvent*
+      name: atkEvent
+    - type: Component::GUI::AtkEventData*
+      name: atkEventData
+  - name: ReceiveEvent
+    offset: 16
+    return_type: void
+    parameters:
+    - type: Component::GUI::AtkComponentMap*
+      name: this
+    - type: Component::GUI::AtkEventType
+      name: eventType
+    - type: int
+      name: eventParam
+    - type: Component::GUI::AtkEvent*
+      name: atkEvent
+    - type: Component::GUI::AtkEventData*
+      name: atkEventData
+  - name: Initialize
+    offset: 24
+    return_type: void
+    parameters:
+    - type: Component::GUI::AtkComponentMap*
+      name: this
+  - name: Deinitialize
+    offset: 32
+    return_type: void
+    parameters:
+    - type: Component::GUI::AtkComponentMap*
+      name: this
+  - name: Update
+    offset: 40
+    return_type: void
+    parameters:
+    - type: Component::GUI::AtkComponentMap*
+      name: this
+    - type: float
+      name: delta
+  - name: Draw
+    offset: 56
+    return_type: void
+    parameters:
+    - type: Component::GUI::AtkComponentMap*
+      name: this
+  - name: Setup
+    offset: 64
+    return_type: void
+    parameters:
+    - type: Component::GUI::AtkComponentMap*
+      name: this
+  - name: SetEnabledState
+    offset: 80
+    return_type: void
+    parameters:
+    - type: Component::GUI::AtkComponentMap*
+      name: this
+    - type: byte
+      name: enabled
+  - name: PlaySoundEffect
+    offset: 104
+    return_type: void
+    parameters:
+    - type: Component::GUI::AtkComponentMap*
+      name: this
+  - name: GetAtkResNode
+    offset: 112
+    return_type: Component::GUI::AtkResNode*
+    parameters:
+    - type: Component::GUI::AtkComponentMap*
+      name: this
+  - name: GetFocusNode
+    offset: 120
+    return_type: Component::GUI::AtkResNode*
+    parameters:
+    - type: Component::GUI::AtkComponentMap*
+      name: this
+  - name: InitializeFromComponentData
+    offset: 136
+    return_type: void
+    parameters:
+    - type: Component::GUI::AtkComponentMap*
+      name: this
+    - type: __int64
+      name: data
+  member_functions:
+  - signature: 48 89 5C 24 ?? 57 48 83 EC 20 33 FF C7 81 ?? ?? ?? ?? ?? ?? ?? ?? 48 8D 05
+    return_type: void
+    name: Ctor
+    parameters:
+    - type: Component::GUI::AtkComponentMap*
+      name: this
+  - signature: E8 ?? ?? ?? ?? 48 8B 4F ?? 0F 57 D2
+    return_type: void
+    name: SetMapScale
+    parameters:
+    - type: Component::GUI::AtkComponentMap*
+      name: this
+    - type: float
+      name: scale
+  - signature: E8 ?? ?? ?? ?? 48 8B 4F ?? 33 D2 48 8B 89
+    return_type: void
+    name: SetMapOffset
+    parameters:
+    - type: Component::GUI::AtkComponentMap*
+      name: this
+    - type: float
+      name: x
+    - type: float
+      name: y
+  - signature: E8 ?? ?? ?? ?? F3 41 0F 10 8E ?? ?? ?? ?? 48 8B CF
+    return_type: void
+    name: SetMapSize
+    parameters:
+    - type: Component::GUI::AtkComponentMap*
+      name: this
+    - type: float
+      name: width
+    - type: float
+      name: height
 - type: Component::GUI::AtkComponentTab
   name: AtkComponentTab
   namespace: Component.GUI
@@ -113730,7 +116322,7 @@ structs:
       name: this
     - type: int
       name: gearsetId
-  - signature: E8 ?? ?? ?? ?? 48 8B 4E 10 48 8B 01 FF 50 40 48 8B 5C 24
+  - signature: E8 ?? ?? ?? ?? 48 8B 4F 10 48 8B 01 FF 50 40 80 88
     return_type: void
     name: ReassignGearsetId
     parameters:
@@ -114770,24 +117362,114 @@ structs:
   - type: unsigned int
     name: Flags198
     offset: 408
+    bits:
+    - type: unsigned int
+      offset: 0
+      size: 20
+      name: UnkBits0
+    - type: byte
+      offset: 20
+      size: 4
+      name: VisibilityState
+    - type: byte
+      offset: 24
+      size: 4
+      name: AppliedVisibilityState
+    - type: byte
+      offset: 28
+      size: 4
+      name: LoadState
   - type: byte
     name: Flags1A0
     offset: 416
+    bits:
+    - type: byte
+      offset: 0
+      size: 7
+      name: UnkBits0
+    - type: byte
+      offset: 7
+      size: 1
+      name: DisableFocusability
   - type: byte
     name: Flags1A1
     offset: 417
+    bits:
+    - type: byte
+      offset: 0
+      size: 1
+      name: IsReady
+    - type: byte
+      offset: 1
+      size: 1
+      name: UnkBits1
+    - type: byte
+      offset: 2
+      size: 1
+      name: DisableUserClose
+    - type: byte
+      offset: 3
+      size: 3
+      name: UnkBits3
+    - type: byte
+      offset: 6
+      size: 1
+      name: DisableFocusOnShow
   - type: byte
     name: Flags1A2
     offset: 418
+    bits:
+    - type: byte
+      offset: 0
+      size: 2
+      name: UnkBits0
+    - type: byte
+      offset: 2
+      size: 1
+      name: WasLoadUldByNameCalled
+    - type: byte
+      offset: 3
+      size: 1
+      name: DisableHideTransition
+    - type: byte
+      offset: 4
+      size: 1
+      name: UnkBits4
+    - type: byte
+      offset: 5
+      size: 1
+      name: DisableShowHideSoundEffects
+    - type: byte
+      offset: 6
+      size: 1
+      name: DisableAddonConfig
   - type: byte
     name: Flags1A3
     offset: 419
+    bits:
+    - type: byte
+      offset: 0
+      size: 1
+      name: EnableTitleBarContextMenu
   - type: byte
     name: Flags1A4
     offset: 420
   - type: byte
     name: Flags1A5
     offset: 421
+    bits:
+    - type: byte
+      offset: 0
+      size: 5
+      name: UnkBits0
+    - type: byte
+      offset: 5
+      size: 1
+      name: EnableTextNodePopulation
+    - type: byte
+      offset: 6
+      size: 1
+      name: DisableShowOnOpen
   - type: int
     name: Param
     offset: 424
@@ -114824,6 +117506,23 @@ structs:
   - type: unsigned int
     name: Flags1C8
     offset: 456
+    bits:
+    - type: byte
+      offset: 0
+      size: 2
+      name: UnkBits0
+    - type: byte
+      offset: 2
+      size: 1
+      name: EnableFilter
+    - type: byte
+      offset: 3
+      size: 8
+      name: UnkBits3
+    - type: byte
+      offset: 11
+      size: 1
+      name: DisableUserScaling
   - type: byte
     name: ScdResourceIndex
     offset: 460
@@ -117704,424 +120403,6 @@ structs:
       name: this
     - type: int
       name: tab
-- type: Client::UI::AddonAreaMap
-  name: AddonAreaMap
-  namespace: Client.UI
-  union: False
-  size: 2016
-  fields:
-  - type: Component::GUI::AtkUnitBase
-    name: AtkUnitBase
-    offset: 0
-    base: true
-  virtual_functions:
-  - name: Dtor
-    offset: 0
-    return_type: Component::GUI::AtkEventListener*
-    parameters:
-    - type: Client::UI::AddonAreaMap*
-      name: this
-    - type: byte
-      name: freeFlags
-  - name: ReceiveGlobalEvent
-    offset: 8
-    return_type: void
-    parameters:
-    - type: Client::UI::AddonAreaMap*
-      name: this
-    - type: Component::GUI::AtkEventType
-      name: eventType
-    - type: int
-      name: eventParam
-    - type: Component::GUI::AtkEvent*
-      name: atkEvent
-    - type: Component::GUI::AtkEventData*
-      name: atkEventData
-  - name: ReceiveEvent
-    offset: 16
-    return_type: void
-    parameters:
-    - type: Client::UI::AddonAreaMap*
-      name: this
-    - type: Component::GUI::AtkEventType
-      name: eventType
-    - type: int
-      name: eventParam
-    - type: Component::GUI::AtkEvent*
-      name: atkEvent
-    - type: Component::GUI::AtkEventData*
-      name: atkEventData
-  - name: Open
-    offset: 24
-    return_type: byte
-    parameters:
-    - type: Client::UI::AddonAreaMap*
-      name: this
-    - type: unsigned int
-      name: depthLayer
-  - name: Close
-    offset: 32
-    return_type: byte
-    parameters:
-    - type: Client::UI::AddonAreaMap*
-      name: this
-    - type: byte
-      name: fireCallback
-  - name: Show
-    offset: 40
-    return_type: void
-    parameters:
-    - type: Client::UI::AddonAreaMap*
-      name: this
-    - type: byte
-      name: disableShowTransition
-    - type: unsigned int
-      name: unsetShowHideFlags
-  - name: Hide
-    offset: 48
-    return_type: void
-    parameters:
-    - type: Client::UI::AddonAreaMap*
-      name: this
-    - type: byte
-      name: disableHideTransition
-    - type: byte
-      name: callCloseCallback
-    - type: unsigned int
-      name: setShowHideFlags
-  - name: SetPosition
-    offset: 56
-    return_type: void
-    parameters:
-    - type: Client::UI::AddonAreaMap*
-      name: this
-    - type: __int16
-      name: x
-    - type: __int16
-      name: y
-  - name: SetX
-    offset: 64
-    return_type: void
-    parameters:
-    - type: Client::UI::AddonAreaMap*
-      name: this
-    - type: __int16
-      name: value
-  - name: SetY
-    offset: 72
-    return_type: void
-    parameters:
-    - type: Client::UI::AddonAreaMap*
-      name: this
-    - type: __int16
-      name: value
-  - name: GetX
-    offset: 80
-    return_type: __int16
-    parameters:
-    - type: Client::UI::AddonAreaMap*
-      name: this
-  - name: GetY
-    offset: 88
-    return_type: __int16
-    parameters:
-    - type: Client::UI::AddonAreaMap*
-      name: this
-  - name: GetPosition
-    offset: 96
-    return_type: void
-    parameters:
-    - type: Client::UI::AddonAreaMap*
-      name: this
-    - type: __int16*
-      name: outX
-    - type: __int16*
-      name: outY
-  - name: SetAlpha
-    offset: 104
-    return_type: void
-    parameters:
-    - type: Client::UI::AddonAreaMap*
-      name: this
-    - type: byte
-      name: alpha
-  - name: SetScale
-    offset: 112
-    return_type: void
-    parameters:
-    - type: Client::UI::AddonAreaMap*
-      name: this
-    - type: float
-      name: scale
-    - type: byte
-      name: a3
-  - name: GetSize
-    offset: 120
-    return_type: void
-    parameters:
-    - type: Client::UI::AddonAreaMap*
-      name: this
-    - type: __int16*
-      name: outWidth
-    - type: __int16*
-      name: outHeight
-    - type: byte
-      name: scaled
-  - name: Hide2
-    offset: 128
-    return_type: void
-    parameters:
-    - type: Client::UI::AddonAreaMap*
-      name: this
-  - name: SetScaleToHudLayoutScale
-    offset: 136
-    return_type: __int8
-    parameters:
-    - type: Client::UI::AddonAreaMap*
-      name: this
-  - name: ShouldCollideWithWindow
-    offset: 144
-    return_type: byte
-    parameters:
-    - type: Client::UI::AddonAreaMap*
-      name: this
-    - type: Component::GUI::AtkCollisionNode*
-      name: collisionNode
-  - name: OnMove
-    offset: 160
-    return_type: void
-    parameters:
-    - type: Client::UI::AddonAreaMap*
-      name: this
-  - name: HandleCursorTypeChange
-    offset: 176
-    return_type: byte
-    parameters:
-    - type: Client::UI::AddonAreaMap*
-      name: this
-  - name: ShouldIgnoreInputs
-    offset: 184
-    return_type: byte
-    parameters:
-    - type: Client::UI::AddonAreaMap*
-      name: this
-  - name: GetRootNode
-    offset: 192
-    return_type: Component::GUI::AtkResNode*
-    parameters:
-    - type: Client::UI::AddonAreaMap*
-      name: this
-  - name: GetWindowBounds
-    offset: 216
-    return_type: void
-    parameters:
-    - type: Client::UI::AddonAreaMap*
-      name: this
-    - type: Common::Math::Bounds*
-      name: outBounds
-  - name: GetRootBounds
-    offset: 240
-    return_type: void
-    parameters:
-    - type: Client::UI::AddonAreaMap*
-      name: this
-    - type: Common::Math::Bounds*
-      name: outBounds
-  - name: SetDepthLayer
-    offset: 248
-    return_type: byte
-    parameters:
-    - type: Client::UI::AddonAreaMap*
-      name: this
-    - type: unsigned int
-      name: depthLayerIndex
-  - name: ShouldAllowCursorFocus
-    offset: 256
-    return_type: byte
-    parameters:
-    - type: Client::UI::AddonAreaMap*
-      name: this
-  - name: GetUnitBaseForFocus
-    offset: 280
-    return_type: Component::GUI::AtkUnitBase*
-    parameters:
-    - type: Client::UI::AddonAreaMap*
-      name: this
-  - name: Focus
-    offset: 296
-    return_type: void
-    parameters:
-    - type: Client::UI::AddonAreaMap*
-      name: this
-  - name: Initialize
-    offset: 328
-    return_type: void
-    parameters:
-    - type: Client::UI::AddonAreaMap*
-      name: this
-  - name: Finalizer
-    offset: 336
-    return_type: void
-    parameters:
-    - type: Client::UI::AddonAreaMap*
-      name: this
-  - name: Update
-    offset: 344
-    return_type: void
-    parameters:
-    - type: Client::UI::AddonAreaMap*
-      name: this
-    - type: float
-      name: delta
-  - name: Draw
-    offset: 352
-    return_type: void
-    parameters:
-    - type: Client::UI::AddonAreaMap*
-      name: this
-  - name: LoadUldResourceHandle
-    offset: 368
-    return_type: byte
-    parameters:
-    - type: Client::UI::AddonAreaMap*
-      name: this
-  - name: CheckWindowCollisionAtCoords
-    offset: 376
-    return_type: byte
-    parameters:
-    - type: Client::UI::AddonAreaMap*
-      name: this
-    - type: __int16
-      name: x
-    - type: __int16
-      name: y
-  - name: OnSetup
-    offset: 392
-    return_type: void
-    parameters:
-    - type: Client::UI::AddonAreaMap*
-      name: this
-    - type: unsigned int
-      name: valueCount
-    - type: Component::GUI::AtkValue*
-      name: values
-  - name: OnRefresh
-    offset: 408
-    return_type: byte
-    parameters:
-    - type: Client::UI::AddonAreaMap*
-      name: this
-    - type: unsigned int
-      name: valueCount
-    - type: Component::GUI::AtkValue*
-      name: values
-  - name: OnRequestedUpdate
-    offset: 416
-    return_type: void
-    parameters:
-    - type: Client::UI::AddonAreaMap*
-      name: this
-    - type: Component::GUI::NumberArrayData**
-      name: numberArrayData
-    - type: Component::GUI::StringArrayData**
-      name: stringArrayData
-  - name: FireCloseCallback
-    offset: 432
-    return_type: void
-    parameters:
-    - type: Client::UI::AddonAreaMap*
-      name: this
-  - name: SetSizeFromConfig
-    offset: 448
-    return_type: void
-    parameters:
-    - type: Client::UI::AddonAreaMap*
-      name: this
-    - type: float
-      name: width
-    - type: float
-      name: height
-  - name: HandleCustomInput
-    offset: 456
-    return_type: byte
-    parameters:
-    - type: Client::UI::AddonAreaMap*
-      name: this
-    - type: Component::GUI::AtkEventData::AtkInputData*
-      name: inputData
-  - name: OnFocusChange
-    offset: 472
-    return_type: void
-    parameters:
-    - type: Client::UI::AddonAreaMap*
-      name: this
-    - type: byte
-      name: isFocused
-  - name: OnScreenSizeChange
-    offset: 480
-    return_type: void
-    parameters:
-    - type: Client::UI::AddonAreaMap*
-      name: this
-    - type: int
-      name: width
-    - type: int
-      name: height
-  - name: OnConfigLoaded
-    offset: 488
-    return_type: void
-    parameters:
-    - type: Client::UI::AddonAreaMap*
-      name: this
-    - type: byte
-      name: isInitialLoad
-  - name: OnMouseOver
-    offset: 496
-    return_type: void
-    parameters:
-    - type: Client::UI::AddonAreaMap*
-      name: this
-  - name: OnMouseOut
-    offset: 504
-    return_type: void
-    parameters:
-    - type: Client::UI::AddonAreaMap*
-      name: this
-  - name: IsFullyLoaded
-    offset: 528
-    return_type: byte
-    parameters:
-    - type: Client::UI::AddonAreaMap*
-      name: this
-  - name: PlaySoundEffect
-    offset: 536
-    return_type: void
-    parameters:
-    - type: Client::UI::AddonAreaMap*
-      name: this
-    - type: int
-      name: soundEffectId
-  - name: HandleDPadInput
-    offset: 552
-    return_type: byte
-    parameters:
-    - type: Client::UI::AddonAreaMap*
-      name: this
-    - type: int
-      name: inputId
-    - type: byte
-      name: a3
-  - name: HandleBackButtonInput
-    offset: 568
-    return_type: byte
-    parameters:
-    - type: Client::UI::AddonAreaMap*
-      name: this
-    - type: int
-      name: inputId
-    - type: byte
-      name: a3
-  member_functions: []
 - type: Client::UI::AddonArmouryBoard
   name: AddonArmouryBoard
   namespace: Client.UI
@@ -146928,427 +149209,6 @@ structs:
     - type: byte
       name: a3
   member_functions: []
-- type: Client::UI::AddonTeleportTown
-  name: AddonTeleportTown
-  namespace: Client.UI
-  union: False
-  size: 1472
-  fields:
-  - type: Component::GUI::AtkUnitBase
-    name: AtkUnitBase
-    offset: 0
-    base: true
-  - type: Component::GUI::AtkComponentTreeList*
-    name: List
-    offset: 568
-  virtual_functions:
-  - name: Dtor
-    offset: 0
-    return_type: Component::GUI::AtkEventListener*
-    parameters:
-    - type: Client::UI::AddonTeleportTown*
-      name: this
-    - type: byte
-      name: freeFlags
-  - name: ReceiveGlobalEvent
-    offset: 8
-    return_type: void
-    parameters:
-    - type: Client::UI::AddonTeleportTown*
-      name: this
-    - type: Component::GUI::AtkEventType
-      name: eventType
-    - type: int
-      name: eventParam
-    - type: Component::GUI::AtkEvent*
-      name: atkEvent
-    - type: Component::GUI::AtkEventData*
-      name: atkEventData
-  - name: ReceiveEvent
-    offset: 16
-    return_type: void
-    parameters:
-    - type: Client::UI::AddonTeleportTown*
-      name: this
-    - type: Component::GUI::AtkEventType
-      name: eventType
-    - type: int
-      name: eventParam
-    - type: Component::GUI::AtkEvent*
-      name: atkEvent
-    - type: Component::GUI::AtkEventData*
-      name: atkEventData
-  - name: Open
-    offset: 24
-    return_type: byte
-    parameters:
-    - type: Client::UI::AddonTeleportTown*
-      name: this
-    - type: unsigned int
-      name: depthLayer
-  - name: Close
-    offset: 32
-    return_type: byte
-    parameters:
-    - type: Client::UI::AddonTeleportTown*
-      name: this
-    - type: byte
-      name: fireCallback
-  - name: Show
-    offset: 40
-    return_type: void
-    parameters:
-    - type: Client::UI::AddonTeleportTown*
-      name: this
-    - type: byte
-      name: disableShowTransition
-    - type: unsigned int
-      name: unsetShowHideFlags
-  - name: Hide
-    offset: 48
-    return_type: void
-    parameters:
-    - type: Client::UI::AddonTeleportTown*
-      name: this
-    - type: byte
-      name: disableHideTransition
-    - type: byte
-      name: callCloseCallback
-    - type: unsigned int
-      name: setShowHideFlags
-  - name: SetPosition
-    offset: 56
-    return_type: void
-    parameters:
-    - type: Client::UI::AddonTeleportTown*
-      name: this
-    - type: __int16
-      name: x
-    - type: __int16
-      name: y
-  - name: SetX
-    offset: 64
-    return_type: void
-    parameters:
-    - type: Client::UI::AddonTeleportTown*
-      name: this
-    - type: __int16
-      name: value
-  - name: SetY
-    offset: 72
-    return_type: void
-    parameters:
-    - type: Client::UI::AddonTeleportTown*
-      name: this
-    - type: __int16
-      name: value
-  - name: GetX
-    offset: 80
-    return_type: __int16
-    parameters:
-    - type: Client::UI::AddonTeleportTown*
-      name: this
-  - name: GetY
-    offset: 88
-    return_type: __int16
-    parameters:
-    - type: Client::UI::AddonTeleportTown*
-      name: this
-  - name: GetPosition
-    offset: 96
-    return_type: void
-    parameters:
-    - type: Client::UI::AddonTeleportTown*
-      name: this
-    - type: __int16*
-      name: outX
-    - type: __int16*
-      name: outY
-  - name: SetAlpha
-    offset: 104
-    return_type: void
-    parameters:
-    - type: Client::UI::AddonTeleportTown*
-      name: this
-    - type: byte
-      name: alpha
-  - name: SetScale
-    offset: 112
-    return_type: void
-    parameters:
-    - type: Client::UI::AddonTeleportTown*
-      name: this
-    - type: float
-      name: scale
-    - type: byte
-      name: a3
-  - name: GetSize
-    offset: 120
-    return_type: void
-    parameters:
-    - type: Client::UI::AddonTeleportTown*
-      name: this
-    - type: __int16*
-      name: outWidth
-    - type: __int16*
-      name: outHeight
-    - type: byte
-      name: scaled
-  - name: Hide2
-    offset: 128
-    return_type: void
-    parameters:
-    - type: Client::UI::AddonTeleportTown*
-      name: this
-  - name: SetScaleToHudLayoutScale
-    offset: 136
-    return_type: __int8
-    parameters:
-    - type: Client::UI::AddonTeleportTown*
-      name: this
-  - name: ShouldCollideWithWindow
-    offset: 144
-    return_type: byte
-    parameters:
-    - type: Client::UI::AddonTeleportTown*
-      name: this
-    - type: Component::GUI::AtkCollisionNode*
-      name: collisionNode
-  - name: OnMove
-    offset: 160
-    return_type: void
-    parameters:
-    - type: Client::UI::AddonTeleportTown*
-      name: this
-  - name: HandleCursorTypeChange
-    offset: 176
-    return_type: byte
-    parameters:
-    - type: Client::UI::AddonTeleportTown*
-      name: this
-  - name: ShouldIgnoreInputs
-    offset: 184
-    return_type: byte
-    parameters:
-    - type: Client::UI::AddonTeleportTown*
-      name: this
-  - name: GetRootNode
-    offset: 192
-    return_type: Component::GUI::AtkResNode*
-    parameters:
-    - type: Client::UI::AddonTeleportTown*
-      name: this
-  - name: GetWindowBounds
-    offset: 216
-    return_type: void
-    parameters:
-    - type: Client::UI::AddonTeleportTown*
-      name: this
-    - type: Common::Math::Bounds*
-      name: outBounds
-  - name: GetRootBounds
-    offset: 240
-    return_type: void
-    parameters:
-    - type: Client::UI::AddonTeleportTown*
-      name: this
-    - type: Common::Math::Bounds*
-      name: outBounds
-  - name: SetDepthLayer
-    offset: 248
-    return_type: byte
-    parameters:
-    - type: Client::UI::AddonTeleportTown*
-      name: this
-    - type: unsigned int
-      name: depthLayerIndex
-  - name: ShouldAllowCursorFocus
-    offset: 256
-    return_type: byte
-    parameters:
-    - type: Client::UI::AddonTeleportTown*
-      name: this
-  - name: GetUnitBaseForFocus
-    offset: 280
-    return_type: Component::GUI::AtkUnitBase*
-    parameters:
-    - type: Client::UI::AddonTeleportTown*
-      name: this
-  - name: Focus
-    offset: 296
-    return_type: void
-    parameters:
-    - type: Client::UI::AddonTeleportTown*
-      name: this
-  - name: Initialize
-    offset: 328
-    return_type: void
-    parameters:
-    - type: Client::UI::AddonTeleportTown*
-      name: this
-  - name: Finalizer
-    offset: 336
-    return_type: void
-    parameters:
-    - type: Client::UI::AddonTeleportTown*
-      name: this
-  - name: Update
-    offset: 344
-    return_type: void
-    parameters:
-    - type: Client::UI::AddonTeleportTown*
-      name: this
-    - type: float
-      name: delta
-  - name: Draw
-    offset: 352
-    return_type: void
-    parameters:
-    - type: Client::UI::AddonTeleportTown*
-      name: this
-  - name: LoadUldResourceHandle
-    offset: 368
-    return_type: byte
-    parameters:
-    - type: Client::UI::AddonTeleportTown*
-      name: this
-  - name: CheckWindowCollisionAtCoords
-    offset: 376
-    return_type: byte
-    parameters:
-    - type: Client::UI::AddonTeleportTown*
-      name: this
-    - type: __int16
-      name: x
-    - type: __int16
-      name: y
-  - name: OnSetup
-    offset: 392
-    return_type: void
-    parameters:
-    - type: Client::UI::AddonTeleportTown*
-      name: this
-    - type: unsigned int
-      name: valueCount
-    - type: Component::GUI::AtkValue*
-      name: values
-  - name: OnRefresh
-    offset: 408
-    return_type: byte
-    parameters:
-    - type: Client::UI::AddonTeleportTown*
-      name: this
-    - type: unsigned int
-      name: valueCount
-    - type: Component::GUI::AtkValue*
-      name: values
-  - name: OnRequestedUpdate
-    offset: 416
-    return_type: void
-    parameters:
-    - type: Client::UI::AddonTeleportTown*
-      name: this
-    - type: Component::GUI::NumberArrayData**
-      name: numberArrayData
-    - type: Component::GUI::StringArrayData**
-      name: stringArrayData
-  - name: FireCloseCallback
-    offset: 432
-    return_type: void
-    parameters:
-    - type: Client::UI::AddonTeleportTown*
-      name: this
-  - name: SetSizeFromConfig
-    offset: 448
-    return_type: void
-    parameters:
-    - type: Client::UI::AddonTeleportTown*
-      name: this
-    - type: float
-      name: width
-    - type: float
-      name: height
-  - name: HandleCustomInput
-    offset: 456
-    return_type: byte
-    parameters:
-    - type: Client::UI::AddonTeleportTown*
-      name: this
-    - type: Component::GUI::AtkEventData::AtkInputData*
-      name: inputData
-  - name: OnFocusChange
-    offset: 472
-    return_type: void
-    parameters:
-    - type: Client::UI::AddonTeleportTown*
-      name: this
-    - type: byte
-      name: isFocused
-  - name: OnScreenSizeChange
-    offset: 480
-    return_type: void
-    parameters:
-    - type: Client::UI::AddonTeleportTown*
-      name: this
-    - type: int
-      name: width
-    - type: int
-      name: height
-  - name: OnConfigLoaded
-    offset: 488
-    return_type: void
-    parameters:
-    - type: Client::UI::AddonTeleportTown*
-      name: this
-    - type: byte
-      name: isInitialLoad
-  - name: OnMouseOver
-    offset: 496
-    return_type: void
-    parameters:
-    - type: Client::UI::AddonTeleportTown*
-      name: this
-  - name: OnMouseOut
-    offset: 504
-    return_type: void
-    parameters:
-    - type: Client::UI::AddonTeleportTown*
-      name: this
-  - name: IsFullyLoaded
-    offset: 528
-    return_type: byte
-    parameters:
-    - type: Client::UI::AddonTeleportTown*
-      name: this
-  - name: PlaySoundEffect
-    offset: 536
-    return_type: void
-    parameters:
-    - type: Client::UI::AddonTeleportTown*
-      name: this
-    - type: int
-      name: soundEffectId
-  - name: HandleDPadInput
-    offset: 552
-    return_type: byte
-    parameters:
-    - type: Client::UI::AddonTeleportTown*
-      name: this
-    - type: int
-      name: inputId
-    - type: byte
-      name: a3
-  - name: HandleBackButtonInput
-    offset: 568
-    return_type: byte
-    parameters:
-    - type: Client::UI::AddonTeleportTown*
-      name: this
-    - type: int
-      name: inputId
-    - type: byte
-      name: a3
-  member_functions: []
 - type: Client::UI::Agent::AgentColorant
   name: AgentColorant
   namespace: Client.UI.Agent
@@ -158525,6 +160385,427 @@ structs:
     - type: byte
       name: a3
   member_functions: []
+- type: Client::UI::AddonNaviMap
+  name: AddonNaviMap
+  namespace: Client.UI
+  union: False
+  size: 14992
+  fields:
+  - type: Component::GUI::AtkUnitBase
+    name: AtkUnitBase
+    offset: 0
+    base: true
+  - type: Client::UI::Atk2DMap
+    name: Atk2DMap
+    offset: 568
+  virtual_functions:
+  - name: Dtor
+    offset: 0
+    return_type: Component::GUI::AtkEventListener*
+    parameters:
+    - type: Client::UI::AddonNaviMap*
+      name: this
+    - type: byte
+      name: freeFlags
+  - name: ReceiveGlobalEvent
+    offset: 8
+    return_type: void
+    parameters:
+    - type: Client::UI::AddonNaviMap*
+      name: this
+    - type: Component::GUI::AtkEventType
+      name: eventType
+    - type: int
+      name: eventParam
+    - type: Component::GUI::AtkEvent*
+      name: atkEvent
+    - type: Component::GUI::AtkEventData*
+      name: atkEventData
+  - name: ReceiveEvent
+    offset: 16
+    return_type: void
+    parameters:
+    - type: Client::UI::AddonNaviMap*
+      name: this
+    - type: Component::GUI::AtkEventType
+      name: eventType
+    - type: int
+      name: eventParam
+    - type: Component::GUI::AtkEvent*
+      name: atkEvent
+    - type: Component::GUI::AtkEventData*
+      name: atkEventData
+  - name: Open
+    offset: 24
+    return_type: byte
+    parameters:
+    - type: Client::UI::AddonNaviMap*
+      name: this
+    - type: unsigned int
+      name: depthLayer
+  - name: Close
+    offset: 32
+    return_type: byte
+    parameters:
+    - type: Client::UI::AddonNaviMap*
+      name: this
+    - type: byte
+      name: fireCallback
+  - name: Show
+    offset: 40
+    return_type: void
+    parameters:
+    - type: Client::UI::AddonNaviMap*
+      name: this
+    - type: byte
+      name: disableShowTransition
+    - type: unsigned int
+      name: unsetShowHideFlags
+  - name: Hide
+    offset: 48
+    return_type: void
+    parameters:
+    - type: Client::UI::AddonNaviMap*
+      name: this
+    - type: byte
+      name: disableHideTransition
+    - type: byte
+      name: callCloseCallback
+    - type: unsigned int
+      name: setShowHideFlags
+  - name: SetPosition
+    offset: 56
+    return_type: void
+    parameters:
+    - type: Client::UI::AddonNaviMap*
+      name: this
+    - type: __int16
+      name: x
+    - type: __int16
+      name: y
+  - name: SetX
+    offset: 64
+    return_type: void
+    parameters:
+    - type: Client::UI::AddonNaviMap*
+      name: this
+    - type: __int16
+      name: value
+  - name: SetY
+    offset: 72
+    return_type: void
+    parameters:
+    - type: Client::UI::AddonNaviMap*
+      name: this
+    - type: __int16
+      name: value
+  - name: GetX
+    offset: 80
+    return_type: __int16
+    parameters:
+    - type: Client::UI::AddonNaviMap*
+      name: this
+  - name: GetY
+    offset: 88
+    return_type: __int16
+    parameters:
+    - type: Client::UI::AddonNaviMap*
+      name: this
+  - name: GetPosition
+    offset: 96
+    return_type: void
+    parameters:
+    - type: Client::UI::AddonNaviMap*
+      name: this
+    - type: __int16*
+      name: outX
+    - type: __int16*
+      name: outY
+  - name: SetAlpha
+    offset: 104
+    return_type: void
+    parameters:
+    - type: Client::UI::AddonNaviMap*
+      name: this
+    - type: byte
+      name: alpha
+  - name: SetScale
+    offset: 112
+    return_type: void
+    parameters:
+    - type: Client::UI::AddonNaviMap*
+      name: this
+    - type: float
+      name: scale
+    - type: byte
+      name: a3
+  - name: GetSize
+    offset: 120
+    return_type: void
+    parameters:
+    - type: Client::UI::AddonNaviMap*
+      name: this
+    - type: __int16*
+      name: outWidth
+    - type: __int16*
+      name: outHeight
+    - type: byte
+      name: scaled
+  - name: Hide2
+    offset: 128
+    return_type: void
+    parameters:
+    - type: Client::UI::AddonNaviMap*
+      name: this
+  - name: SetScaleToHudLayoutScale
+    offset: 136
+    return_type: __int8
+    parameters:
+    - type: Client::UI::AddonNaviMap*
+      name: this
+  - name: ShouldCollideWithWindow
+    offset: 144
+    return_type: byte
+    parameters:
+    - type: Client::UI::AddonNaviMap*
+      name: this
+    - type: Component::GUI::AtkCollisionNode*
+      name: collisionNode
+  - name: OnMove
+    offset: 160
+    return_type: void
+    parameters:
+    - type: Client::UI::AddonNaviMap*
+      name: this
+  - name: HandleCursorTypeChange
+    offset: 176
+    return_type: byte
+    parameters:
+    - type: Client::UI::AddonNaviMap*
+      name: this
+  - name: ShouldIgnoreInputs
+    offset: 184
+    return_type: byte
+    parameters:
+    - type: Client::UI::AddonNaviMap*
+      name: this
+  - name: GetRootNode
+    offset: 192
+    return_type: Component::GUI::AtkResNode*
+    parameters:
+    - type: Client::UI::AddonNaviMap*
+      name: this
+  - name: GetWindowBounds
+    offset: 216
+    return_type: void
+    parameters:
+    - type: Client::UI::AddonNaviMap*
+      name: this
+    - type: Common::Math::Bounds*
+      name: outBounds
+  - name: GetRootBounds
+    offset: 240
+    return_type: void
+    parameters:
+    - type: Client::UI::AddonNaviMap*
+      name: this
+    - type: Common::Math::Bounds*
+      name: outBounds
+  - name: SetDepthLayer
+    offset: 248
+    return_type: byte
+    parameters:
+    - type: Client::UI::AddonNaviMap*
+      name: this
+    - type: unsigned int
+      name: depthLayerIndex
+  - name: ShouldAllowCursorFocus
+    offset: 256
+    return_type: byte
+    parameters:
+    - type: Client::UI::AddonNaviMap*
+      name: this
+  - name: GetUnitBaseForFocus
+    offset: 280
+    return_type: Component::GUI::AtkUnitBase*
+    parameters:
+    - type: Client::UI::AddonNaviMap*
+      name: this
+  - name: Focus
+    offset: 296
+    return_type: void
+    parameters:
+    - type: Client::UI::AddonNaviMap*
+      name: this
+  - name: Initialize
+    offset: 328
+    return_type: void
+    parameters:
+    - type: Client::UI::AddonNaviMap*
+      name: this
+  - name: Finalizer
+    offset: 336
+    return_type: void
+    parameters:
+    - type: Client::UI::AddonNaviMap*
+      name: this
+  - name: Update
+    offset: 344
+    return_type: void
+    parameters:
+    - type: Client::UI::AddonNaviMap*
+      name: this
+    - type: float
+      name: delta
+  - name: Draw
+    offset: 352
+    return_type: void
+    parameters:
+    - type: Client::UI::AddonNaviMap*
+      name: this
+  - name: LoadUldResourceHandle
+    offset: 368
+    return_type: byte
+    parameters:
+    - type: Client::UI::AddonNaviMap*
+      name: this
+  - name: CheckWindowCollisionAtCoords
+    offset: 376
+    return_type: byte
+    parameters:
+    - type: Client::UI::AddonNaviMap*
+      name: this
+    - type: __int16
+      name: x
+    - type: __int16
+      name: y
+  - name: OnSetup
+    offset: 392
+    return_type: void
+    parameters:
+    - type: Client::UI::AddonNaviMap*
+      name: this
+    - type: unsigned int
+      name: valueCount
+    - type: Component::GUI::AtkValue*
+      name: values
+  - name: OnRefresh
+    offset: 408
+    return_type: byte
+    parameters:
+    - type: Client::UI::AddonNaviMap*
+      name: this
+    - type: unsigned int
+      name: valueCount
+    - type: Component::GUI::AtkValue*
+      name: values
+  - name: OnRequestedUpdate
+    offset: 416
+    return_type: void
+    parameters:
+    - type: Client::UI::AddonNaviMap*
+      name: this
+    - type: Component::GUI::NumberArrayData**
+      name: numberArrayData
+    - type: Component::GUI::StringArrayData**
+      name: stringArrayData
+  - name: FireCloseCallback
+    offset: 432
+    return_type: void
+    parameters:
+    - type: Client::UI::AddonNaviMap*
+      name: this
+  - name: SetSizeFromConfig
+    offset: 448
+    return_type: void
+    parameters:
+    - type: Client::UI::AddonNaviMap*
+      name: this
+    - type: float
+      name: width
+    - type: float
+      name: height
+  - name: HandleCustomInput
+    offset: 456
+    return_type: byte
+    parameters:
+    - type: Client::UI::AddonNaviMap*
+      name: this
+    - type: Component::GUI::AtkEventData::AtkInputData*
+      name: inputData
+  - name: OnFocusChange
+    offset: 472
+    return_type: void
+    parameters:
+    - type: Client::UI::AddonNaviMap*
+      name: this
+    - type: byte
+      name: isFocused
+  - name: OnScreenSizeChange
+    offset: 480
+    return_type: void
+    parameters:
+    - type: Client::UI::AddonNaviMap*
+      name: this
+    - type: int
+      name: width
+    - type: int
+      name: height
+  - name: OnConfigLoaded
+    offset: 488
+    return_type: void
+    parameters:
+    - type: Client::UI::AddonNaviMap*
+      name: this
+    - type: byte
+      name: isInitialLoad
+  - name: OnMouseOver
+    offset: 496
+    return_type: void
+    parameters:
+    - type: Client::UI::AddonNaviMap*
+      name: this
+  - name: OnMouseOut
+    offset: 504
+    return_type: void
+    parameters:
+    - type: Client::UI::AddonNaviMap*
+      name: this
+  - name: IsFullyLoaded
+    offset: 528
+    return_type: byte
+    parameters:
+    - type: Client::UI::AddonNaviMap*
+      name: this
+  - name: PlaySoundEffect
+    offset: 536
+    return_type: void
+    parameters:
+    - type: Client::UI::AddonNaviMap*
+      name: this
+    - type: int
+      name: soundEffectId
+  - name: HandleDPadInput
+    offset: 552
+    return_type: byte
+    parameters:
+    - type: Client::UI::AddonNaviMap*
+      name: this
+    - type: int
+      name: inputId
+    - type: byte
+      name: a3
+  - name: HandleBackButtonInput
+    offset: 568
+    return_type: byte
+    parameters:
+    - type: Client::UI::AddonNaviMap*
+      name: this
+    - type: int
+      name: inputId
+    - type: byte
+      name: a3
+  member_functions: []
 - type: Client::UI::AddonNeedGreed
   name: AddonNeedGreed
   namespace: Client.UI
@@ -162099,6 +164380,432 @@ structs:
     - type: byte
       name: a3
   member_functions: []
+- type: Client::UI::AddonSpearFishing
+  name: AddonSpearFishing
+  namespace: Client.UI
+  union: False
+  size: 2312
+  fields:
+  - type: Component::GUI::AtkUnitBase
+    name: AtkUnitBase
+    offset: 0
+    base: true
+  - type: Client::UI::AddonSpearFishing::FishInfo
+    name: Fish
+    offset: 668
+    size: 3
+    is_string: False
+  - type: Component::GUI::AtkComponentGaugeBar*
+    name: GaugeBar
+    offset: 2216
+  virtual_functions:
+  - name: Dtor
+    offset: 0
+    return_type: Component::GUI::AtkEventListener*
+    parameters:
+    - type: Client::UI::AddonSpearFishing*
+      name: this
+    - type: byte
+      name: freeFlags
+  - name: ReceiveGlobalEvent
+    offset: 8
+    return_type: void
+    parameters:
+    - type: Client::UI::AddonSpearFishing*
+      name: this
+    - type: Component::GUI::AtkEventType
+      name: eventType
+    - type: int
+      name: eventParam
+    - type: Component::GUI::AtkEvent*
+      name: atkEvent
+    - type: Component::GUI::AtkEventData*
+      name: atkEventData
+  - name: ReceiveEvent
+    offset: 16
+    return_type: void
+    parameters:
+    - type: Client::UI::AddonSpearFishing*
+      name: this
+    - type: Component::GUI::AtkEventType
+      name: eventType
+    - type: int
+      name: eventParam
+    - type: Component::GUI::AtkEvent*
+      name: atkEvent
+    - type: Component::GUI::AtkEventData*
+      name: atkEventData
+  - name: Open
+    offset: 24
+    return_type: byte
+    parameters:
+    - type: Client::UI::AddonSpearFishing*
+      name: this
+    - type: unsigned int
+      name: depthLayer
+  - name: Close
+    offset: 32
+    return_type: byte
+    parameters:
+    - type: Client::UI::AddonSpearFishing*
+      name: this
+    - type: byte
+      name: fireCallback
+  - name: Show
+    offset: 40
+    return_type: void
+    parameters:
+    - type: Client::UI::AddonSpearFishing*
+      name: this
+    - type: byte
+      name: disableShowTransition
+    - type: unsigned int
+      name: unsetShowHideFlags
+  - name: Hide
+    offset: 48
+    return_type: void
+    parameters:
+    - type: Client::UI::AddonSpearFishing*
+      name: this
+    - type: byte
+      name: disableHideTransition
+    - type: byte
+      name: callCloseCallback
+    - type: unsigned int
+      name: setShowHideFlags
+  - name: SetPosition
+    offset: 56
+    return_type: void
+    parameters:
+    - type: Client::UI::AddonSpearFishing*
+      name: this
+    - type: __int16
+      name: x
+    - type: __int16
+      name: y
+  - name: SetX
+    offset: 64
+    return_type: void
+    parameters:
+    - type: Client::UI::AddonSpearFishing*
+      name: this
+    - type: __int16
+      name: value
+  - name: SetY
+    offset: 72
+    return_type: void
+    parameters:
+    - type: Client::UI::AddonSpearFishing*
+      name: this
+    - type: __int16
+      name: value
+  - name: GetX
+    offset: 80
+    return_type: __int16
+    parameters:
+    - type: Client::UI::AddonSpearFishing*
+      name: this
+  - name: GetY
+    offset: 88
+    return_type: __int16
+    parameters:
+    - type: Client::UI::AddonSpearFishing*
+      name: this
+  - name: GetPosition
+    offset: 96
+    return_type: void
+    parameters:
+    - type: Client::UI::AddonSpearFishing*
+      name: this
+    - type: __int16*
+      name: outX
+    - type: __int16*
+      name: outY
+  - name: SetAlpha
+    offset: 104
+    return_type: void
+    parameters:
+    - type: Client::UI::AddonSpearFishing*
+      name: this
+    - type: byte
+      name: alpha
+  - name: SetScale
+    offset: 112
+    return_type: void
+    parameters:
+    - type: Client::UI::AddonSpearFishing*
+      name: this
+    - type: float
+      name: scale
+    - type: byte
+      name: a3
+  - name: GetSize
+    offset: 120
+    return_type: void
+    parameters:
+    - type: Client::UI::AddonSpearFishing*
+      name: this
+    - type: __int16*
+      name: outWidth
+    - type: __int16*
+      name: outHeight
+    - type: byte
+      name: scaled
+  - name: Hide2
+    offset: 128
+    return_type: void
+    parameters:
+    - type: Client::UI::AddonSpearFishing*
+      name: this
+  - name: SetScaleToHudLayoutScale
+    offset: 136
+    return_type: __int8
+    parameters:
+    - type: Client::UI::AddonSpearFishing*
+      name: this
+  - name: ShouldCollideWithWindow
+    offset: 144
+    return_type: byte
+    parameters:
+    - type: Client::UI::AddonSpearFishing*
+      name: this
+    - type: Component::GUI::AtkCollisionNode*
+      name: collisionNode
+  - name: OnMove
+    offset: 160
+    return_type: void
+    parameters:
+    - type: Client::UI::AddonSpearFishing*
+      name: this
+  - name: HandleCursorTypeChange
+    offset: 176
+    return_type: byte
+    parameters:
+    - type: Client::UI::AddonSpearFishing*
+      name: this
+  - name: ShouldIgnoreInputs
+    offset: 184
+    return_type: byte
+    parameters:
+    - type: Client::UI::AddonSpearFishing*
+      name: this
+  - name: GetRootNode
+    offset: 192
+    return_type: Component::GUI::AtkResNode*
+    parameters:
+    - type: Client::UI::AddonSpearFishing*
+      name: this
+  - name: GetWindowBounds
+    offset: 216
+    return_type: void
+    parameters:
+    - type: Client::UI::AddonSpearFishing*
+      name: this
+    - type: Common::Math::Bounds*
+      name: outBounds
+  - name: GetRootBounds
+    offset: 240
+    return_type: void
+    parameters:
+    - type: Client::UI::AddonSpearFishing*
+      name: this
+    - type: Common::Math::Bounds*
+      name: outBounds
+  - name: SetDepthLayer
+    offset: 248
+    return_type: byte
+    parameters:
+    - type: Client::UI::AddonSpearFishing*
+      name: this
+    - type: unsigned int
+      name: depthLayerIndex
+  - name: ShouldAllowCursorFocus
+    offset: 256
+    return_type: byte
+    parameters:
+    - type: Client::UI::AddonSpearFishing*
+      name: this
+  - name: GetUnitBaseForFocus
+    offset: 280
+    return_type: Component::GUI::AtkUnitBase*
+    parameters:
+    - type: Client::UI::AddonSpearFishing*
+      name: this
+  - name: Focus
+    offset: 296
+    return_type: void
+    parameters:
+    - type: Client::UI::AddonSpearFishing*
+      name: this
+  - name: Initialize
+    offset: 328
+    return_type: void
+    parameters:
+    - type: Client::UI::AddonSpearFishing*
+      name: this
+  - name: Finalizer
+    offset: 336
+    return_type: void
+    parameters:
+    - type: Client::UI::AddonSpearFishing*
+      name: this
+  - name: Update
+    offset: 344
+    return_type: void
+    parameters:
+    - type: Client::UI::AddonSpearFishing*
+      name: this
+    - type: float
+      name: delta
+  - name: Draw
+    offset: 352
+    return_type: void
+    parameters:
+    - type: Client::UI::AddonSpearFishing*
+      name: this
+  - name: LoadUldResourceHandle
+    offset: 368
+    return_type: byte
+    parameters:
+    - type: Client::UI::AddonSpearFishing*
+      name: this
+  - name: CheckWindowCollisionAtCoords
+    offset: 376
+    return_type: byte
+    parameters:
+    - type: Client::UI::AddonSpearFishing*
+      name: this
+    - type: __int16
+      name: x
+    - type: __int16
+      name: y
+  - name: OnSetup
+    offset: 392
+    return_type: void
+    parameters:
+    - type: Client::UI::AddonSpearFishing*
+      name: this
+    - type: unsigned int
+      name: valueCount
+    - type: Component::GUI::AtkValue*
+      name: values
+  - name: OnRefresh
+    offset: 408
+    return_type: byte
+    parameters:
+    - type: Client::UI::AddonSpearFishing*
+      name: this
+    - type: unsigned int
+      name: valueCount
+    - type: Component::GUI::AtkValue*
+      name: values
+  - name: OnRequestedUpdate
+    offset: 416
+    return_type: void
+    parameters:
+    - type: Client::UI::AddonSpearFishing*
+      name: this
+    - type: Component::GUI::NumberArrayData**
+      name: numberArrayData
+    - type: Component::GUI::StringArrayData**
+      name: stringArrayData
+  - name: FireCloseCallback
+    offset: 432
+    return_type: void
+    parameters:
+    - type: Client::UI::AddonSpearFishing*
+      name: this
+  - name: SetSizeFromConfig
+    offset: 448
+    return_type: void
+    parameters:
+    - type: Client::UI::AddonSpearFishing*
+      name: this
+    - type: float
+      name: width
+    - type: float
+      name: height
+  - name: HandleCustomInput
+    offset: 456
+    return_type: byte
+    parameters:
+    - type: Client::UI::AddonSpearFishing*
+      name: this
+    - type: Component::GUI::AtkEventData::AtkInputData*
+      name: inputData
+  - name: OnFocusChange
+    offset: 472
+    return_type: void
+    parameters:
+    - type: Client::UI::AddonSpearFishing*
+      name: this
+    - type: byte
+      name: isFocused
+  - name: OnScreenSizeChange
+    offset: 480
+    return_type: void
+    parameters:
+    - type: Client::UI::AddonSpearFishing*
+      name: this
+    - type: int
+      name: width
+    - type: int
+      name: height
+  - name: OnConfigLoaded
+    offset: 488
+    return_type: void
+    parameters:
+    - type: Client::UI::AddonSpearFishing*
+      name: this
+    - type: byte
+      name: isInitialLoad
+  - name: OnMouseOver
+    offset: 496
+    return_type: void
+    parameters:
+    - type: Client::UI::AddonSpearFishing*
+      name: this
+  - name: OnMouseOut
+    offset: 504
+    return_type: void
+    parameters:
+    - type: Client::UI::AddonSpearFishing*
+      name: this
+  - name: IsFullyLoaded
+    offset: 528
+    return_type: byte
+    parameters:
+    - type: Client::UI::AddonSpearFishing*
+      name: this
+  - name: PlaySoundEffect
+    offset: 536
+    return_type: void
+    parameters:
+    - type: Client::UI::AddonSpearFishing*
+      name: this
+    - type: int
+      name: soundEffectId
+  - name: HandleDPadInput
+    offset: 552
+    return_type: byte
+    parameters:
+    - type: Client::UI::AddonSpearFishing*
+      name: this
+    - type: int
+      name: inputId
+    - type: byte
+      name: a3
+  - name: HandleBackButtonInput
+    offset: 568
+    return_type: byte
+    parameters:
+    - type: Client::UI::AddonSpearFishing*
+      name: this
+    - type: int
+      name: inputId
+    - type: byte
+      name: a3
+  member_functions: []
 - type: Client::UI::AddonTooltip
   name: AddonTooltip
   namespace: Client.UI
@@ -163658,6 +166365,11 @@ structs:
   - type: unsigned int
     name: Flags
     offset: 4680
+    bits:
+    - type: byte
+      offset: 0
+      size: 1
+      name: IsTextCommandUnavailable
   - type: unsigned int
     name: ErrorData
     offset: 4684
@@ -165728,6 +168440,442 @@ structs:
     - type: byte
       name: a3
   member_functions: []
+- type: Client::UI::AddonAreaMap
+  name: AddonAreaMap
+  namespace: Client.UI
+  union: False
+  size: 2016
+  fields:
+  - type: Component::GUI::AtkUnitBase
+    name: AtkUnitBase
+    offset: 0
+    base: true
+  - type: Component::GUI::AtkComponentMap*
+    name: ComponentMap
+    offset: 576
+  - type: Client::UI::Atk2DAreaMap
+    name: AreaMap
+    offset: 936
+  - type: unsigned __int16
+    name: MouseXInteger
+    offset: 1968
+  - type: unsigned __int16
+    name: MouseXDecimal
+    offset: 1970
+  - type: unsigned __int16
+    name: MouseYInteger
+    offset: 1972
+  - type: unsigned __int16
+    name: MouseYDecimal
+    offset: 1974
+  virtual_functions:
+  - name: Dtor
+    offset: 0
+    return_type: Component::GUI::AtkEventListener*
+    parameters:
+    - type: Client::UI::AddonAreaMap*
+      name: this
+    - type: byte
+      name: freeFlags
+  - name: ReceiveGlobalEvent
+    offset: 8
+    return_type: void
+    parameters:
+    - type: Client::UI::AddonAreaMap*
+      name: this
+    - type: Component::GUI::AtkEventType
+      name: eventType
+    - type: int
+      name: eventParam
+    - type: Component::GUI::AtkEvent*
+      name: atkEvent
+    - type: Component::GUI::AtkEventData*
+      name: atkEventData
+  - name: ReceiveEvent
+    offset: 16
+    return_type: void
+    parameters:
+    - type: Client::UI::AddonAreaMap*
+      name: this
+    - type: Component::GUI::AtkEventType
+      name: eventType
+    - type: int
+      name: eventParam
+    - type: Component::GUI::AtkEvent*
+      name: atkEvent
+    - type: Component::GUI::AtkEventData*
+      name: atkEventData
+  - name: Open
+    offset: 24
+    return_type: byte
+    parameters:
+    - type: Client::UI::AddonAreaMap*
+      name: this
+    - type: unsigned int
+      name: depthLayer
+  - name: Close
+    offset: 32
+    return_type: byte
+    parameters:
+    - type: Client::UI::AddonAreaMap*
+      name: this
+    - type: byte
+      name: fireCallback
+  - name: Show
+    offset: 40
+    return_type: void
+    parameters:
+    - type: Client::UI::AddonAreaMap*
+      name: this
+    - type: byte
+      name: disableShowTransition
+    - type: unsigned int
+      name: unsetShowHideFlags
+  - name: Hide
+    offset: 48
+    return_type: void
+    parameters:
+    - type: Client::UI::AddonAreaMap*
+      name: this
+    - type: byte
+      name: disableHideTransition
+    - type: byte
+      name: callCloseCallback
+    - type: unsigned int
+      name: setShowHideFlags
+  - name: SetPosition
+    offset: 56
+    return_type: void
+    parameters:
+    - type: Client::UI::AddonAreaMap*
+      name: this
+    - type: __int16
+      name: x
+    - type: __int16
+      name: y
+  - name: SetX
+    offset: 64
+    return_type: void
+    parameters:
+    - type: Client::UI::AddonAreaMap*
+      name: this
+    - type: __int16
+      name: value
+  - name: SetY
+    offset: 72
+    return_type: void
+    parameters:
+    - type: Client::UI::AddonAreaMap*
+      name: this
+    - type: __int16
+      name: value
+  - name: GetX
+    offset: 80
+    return_type: __int16
+    parameters:
+    - type: Client::UI::AddonAreaMap*
+      name: this
+  - name: GetY
+    offset: 88
+    return_type: __int16
+    parameters:
+    - type: Client::UI::AddonAreaMap*
+      name: this
+  - name: GetPosition
+    offset: 96
+    return_type: void
+    parameters:
+    - type: Client::UI::AddonAreaMap*
+      name: this
+    - type: __int16*
+      name: outX
+    - type: __int16*
+      name: outY
+  - name: SetAlpha
+    offset: 104
+    return_type: void
+    parameters:
+    - type: Client::UI::AddonAreaMap*
+      name: this
+    - type: byte
+      name: alpha
+  - name: SetScale
+    offset: 112
+    return_type: void
+    parameters:
+    - type: Client::UI::AddonAreaMap*
+      name: this
+    - type: float
+      name: scale
+    - type: byte
+      name: a3
+  - name: GetSize
+    offset: 120
+    return_type: void
+    parameters:
+    - type: Client::UI::AddonAreaMap*
+      name: this
+    - type: __int16*
+      name: outWidth
+    - type: __int16*
+      name: outHeight
+    - type: byte
+      name: scaled
+  - name: Hide2
+    offset: 128
+    return_type: void
+    parameters:
+    - type: Client::UI::AddonAreaMap*
+      name: this
+  - name: SetScaleToHudLayoutScale
+    offset: 136
+    return_type: __int8
+    parameters:
+    - type: Client::UI::AddonAreaMap*
+      name: this
+  - name: ShouldCollideWithWindow
+    offset: 144
+    return_type: byte
+    parameters:
+    - type: Client::UI::AddonAreaMap*
+      name: this
+    - type: Component::GUI::AtkCollisionNode*
+      name: collisionNode
+  - name: OnMove
+    offset: 160
+    return_type: void
+    parameters:
+    - type: Client::UI::AddonAreaMap*
+      name: this
+  - name: HandleCursorTypeChange
+    offset: 176
+    return_type: byte
+    parameters:
+    - type: Client::UI::AddonAreaMap*
+      name: this
+  - name: ShouldIgnoreInputs
+    offset: 184
+    return_type: byte
+    parameters:
+    - type: Client::UI::AddonAreaMap*
+      name: this
+  - name: GetRootNode
+    offset: 192
+    return_type: Component::GUI::AtkResNode*
+    parameters:
+    - type: Client::UI::AddonAreaMap*
+      name: this
+  - name: GetWindowBounds
+    offset: 216
+    return_type: void
+    parameters:
+    - type: Client::UI::AddonAreaMap*
+      name: this
+    - type: Common::Math::Bounds*
+      name: outBounds
+  - name: GetRootBounds
+    offset: 240
+    return_type: void
+    parameters:
+    - type: Client::UI::AddonAreaMap*
+      name: this
+    - type: Common::Math::Bounds*
+      name: outBounds
+  - name: SetDepthLayer
+    offset: 248
+    return_type: byte
+    parameters:
+    - type: Client::UI::AddonAreaMap*
+      name: this
+    - type: unsigned int
+      name: depthLayerIndex
+  - name: ShouldAllowCursorFocus
+    offset: 256
+    return_type: byte
+    parameters:
+    - type: Client::UI::AddonAreaMap*
+      name: this
+  - name: GetUnitBaseForFocus
+    offset: 280
+    return_type: Component::GUI::AtkUnitBase*
+    parameters:
+    - type: Client::UI::AddonAreaMap*
+      name: this
+  - name: Focus
+    offset: 296
+    return_type: void
+    parameters:
+    - type: Client::UI::AddonAreaMap*
+      name: this
+  - name: Initialize
+    offset: 328
+    return_type: void
+    parameters:
+    - type: Client::UI::AddonAreaMap*
+      name: this
+  - name: Finalizer
+    offset: 336
+    return_type: void
+    parameters:
+    - type: Client::UI::AddonAreaMap*
+      name: this
+  - name: Update
+    offset: 344
+    return_type: void
+    parameters:
+    - type: Client::UI::AddonAreaMap*
+      name: this
+    - type: float
+      name: delta
+  - name: Draw
+    offset: 352
+    return_type: void
+    parameters:
+    - type: Client::UI::AddonAreaMap*
+      name: this
+  - name: LoadUldResourceHandle
+    offset: 368
+    return_type: byte
+    parameters:
+    - type: Client::UI::AddonAreaMap*
+      name: this
+  - name: CheckWindowCollisionAtCoords
+    offset: 376
+    return_type: byte
+    parameters:
+    - type: Client::UI::AddonAreaMap*
+      name: this
+    - type: __int16
+      name: x
+    - type: __int16
+      name: y
+  - name: OnSetup
+    offset: 392
+    return_type: void
+    parameters:
+    - type: Client::UI::AddonAreaMap*
+      name: this
+    - type: unsigned int
+      name: valueCount
+    - type: Component::GUI::AtkValue*
+      name: values
+  - name: OnRefresh
+    offset: 408
+    return_type: byte
+    parameters:
+    - type: Client::UI::AddonAreaMap*
+      name: this
+    - type: unsigned int
+      name: valueCount
+    - type: Component::GUI::AtkValue*
+      name: values
+  - name: OnRequestedUpdate
+    offset: 416
+    return_type: void
+    parameters:
+    - type: Client::UI::AddonAreaMap*
+      name: this
+    - type: Component::GUI::NumberArrayData**
+      name: numberArrayData
+    - type: Component::GUI::StringArrayData**
+      name: stringArrayData
+  - name: FireCloseCallback
+    offset: 432
+    return_type: void
+    parameters:
+    - type: Client::UI::AddonAreaMap*
+      name: this
+  - name: SetSizeFromConfig
+    offset: 448
+    return_type: void
+    parameters:
+    - type: Client::UI::AddonAreaMap*
+      name: this
+    - type: float
+      name: width
+    - type: float
+      name: height
+  - name: HandleCustomInput
+    offset: 456
+    return_type: byte
+    parameters:
+    - type: Client::UI::AddonAreaMap*
+      name: this
+    - type: Component::GUI::AtkEventData::AtkInputData*
+      name: inputData
+  - name: OnFocusChange
+    offset: 472
+    return_type: void
+    parameters:
+    - type: Client::UI::AddonAreaMap*
+      name: this
+    - type: byte
+      name: isFocused
+  - name: OnScreenSizeChange
+    offset: 480
+    return_type: void
+    parameters:
+    - type: Client::UI::AddonAreaMap*
+      name: this
+    - type: int
+      name: width
+    - type: int
+      name: height
+  - name: OnConfigLoaded
+    offset: 488
+    return_type: void
+    parameters:
+    - type: Client::UI::AddonAreaMap*
+      name: this
+    - type: byte
+      name: isInitialLoad
+  - name: OnMouseOver
+    offset: 496
+    return_type: void
+    parameters:
+    - type: Client::UI::AddonAreaMap*
+      name: this
+  - name: OnMouseOut
+    offset: 504
+    return_type: void
+    parameters:
+    - type: Client::UI::AddonAreaMap*
+      name: this
+  - name: IsFullyLoaded
+    offset: 528
+    return_type: byte
+    parameters:
+    - type: Client::UI::AddonAreaMap*
+      name: this
+  - name: PlaySoundEffect
+    offset: 536
+    return_type: void
+    parameters:
+    - type: Client::UI::AddonAreaMap*
+      name: this
+    - type: int
+      name: soundEffectId
+  - name: HandleDPadInput
+    offset: 552
+    return_type: byte
+    parameters:
+    - type: Client::UI::AddonAreaMap*
+      name: this
+    - type: int
+      name: inputId
+    - type: byte
+      name: a3
+  - name: HandleBackButtonInput
+    offset: 568
+    return_type: byte
+    parameters:
+    - type: Client::UI::AddonAreaMap*
+      name: this
+    - type: int
+      name: inputId
+    - type: byte
+      name: a3
+  member_functions: []
 - type: Client::UI::AddonCharacterInspect
   name: AddonCharacterInspect
   namespace: Client.UI
@@ -166564,6 +169712,427 @@ structs:
     return_type: byte
     parameters:
     - type: Client::UI::AddonFishGuide2*
+      name: this
+    - type: int
+      name: inputId
+    - type: byte
+      name: a3
+  member_functions: []
+- type: Client::UI::AddonFishingNote
+  name: AddonFishingNote
+  namespace: Client.UI
+  union: False
+  size: 5904
+  fields:
+  - type: Component::GUI::AtkUnitBase
+    name: AtkUnitBase
+    offset: 0
+    base: true
+  - type: Client::UI::Atk2DAreaMap
+    name: Atk2DAreaMap
+    offset: 752
+  virtual_functions:
+  - name: Dtor
+    offset: 0
+    return_type: Component::GUI::AtkEventListener*
+    parameters:
+    - type: Client::UI::AddonFishingNote*
+      name: this
+    - type: byte
+      name: freeFlags
+  - name: ReceiveGlobalEvent
+    offset: 8
+    return_type: void
+    parameters:
+    - type: Client::UI::AddonFishingNote*
+      name: this
+    - type: Component::GUI::AtkEventType
+      name: eventType
+    - type: int
+      name: eventParam
+    - type: Component::GUI::AtkEvent*
+      name: atkEvent
+    - type: Component::GUI::AtkEventData*
+      name: atkEventData
+  - name: ReceiveEvent
+    offset: 16
+    return_type: void
+    parameters:
+    - type: Client::UI::AddonFishingNote*
+      name: this
+    - type: Component::GUI::AtkEventType
+      name: eventType
+    - type: int
+      name: eventParam
+    - type: Component::GUI::AtkEvent*
+      name: atkEvent
+    - type: Component::GUI::AtkEventData*
+      name: atkEventData
+  - name: Open
+    offset: 24
+    return_type: byte
+    parameters:
+    - type: Client::UI::AddonFishingNote*
+      name: this
+    - type: unsigned int
+      name: depthLayer
+  - name: Close
+    offset: 32
+    return_type: byte
+    parameters:
+    - type: Client::UI::AddonFishingNote*
+      name: this
+    - type: byte
+      name: fireCallback
+  - name: Show
+    offset: 40
+    return_type: void
+    parameters:
+    - type: Client::UI::AddonFishingNote*
+      name: this
+    - type: byte
+      name: disableShowTransition
+    - type: unsigned int
+      name: unsetShowHideFlags
+  - name: Hide
+    offset: 48
+    return_type: void
+    parameters:
+    - type: Client::UI::AddonFishingNote*
+      name: this
+    - type: byte
+      name: disableHideTransition
+    - type: byte
+      name: callCloseCallback
+    - type: unsigned int
+      name: setShowHideFlags
+  - name: SetPosition
+    offset: 56
+    return_type: void
+    parameters:
+    - type: Client::UI::AddonFishingNote*
+      name: this
+    - type: __int16
+      name: x
+    - type: __int16
+      name: y
+  - name: SetX
+    offset: 64
+    return_type: void
+    parameters:
+    - type: Client::UI::AddonFishingNote*
+      name: this
+    - type: __int16
+      name: value
+  - name: SetY
+    offset: 72
+    return_type: void
+    parameters:
+    - type: Client::UI::AddonFishingNote*
+      name: this
+    - type: __int16
+      name: value
+  - name: GetX
+    offset: 80
+    return_type: __int16
+    parameters:
+    - type: Client::UI::AddonFishingNote*
+      name: this
+  - name: GetY
+    offset: 88
+    return_type: __int16
+    parameters:
+    - type: Client::UI::AddonFishingNote*
+      name: this
+  - name: GetPosition
+    offset: 96
+    return_type: void
+    parameters:
+    - type: Client::UI::AddonFishingNote*
+      name: this
+    - type: __int16*
+      name: outX
+    - type: __int16*
+      name: outY
+  - name: SetAlpha
+    offset: 104
+    return_type: void
+    parameters:
+    - type: Client::UI::AddonFishingNote*
+      name: this
+    - type: byte
+      name: alpha
+  - name: SetScale
+    offset: 112
+    return_type: void
+    parameters:
+    - type: Client::UI::AddonFishingNote*
+      name: this
+    - type: float
+      name: scale
+    - type: byte
+      name: a3
+  - name: GetSize
+    offset: 120
+    return_type: void
+    parameters:
+    - type: Client::UI::AddonFishingNote*
+      name: this
+    - type: __int16*
+      name: outWidth
+    - type: __int16*
+      name: outHeight
+    - type: byte
+      name: scaled
+  - name: Hide2
+    offset: 128
+    return_type: void
+    parameters:
+    - type: Client::UI::AddonFishingNote*
+      name: this
+  - name: SetScaleToHudLayoutScale
+    offset: 136
+    return_type: __int8
+    parameters:
+    - type: Client::UI::AddonFishingNote*
+      name: this
+  - name: ShouldCollideWithWindow
+    offset: 144
+    return_type: byte
+    parameters:
+    - type: Client::UI::AddonFishingNote*
+      name: this
+    - type: Component::GUI::AtkCollisionNode*
+      name: collisionNode
+  - name: OnMove
+    offset: 160
+    return_type: void
+    parameters:
+    - type: Client::UI::AddonFishingNote*
+      name: this
+  - name: HandleCursorTypeChange
+    offset: 176
+    return_type: byte
+    parameters:
+    - type: Client::UI::AddonFishingNote*
+      name: this
+  - name: ShouldIgnoreInputs
+    offset: 184
+    return_type: byte
+    parameters:
+    - type: Client::UI::AddonFishingNote*
+      name: this
+  - name: GetRootNode
+    offset: 192
+    return_type: Component::GUI::AtkResNode*
+    parameters:
+    - type: Client::UI::AddonFishingNote*
+      name: this
+  - name: GetWindowBounds
+    offset: 216
+    return_type: void
+    parameters:
+    - type: Client::UI::AddonFishingNote*
+      name: this
+    - type: Common::Math::Bounds*
+      name: outBounds
+  - name: GetRootBounds
+    offset: 240
+    return_type: void
+    parameters:
+    - type: Client::UI::AddonFishingNote*
+      name: this
+    - type: Common::Math::Bounds*
+      name: outBounds
+  - name: SetDepthLayer
+    offset: 248
+    return_type: byte
+    parameters:
+    - type: Client::UI::AddonFishingNote*
+      name: this
+    - type: unsigned int
+      name: depthLayerIndex
+  - name: ShouldAllowCursorFocus
+    offset: 256
+    return_type: byte
+    parameters:
+    - type: Client::UI::AddonFishingNote*
+      name: this
+  - name: GetUnitBaseForFocus
+    offset: 280
+    return_type: Component::GUI::AtkUnitBase*
+    parameters:
+    - type: Client::UI::AddonFishingNote*
+      name: this
+  - name: Focus
+    offset: 296
+    return_type: void
+    parameters:
+    - type: Client::UI::AddonFishingNote*
+      name: this
+  - name: Initialize
+    offset: 328
+    return_type: void
+    parameters:
+    - type: Client::UI::AddonFishingNote*
+      name: this
+  - name: Finalizer
+    offset: 336
+    return_type: void
+    parameters:
+    - type: Client::UI::AddonFishingNote*
+      name: this
+  - name: Update
+    offset: 344
+    return_type: void
+    parameters:
+    - type: Client::UI::AddonFishingNote*
+      name: this
+    - type: float
+      name: delta
+  - name: Draw
+    offset: 352
+    return_type: void
+    parameters:
+    - type: Client::UI::AddonFishingNote*
+      name: this
+  - name: LoadUldResourceHandle
+    offset: 368
+    return_type: byte
+    parameters:
+    - type: Client::UI::AddonFishingNote*
+      name: this
+  - name: CheckWindowCollisionAtCoords
+    offset: 376
+    return_type: byte
+    parameters:
+    - type: Client::UI::AddonFishingNote*
+      name: this
+    - type: __int16
+      name: x
+    - type: __int16
+      name: y
+  - name: OnSetup
+    offset: 392
+    return_type: void
+    parameters:
+    - type: Client::UI::AddonFishingNote*
+      name: this
+    - type: unsigned int
+      name: valueCount
+    - type: Component::GUI::AtkValue*
+      name: values
+  - name: OnRefresh
+    offset: 408
+    return_type: byte
+    parameters:
+    - type: Client::UI::AddonFishingNote*
+      name: this
+    - type: unsigned int
+      name: valueCount
+    - type: Component::GUI::AtkValue*
+      name: values
+  - name: OnRequestedUpdate
+    offset: 416
+    return_type: void
+    parameters:
+    - type: Client::UI::AddonFishingNote*
+      name: this
+    - type: Component::GUI::NumberArrayData**
+      name: numberArrayData
+    - type: Component::GUI::StringArrayData**
+      name: stringArrayData
+  - name: FireCloseCallback
+    offset: 432
+    return_type: void
+    parameters:
+    - type: Client::UI::AddonFishingNote*
+      name: this
+  - name: SetSizeFromConfig
+    offset: 448
+    return_type: void
+    parameters:
+    - type: Client::UI::AddonFishingNote*
+      name: this
+    - type: float
+      name: width
+    - type: float
+      name: height
+  - name: HandleCustomInput
+    offset: 456
+    return_type: byte
+    parameters:
+    - type: Client::UI::AddonFishingNote*
+      name: this
+    - type: Component::GUI::AtkEventData::AtkInputData*
+      name: inputData
+  - name: OnFocusChange
+    offset: 472
+    return_type: void
+    parameters:
+    - type: Client::UI::AddonFishingNote*
+      name: this
+    - type: byte
+      name: isFocused
+  - name: OnScreenSizeChange
+    offset: 480
+    return_type: void
+    parameters:
+    - type: Client::UI::AddonFishingNote*
+      name: this
+    - type: int
+      name: width
+    - type: int
+      name: height
+  - name: OnConfigLoaded
+    offset: 488
+    return_type: void
+    parameters:
+    - type: Client::UI::AddonFishingNote*
+      name: this
+    - type: byte
+      name: isInitialLoad
+  - name: OnMouseOver
+    offset: 496
+    return_type: void
+    parameters:
+    - type: Client::UI::AddonFishingNote*
+      name: this
+  - name: OnMouseOut
+    offset: 504
+    return_type: void
+    parameters:
+    - type: Client::UI::AddonFishingNote*
+      name: this
+  - name: IsFullyLoaded
+    offset: 528
+    return_type: byte
+    parameters:
+    - type: Client::UI::AddonFishingNote*
+      name: this
+  - name: PlaySoundEffect
+    offset: 536
+    return_type: void
+    parameters:
+    - type: Client::UI::AddonFishingNote*
+      name: this
+    - type: int
+      name: soundEffectId
+  - name: HandleDPadInput
+    offset: 552
+    return_type: byte
+    parameters:
+    - type: Client::UI::AddonFishingNote*
+      name: this
+    - type: int
+      name: inputId
+    - type: byte
+      name: a3
+  - name: HandleBackButtonInput
+    offset: 568
+    return_type: byte
+    parameters:
+    - type: Client::UI::AddonFishingNote*
       name: this
     - type: int
       name: inputId
@@ -182230,6 +185799,531 @@ structs:
     - type: byte
       name: a3
   member_functions: []
+- type: Client::UI::AddonTeleportTown
+  name: AddonTeleportTown
+  namespace: Client.UI
+  union: False
+  size: 1472
+  fields:
+  - type: Component::GUI::AtkUnitBase
+    name: AtkUnitBase
+    offset: 0
+    base: true
+  - type: Component::GUI::AtkComponentTreeList*
+    name: List
+    offset: 568
+  - type: Client::UI::AddonTeleportTownListCallback
+    name: ListCallback
+    offset: 576
+  - type: Component::GUI::AtkComponentMap*
+    name: ComponentMap
+    offset: 608
+  - type: Component::GUI::AtkComponentList*
+    name: List2
+    offset: 616
+  - type: Component::GUI::AtkResNode*
+    name: Node14
+    offset: 624
+  - type: Component::GUI::AtkTextNode*
+    name: Node15
+    offset: 632
+  - type: Component::GUI::AtkResNode*
+    name: Node11
+    offset: 640
+  - type: Component::GUI::AtkTextNode*
+    name: Node12
+    offset: 648
+  - type: Client::UI::Atk2DAreaMap
+    name: AreaMap
+    offset: 656
+  - type: int
+    name: Unk350
+    offset: 848
+  - type: int
+    name: Unk354
+    offset: 852
+  - type: int
+    name: Unk358
+    offset: 856
+  - type: int
+    name: Unk360
+    offset: 864
+  - type: float
+    name: MapTransitionTime
+    offset: 872
+  - type: float
+    name: MapTargetX
+    offset: 880
+  - type: float
+    name: MapTargetY
+    offset: 884
+  - type: float
+    name: MapCurrentX
+    offset: 896
+  - type: float
+    name: MapCurrentY
+    offset: 900
+  - type: byte
+    name: TooltipText
+    offset: 912
+    size: 512
+    is_string: True
+  - type: Component::GUI::AtkResNode*
+    name: CurrentFocusNode
+    offset: 1424
+  - type: float
+    name: Unk598
+    offset: 1432
+  - type: float
+    name: Unk59C
+    offset: 1436
+  - type: __int16
+    name: Unk5A0
+    offset: 1440
+  - type: __int16
+    name: Unk5A2
+    offset: 1442
+  - type: __int16
+    name: Unk5A4
+    offset: 1444
+  - type: __int16
+    name: Unk5A6
+    offset: 1446
+  - type: byte
+    name: Unk5A8
+    offset: 1448
+  - type: byte
+    name: Unk5A9
+    offset: 1449
+  - type: byte
+    name: Unk5AA
+    offset: 1450
+  - type: byte
+    name: Unk5AB
+    offset: 1451
+  - type: byte
+    name: Unk5AC
+    offset: 1452
+  - type: byte
+    name: Unk5AD
+    offset: 1453
+  - type: byte
+    name: Unk5AE
+    offset: 1454
+  - type: byte
+    name: Unk5B0
+    offset: 1456
+  - type: byte
+    name: Unk5B1
+    offset: 1457
+  virtual_functions:
+  - name: Dtor
+    offset: 0
+    return_type: Component::GUI::AtkEventListener*
+    parameters:
+    - type: Client::UI::AddonTeleportTown*
+      name: this
+    - type: byte
+      name: freeFlags
+  - name: ReceiveGlobalEvent
+    offset: 8
+    return_type: void
+    parameters:
+    - type: Client::UI::AddonTeleportTown*
+      name: this
+    - type: Component::GUI::AtkEventType
+      name: eventType
+    - type: int
+      name: eventParam
+    - type: Component::GUI::AtkEvent*
+      name: atkEvent
+    - type: Component::GUI::AtkEventData*
+      name: atkEventData
+  - name: ReceiveEvent
+    offset: 16
+    return_type: void
+    parameters:
+    - type: Client::UI::AddonTeleportTown*
+      name: this
+    - type: Component::GUI::AtkEventType
+      name: eventType
+    - type: int
+      name: eventParam
+    - type: Component::GUI::AtkEvent*
+      name: atkEvent
+    - type: Component::GUI::AtkEventData*
+      name: atkEventData
+  - name: Open
+    offset: 24
+    return_type: byte
+    parameters:
+    - type: Client::UI::AddonTeleportTown*
+      name: this
+    - type: unsigned int
+      name: depthLayer
+  - name: Close
+    offset: 32
+    return_type: byte
+    parameters:
+    - type: Client::UI::AddonTeleportTown*
+      name: this
+    - type: byte
+      name: fireCallback
+  - name: Show
+    offset: 40
+    return_type: void
+    parameters:
+    - type: Client::UI::AddonTeleportTown*
+      name: this
+    - type: byte
+      name: disableShowTransition
+    - type: unsigned int
+      name: unsetShowHideFlags
+  - name: Hide
+    offset: 48
+    return_type: void
+    parameters:
+    - type: Client::UI::AddonTeleportTown*
+      name: this
+    - type: byte
+      name: disableHideTransition
+    - type: byte
+      name: callCloseCallback
+    - type: unsigned int
+      name: setShowHideFlags
+  - name: SetPosition
+    offset: 56
+    return_type: void
+    parameters:
+    - type: Client::UI::AddonTeleportTown*
+      name: this
+    - type: __int16
+      name: x
+    - type: __int16
+      name: y
+  - name: SetX
+    offset: 64
+    return_type: void
+    parameters:
+    - type: Client::UI::AddonTeleportTown*
+      name: this
+    - type: __int16
+      name: value
+  - name: SetY
+    offset: 72
+    return_type: void
+    parameters:
+    - type: Client::UI::AddonTeleportTown*
+      name: this
+    - type: __int16
+      name: value
+  - name: GetX
+    offset: 80
+    return_type: __int16
+    parameters:
+    - type: Client::UI::AddonTeleportTown*
+      name: this
+  - name: GetY
+    offset: 88
+    return_type: __int16
+    parameters:
+    - type: Client::UI::AddonTeleportTown*
+      name: this
+  - name: GetPosition
+    offset: 96
+    return_type: void
+    parameters:
+    - type: Client::UI::AddonTeleportTown*
+      name: this
+    - type: __int16*
+      name: outX
+    - type: __int16*
+      name: outY
+  - name: SetAlpha
+    offset: 104
+    return_type: void
+    parameters:
+    - type: Client::UI::AddonTeleportTown*
+      name: this
+    - type: byte
+      name: alpha
+  - name: SetScale
+    offset: 112
+    return_type: void
+    parameters:
+    - type: Client::UI::AddonTeleportTown*
+      name: this
+    - type: float
+      name: scale
+    - type: byte
+      name: a3
+  - name: GetSize
+    offset: 120
+    return_type: void
+    parameters:
+    - type: Client::UI::AddonTeleportTown*
+      name: this
+    - type: __int16*
+      name: outWidth
+    - type: __int16*
+      name: outHeight
+    - type: byte
+      name: scaled
+  - name: Hide2
+    offset: 128
+    return_type: void
+    parameters:
+    - type: Client::UI::AddonTeleportTown*
+      name: this
+  - name: SetScaleToHudLayoutScale
+    offset: 136
+    return_type: __int8
+    parameters:
+    - type: Client::UI::AddonTeleportTown*
+      name: this
+  - name: ShouldCollideWithWindow
+    offset: 144
+    return_type: byte
+    parameters:
+    - type: Client::UI::AddonTeleportTown*
+      name: this
+    - type: Component::GUI::AtkCollisionNode*
+      name: collisionNode
+  - name: OnMove
+    offset: 160
+    return_type: void
+    parameters:
+    - type: Client::UI::AddonTeleportTown*
+      name: this
+  - name: HandleCursorTypeChange
+    offset: 176
+    return_type: byte
+    parameters:
+    - type: Client::UI::AddonTeleportTown*
+      name: this
+  - name: ShouldIgnoreInputs
+    offset: 184
+    return_type: byte
+    parameters:
+    - type: Client::UI::AddonTeleportTown*
+      name: this
+  - name: GetRootNode
+    offset: 192
+    return_type: Component::GUI::AtkResNode*
+    parameters:
+    - type: Client::UI::AddonTeleportTown*
+      name: this
+  - name: GetWindowBounds
+    offset: 216
+    return_type: void
+    parameters:
+    - type: Client::UI::AddonTeleportTown*
+      name: this
+    - type: Common::Math::Bounds*
+      name: outBounds
+  - name: GetRootBounds
+    offset: 240
+    return_type: void
+    parameters:
+    - type: Client::UI::AddonTeleportTown*
+      name: this
+    - type: Common::Math::Bounds*
+      name: outBounds
+  - name: SetDepthLayer
+    offset: 248
+    return_type: byte
+    parameters:
+    - type: Client::UI::AddonTeleportTown*
+      name: this
+    - type: unsigned int
+      name: depthLayerIndex
+  - name: ShouldAllowCursorFocus
+    offset: 256
+    return_type: byte
+    parameters:
+    - type: Client::UI::AddonTeleportTown*
+      name: this
+  - name: GetUnitBaseForFocus
+    offset: 280
+    return_type: Component::GUI::AtkUnitBase*
+    parameters:
+    - type: Client::UI::AddonTeleportTown*
+      name: this
+  - name: Focus
+    offset: 296
+    return_type: void
+    parameters:
+    - type: Client::UI::AddonTeleportTown*
+      name: this
+  - name: Initialize
+    offset: 328
+    return_type: void
+    parameters:
+    - type: Client::UI::AddonTeleportTown*
+      name: this
+  - name: Finalizer
+    offset: 336
+    return_type: void
+    parameters:
+    - type: Client::UI::AddonTeleportTown*
+      name: this
+  - name: Update
+    offset: 344
+    return_type: void
+    parameters:
+    - type: Client::UI::AddonTeleportTown*
+      name: this
+    - type: float
+      name: delta
+  - name: Draw
+    offset: 352
+    return_type: void
+    parameters:
+    - type: Client::UI::AddonTeleportTown*
+      name: this
+  - name: LoadUldResourceHandle
+    offset: 368
+    return_type: byte
+    parameters:
+    - type: Client::UI::AddonTeleportTown*
+      name: this
+  - name: CheckWindowCollisionAtCoords
+    offset: 376
+    return_type: byte
+    parameters:
+    - type: Client::UI::AddonTeleportTown*
+      name: this
+    - type: __int16
+      name: x
+    - type: __int16
+      name: y
+  - name: OnSetup
+    offset: 392
+    return_type: void
+    parameters:
+    - type: Client::UI::AddonTeleportTown*
+      name: this
+    - type: unsigned int
+      name: valueCount
+    - type: Component::GUI::AtkValue*
+      name: values
+  - name: OnRefresh
+    offset: 408
+    return_type: byte
+    parameters:
+    - type: Client::UI::AddonTeleportTown*
+      name: this
+    - type: unsigned int
+      name: valueCount
+    - type: Component::GUI::AtkValue*
+      name: values
+  - name: OnRequestedUpdate
+    offset: 416
+    return_type: void
+    parameters:
+    - type: Client::UI::AddonTeleportTown*
+      name: this
+    - type: Component::GUI::NumberArrayData**
+      name: numberArrayData
+    - type: Component::GUI::StringArrayData**
+      name: stringArrayData
+  - name: FireCloseCallback
+    offset: 432
+    return_type: void
+    parameters:
+    - type: Client::UI::AddonTeleportTown*
+      name: this
+  - name: SetSizeFromConfig
+    offset: 448
+    return_type: void
+    parameters:
+    - type: Client::UI::AddonTeleportTown*
+      name: this
+    - type: float
+      name: width
+    - type: float
+      name: height
+  - name: HandleCustomInput
+    offset: 456
+    return_type: byte
+    parameters:
+    - type: Client::UI::AddonTeleportTown*
+      name: this
+    - type: Component::GUI::AtkEventData::AtkInputData*
+      name: inputData
+  - name: OnFocusChange
+    offset: 472
+    return_type: void
+    parameters:
+    - type: Client::UI::AddonTeleportTown*
+      name: this
+    - type: byte
+      name: isFocused
+  - name: OnScreenSizeChange
+    offset: 480
+    return_type: void
+    parameters:
+    - type: Client::UI::AddonTeleportTown*
+      name: this
+    - type: int
+      name: width
+    - type: int
+      name: height
+  - name: OnConfigLoaded
+    offset: 488
+    return_type: void
+    parameters:
+    - type: Client::UI::AddonTeleportTown*
+      name: this
+    - type: byte
+      name: isInitialLoad
+  - name: OnMouseOver
+    offset: 496
+    return_type: void
+    parameters:
+    - type: Client::UI::AddonTeleportTown*
+      name: this
+  - name: OnMouseOut
+    offset: 504
+    return_type: void
+    parameters:
+    - type: Client::UI::AddonTeleportTown*
+      name: this
+  - name: IsFullyLoaded
+    offset: 528
+    return_type: byte
+    parameters:
+    - type: Client::UI::AddonTeleportTown*
+      name: this
+  - name: PlaySoundEffect
+    offset: 536
+    return_type: void
+    parameters:
+    - type: Client::UI::AddonTeleportTown*
+      name: this
+    - type: int
+      name: soundEffectId
+  - name: HandleDPadInput
+    offset: 552
+    return_type: byte
+    parameters:
+    - type: Client::UI::AddonTeleportTown*
+      name: this
+    - type: int
+      name: inputId
+    - type: byte
+      name: a3
+  - name: HandleBackButtonInput
+    offset: 568
+    return_type: byte
+    parameters:
+    - type: Client::UI::AddonTeleportTown*
+      name: this
+    - type: int
+      name: inputId
+    - type: byte
+      name: a3
+  member_functions: []
 - type: Client::UI::Agent::AgentBannerInterface::Storage
   name: Storage
   namespace: Client.UI.Agent
@@ -186759,6 +190853,9 @@ structs:
   - type: Client::Sound::SoundManager*
     name: SoundManager
     offset: 11144
+  - type: Client::Sound::ClipSoundManager*
+    name: ClipSoundManager
+    offset: 11152
   - type: Common::Lua::LuaState
     name: LuaState
     offset: 11216
@@ -186815,6 +190912,12 @@ structs:
   - name: Dtor
     offset: 0
   member_functions:
+  - signature: E8 ?? ?? ?? ?? 4B 8B 8C F4
+    return_type: Client::System::Framework::ClientPlatform
+    name: GetClientPlatform
+    parameters:
+    - type: Client::System::Framework::Framework*
+      name: this
   - signature: 89 51 ?? C6 41 ?? ?? 48 8B 0D
     return_type: void
     name: Exit
@@ -197749,6 +201852,12 @@ structs:
   - type: unsigned int
     name: UnkPenaltyMinutes
     offset: 9120
+  - type: Client::Sound::SoundData*
+    name: TimeCountSoundDataPad
+    offset: 9128
+  - type: Client::Sound::SoundData*
+    name: TimeCountSoundData
+    offset: 9136
   - type: int
     name: CurrentTimestamp
     offset: 9172
@@ -205757,6 +209866,15 @@ structs:
   - type: byte
     name: Flags628
     offset: 1576
+    bits:
+    - type: byte
+      offset: 0
+      size: 5
+      name: UnkBits0
+    - type: byte
+      offset: 5
+      size: 1
+      name: IsSwimming
   - type: Client::Game::Control::EmoteController
     name: EmoteController
     offset: 1584
@@ -205784,6 +209902,11 @@ structs:
   - type: byte
     name: WeaponFlags
     offset: 6528
+    bits:
+    - type: byte
+      offset: 0
+      size: 1
+      name: IsOffhandDrawn
   - type: Client::Game::Character::VfxContainer
     name: Vfx
     offset: 6536
@@ -205799,12 +209922,28 @@ structs:
   - type: byte
     name: RelationFlags
     offset: 7394
+    bits:
+    - type: byte
+      offset: 0
+      size: 1
+      name: IsPartyMember
+    - type: byte
+      offset: 1
+      size: 1
+      name: IsAllianceMember
+    - type: byte
+      offset: 2
+      size: 1
+      name: IsFriend
   - type: byte
     name: ActorControlFlags
     offset: 7400
   - type: Client::Game::Balloon
     name: Balloon
     offset: 8672
+  - type: Client::Game::NpcYellBalloon
+    name: YellBalloon
+    offset: 8800
   - type: float
     name: Alpha
     offset: 8936
@@ -205852,6 +209991,15 @@ structs:
   - type: byte
     name: GMRank
     offset: 9062
+  - type: byte
+    name: SoundVolumeCategory
+    offset: 9065
+  - type: byte
+    name: SoundVolumeCategoryOverride
+    offset: 9066
+  - type: byte
+    name: SoundFlags
+    offset: 9067
   virtual_functions:
   - name: GetStatusManager
     offset: 616
