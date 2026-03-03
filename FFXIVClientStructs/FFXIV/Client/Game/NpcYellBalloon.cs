@@ -7,14 +7,13 @@ namespace FFXIVClientStructs.FFXIV.Client.Game;
 [GenerateInterop]
 [StructLayout(LayoutKind.Explicit, Size = 0x88)]
 public unsafe partial struct NpcYellBalloon {
-
     /// <summary>
     /// The text that this balloon will display.
     /// </summary>
     /// <remarks>
     /// Empty when balloon is <see cref="NpcYellBalloonState.Inactive"/>.
     /// </remarks>
-    [FieldOffset(0x0)] public Utf8String Text;
+    [FieldOffset(0x00)] public Utf8String Text;
 
     /// <summary>
     /// Pointer to the <see cref="Character.Character"/> that contains this balloon.
@@ -123,8 +122,7 @@ public unsafe partial struct NpcYellBalloon {
     public partial void Reset2();
 }
 
-public enum NpcYellBalloonState : int {
-
+public enum NpcYellBalloonState {
     /// <summary>
     /// Balloon is inactive and in the default state.
     /// </summary>
@@ -146,8 +144,7 @@ public enum NpcYellBalloonState : int {
     Activating = 3,
 }
 
-public enum NpcYellBalloonCloseType : int {
-
+public enum NpcYellBalloonCloseType {
     /// <summary>
     /// Performs normal timer checks every active update cycle.
     /// </summary>
@@ -174,7 +171,7 @@ public enum NpcYellBalloonFlags : byte {
     /// <remarks>
     /// If this is not set, the balloon will not be opened (or will be immediately closed).
     /// </remarks>
-    Valid = 1,
+    Valid = 1 << 0,
 
     /// <summary>
     /// The balloon fades in instead of opening with a "pop".
@@ -182,15 +179,15 @@ public enum NpcYellBalloonFlags : byte {
     /// <remarks>
     /// Is passed as the bool third parameter to AgentScreenLog::OpenBalloon, and probably has the same effect as the Balloon EXD's boolean "Slowly" column.
     /// </remarks>
-    SoftOpen = 2,
+    SoftOpen = 1 << 1,
 
     /// <remarks>
     /// Call AgentScreenLog::OpenBalloon regardless of character range test result.
     /// </remarks>
-    IgnoreRangeCheck = 4,
+    IgnoreRangeCheck = 1 << 2,
 
     /// <remarks>
     /// Also call RaptureLogModule::PrintMessage with balloon text when the balloon is opened.
     /// </remarks>
-    PrintToLog = 8,
+    PrintToLog = 1 << 3,
 }
