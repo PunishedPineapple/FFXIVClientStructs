@@ -34,6 +34,9 @@ public unsafe partial struct Character {
     // 0x1AA8: start of some substructure
     [FieldOffset(0x1B28)] public ModelContainer ModelContainer;
 
+    /// <remarks> Instance ID of an Event NPC. Used by QuestEventHandler. Seen for Event NPCs that turn into Battle NPCs (during quests, for example.) </remarks>
+    [FieldOffset(0x1BC0)] public uint EventNpcInstanceId;
+
     [BitField<bool>(nameof(IsPartyMember), 0)]
     [BitField<bool>(nameof(IsAllianceMember), 1)]
     [BitField<bool>(nameof(IsFriend), 2)]
@@ -147,7 +150,17 @@ public unsafe partial struct Character {
     [MemberFunction("E8 ?? ?? ?? ?? 84 C0 75 05 8B 4D F4")]
     public partial bool IsInPvP();
 
-    [VirtualFunction(77)]
+    /// <summary>
+    /// Resolves the correct emote id, based on the targets height or distance.
+    /// </summary>
+    /// <param name="emoteId">The base emote id.</param>
+    /// <param name="options">The PlayEmote options.</param>
+    /// <returns> The adjusted emote id for the target. </returns>
+    /// <remarks> For example, this is used for Throw/Snowball, Dote, Splash, All Saints' Charm, Bouquet or Photograph. </remarks>
+    [MemberFunction("E8 ?? ?? ?? ?? 48 8B 5D ?? 0F B7 F8")]
+    public partial ushort ResolveTargetedEmoteId(ushort emoteId, EmoteController.PlayEmoteOption* options); // TODO: judging from the address, this might be a static function
+
+    [VirtualFunction(78)]
     public partial StatusManager* GetStatusManager();
 
     /// <summary>
@@ -155,13 +168,13 @@ public unsafe partial struct Character {
     /// May be null for certain Character subclasses, e.g. <see cref="Companion"/>.
     /// </summary>
     /// <returns>Returns a pointer to a CastInfo struct, or <c>null</c>.</returns>
-    [VirtualFunction(79)]
+    [VirtualFunction(80)]
     public partial CastInfo* GetCastInfo();
 
-    [VirtualFunction(81)]
+    [VirtualFunction(82)]
     public partial ActionEffectHandler* GetActionEffectHandler();
 
-    [VirtualFunction(83)]
+    [VirtualFunction(84)]
     public partial ForayInfo* GetForayInfo();
 }
 

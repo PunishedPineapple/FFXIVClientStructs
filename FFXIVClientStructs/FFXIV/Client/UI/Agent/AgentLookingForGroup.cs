@@ -11,7 +11,7 @@ namespace FFXIVClientStructs.FFXIV.Client.UI.Agent;
 [Agent(AgentId.LookingForGroup)]
 [GenerateInterop]
 [Inherits<AgentInterface>, Inherits<TextChecker.ExecNonMacroFunc>]
-[StructLayout(LayoutKind.Explicit, Size = 0x3288)]
+[StructLayout(LayoutKind.Explicit, Size = 0x36D8)]
 public unsafe partial struct AgentLookingForGroup {
     [FieldOffset(0x38)] public ContentRoulette ContentRoulette;
     [FieldOffset(0x48)] public PartyContent PartyContent;
@@ -26,24 +26,23 @@ public unsafe partial struct AgentLookingForGroup {
 
     [FieldOffset(0x14F0), FixedSizeArray] internal FixedSizeArray32<TreasureMapDetail> _treasureMaps;
 
-    [FieldOffset(0x2408)] public RecruitmentSub StoredRecruitmentInfo; // Holds infos for LookingForGroupCondition
+    [FieldOffset(0x2828)] public RecruitmentSub StoredRecruitmentInfo; // Holds infos for LookingForGroupCondition
+    [FieldOffset(0x2CA0)] public Detailed LastViewedListing; // Holds infos about the last viewed LookingForGroupDetailed
 
-    [FieldOffset(0x2850)] public Detailed LastViewedListing; // Holds infos about the last viewed LookingForGroupDetailed
+    [FieldOffset(0x3118)] public Utf8String LastLeader;
+    [FieldOffset(0x3180)] public Utf8String LastComment;
+    [FieldOffset(0x31F8)] private Utf8String UnkString;
 
-    [FieldOffset(0x2CC8)] public Utf8String LastLeader;
-    [FieldOffset(0x2D30)] public Utf8String LastComment;
-    [FieldOffset(0x2DA8)] private Utf8String UnkString;
+    [FieldOffset(0x35F0)] public uint OwnListingId;
 
-    [FieldOffset(0x31A0)] public uint OwnListingId;
+    [FieldOffset(0x3620)] public ulong ListingContentId; // Only populated while a Detailed listing is opened
+    [FieldOffset(0x3628)] public uint ListingAccountId; // Only populated while a Detailed listing is opened
 
-    [FieldOffset(0x31D0)] public ulong ListingContentId; // Only populated while a Detailed listing is opened
-    [FieldOffset(0x31D8)] public uint ListingAccountId; // Only populated while a Detailed listing is opened
+    [FieldOffset(0x36B2)] public byte NumberOfListingsDisplayed;
 
-    [FieldOffset(0x3262)] public ushort NumberOfListingsDisplayed;
-
-    [FieldOffset(0x3269)] public byte SearchAreaTab; // 0 Data Center, 1 World, 2 Private
-    [FieldOffset(0x326B)] public byte CategoryTab; // 0 All - 16 Other
-    [FieldOffset(0x326C)] public byte GroupTypeTab; // Normal, Alliance, Custom Match
+    [FieldOffset(0x36B9)] public byte SearchAreaTab; // 0 Data Center, 1 World, 2 Private
+    [FieldOffset(0x36BB)] public byte CategoryTab; // 0 All - 16 Other
+    [FieldOffset(0x36BC)] public byte GroupTypeTab; // Normal, Alliance, Custom Match
 
     [MemberFunction("48 89 5C 24 ?? 57 48 83 EC ?? 48 8B FA 48 8B D9 E8 ?? ?? ?? ?? 48 8B 8B ?? ?? ?? ?? 48 85 C9")]
     public partial bool OpenListing(ulong listingId);
@@ -75,9 +74,9 @@ public unsafe partial struct AgentLookingForGroup {
     public struct GroupsSub;
 
     [GenerateInterop]
-    [StructLayout(LayoutKind.Explicit, Size = 0x448)]
+    [StructLayout(LayoutKind.Explicit, Size = 0x478)]
     public unsafe partial struct RecruitmentSub {
-        [FieldOffset(0x0C)] public ushort SelectedCategory; // TODO: change type to DutyCategory
+        [FieldOffset(0x0C)] public DutyCategory SelectedCategory;
         [FieldOffset(0x10)] public ushort SelectedDutyId;
 
         [FieldOffset(0x18)] public Objective Objective;
@@ -105,16 +104,14 @@ public unsafe partial struct AgentLookingForGroup {
     [GenerateInterop]
     [StructLayout(LayoutKind.Explicit, Size = 0x478)]
     public unsafe partial struct Detailed {
-        [FieldOffset(0x00)] public uint ListingId;
-
-        [FieldOffset(0x08)] public uint LeaderAccountId;
+        [FieldOffset(0x00)] public ulong ListingId;
+        [FieldOffset(0x08)] public ulong LeaderAccountId;
         [FieldOffset(0x10)] public ulong LeaderContentId;
 
-        [FieldOffset(0x24)] public ushort Category; // TODO: change type to DutyCategory
+        [FieldOffset(0x24)] public DutyCategory Category;
         [FieldOffset(0x28)] public ushort DutyId;
         [FieldOffset(0x32)] private uint Unk32; // Seems to be a uint, not unique to listing
         [FieldOffset(0x36)] public ushort World;
-
         [FieldOffset(0x38)] public Objective Objective;
         [FieldOffset(0x39)] public byte BeginnerFriendly;
         [FieldOffset(0x3A)] public CompletionStatus CompletionStatus;
@@ -125,13 +122,10 @@ public unsafe partial struct AgentLookingForGroup {
         [FieldOffset(0x48)] public uint TimeLeft;
 
         [FieldOffset(0x50)] public ushort AvgItemLv;
-
         [FieldOffset(0x52)] public ushort HomeWorld;
         [FieldOffset(0x54)] public ushort CurrentWorld;
-
         [FieldOffset(0x56)] public Language LeaderClientLanguage;
         [FieldOffset(0x57)] public Language LanguageFlags;
-
         [FieldOffset(0x58)] public byte TotalSlots;
         [FieldOffset(0x59)] public byte SlotsFilled;
 
@@ -173,11 +167,12 @@ public unsafe partial struct AgentLookingForGroup {
         Loot = 4,
     }
 
+    [Flags]
     public enum CompletionStatus : byte {
         None = 0,
-        DutyComplete = 2,
-        DutyIncomplete = 4,
-        DutyCompleteWeeklyUnclaimed = 8,
+        DutyComplete = 1 << 1,
+        DutyIncomplete = 1 << 2,
+        DutyCompleteWeeklyUnclaimed = 1 << 3,
     }
 
     [Flags]

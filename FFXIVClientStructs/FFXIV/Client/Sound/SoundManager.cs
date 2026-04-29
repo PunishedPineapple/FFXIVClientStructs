@@ -4,9 +4,6 @@ using Thread = FFXIVClientStructs.FFXIV.Client.System.Threading.Thread;
 
 namespace FFXIVClientStructs.FFXIV.Client.Sound;
 
-// TODO: rename everything channel to bus
-// TODO: remove enum overloads, use it directly
-
 // Client::Sound::SoundManager
 //   Client::System::Resource::ResourceEventListener
 //   Client::System::Threading::Thread
@@ -16,73 +13,63 @@ namespace FFXIVClientStructs.FFXIV.Client.Sound;
 /// </summary>
 [GenerateInterop]
 [Inherits<ResourceEventListener>, Inherits<Thread>]
-[StructLayout(LayoutKind.Explicit, Size = 0x1D08)]
+[StructLayout(LayoutKind.Explicit, Size = 0x1D10)]
 public unsafe partial struct SoundManager {
     [StaticAddress("48 89 35 ?? ?? ?? ?? 48 83 C4 20", 3, isPointer: true)]
     public static partial SoundManager* Instance();
 
-    [FieldOffset(0x0031)] public bool Disabled;
-    [FieldOffset(0x0034)] public float MasterVolume;
-    [FieldOffset(0x0038)] public float ActiveVolume;
-    [FieldOffset(0x003C), FixedSizeArray] internal FixedSizeArray19<float> _volume;
-    [FieldOffset(0x0088), FixedSizeArray] internal FixedSizeArray19<float> _unkVolume2; // All are 1.0f
-    [FieldOffset(0x00D4), FixedSizeArray] internal FixedSizeArray19<float> _unkVolume3; // All are 1.0f
-    [FieldOffset(0x0120), FixedSizeArray] internal FixedSizeArray19<float> _unkVolume4; // All are 1.0f
-    [FieldOffset(0x016C), FixedSizeArray] internal FixedSizeArray19<bool> _channelMuted;
-    [FieldOffset(0x017F), FixedSizeArray] internal FixedSizeArray19<bool> _channelAlwaysOn;
+    [FieldOffset(0x31)] public bool Disabled;
+    [FieldOffset(0x34)] public float MasterVolume;
+    [FieldOffset(0x38)] public float ActiveVolume;
+    [FieldOffset(0x3C), FixedSizeArray] internal FixedSizeArray19<float> _volume;
+    [FieldOffset(0x88), FixedSizeArray] internal FixedSizeArray19<float> _unkVolume2; // All are 1.0f
+    [FieldOffset(0xD4), FixedSizeArray] internal FixedSizeArray19<float> _unkVolume3; // All are 1.0f
+    [FieldOffset(0x120), FixedSizeArray] internal FixedSizeArray19<float> _unkVolume4; // All are 1.0f
+    [FieldOffset(0x16C), FixedSizeArray] internal FixedSizeArray19<bool> _busMuted;
+    [FieldOffset(0x17F), FixedSizeArray] internal FixedSizeArray19<bool> _busAlwaysOn;
 
-    [FieldOffset(0x01C9)] public bool MasterEnabled;
-    [FieldOffset(0x01CA)] public bool IsSoundAlways;
-    [FieldOffset(0x01CB)] public bool SoundEnabled;
-    [FieldOffset(0x01CC)] public bool WindowInactive;
+    [FieldOffset(0x220)] public SoundDataMemory* SoundDataPool; // This points to +8 bytes into the allocated memory.
+    [FieldOffset(0x228)] public SoundData* InactiveSoundDataListHead;
+    [FieldOffset(0x230)] public SoundData* ActiveSoundDataListHead;
 
-    [FieldOffset(0x0218)] public SoundDataMemory* SoundDataPool; // This points to +8 bytes into the allocated memory.
-    [FieldOffset(0x0220)] public SoundData* InactiveSoundDataListHead;
-    [FieldOffset(0x0228)] public SoundData* ActiveSoundDataListHead;
+    [FieldOffset(0x24A)] public bool PlaySoundsWhenWindowInactive; // inverted config option IsSoundAlways
+    [FieldOffset(0x24B)] public bool IsSndMaster; // same as config option IsSndMaster
+    [FieldOffset(0x24C)] public bool WindowInactive;
 
-    [FieldOffset(0x0260)] private int Unk260; // 1 = In Cutscene
-
-    [FieldOffset(0x02A0)] public nint CriticalSection;
-
-    [FieldOffset(0x02C8)] public nint EventHandle2;
+    [FieldOffset(0x320)] public SoundData* WeatherSoundData;
+    [FieldOffset(0x328)] public nint CriticalSection;
 
     // Red: System sounds
     // Green: Sound effects, ambient noises, voices, instruments
     // Blue: Music
-    [FieldOffset(0x0358), FixedSizeArray] internal FixedSizeArray256<float> _FFTRed1;
-    [FieldOffset(0x0758), FixedSizeArray] internal FixedSizeArray256<float> _FFTRed2;
-    [FieldOffset(0x0B58), FixedSizeArray] internal FixedSizeArray256<float> _FFTGreen1;
-    [FieldOffset(0x0F58), FixedSizeArray] internal FixedSizeArray256<float> _FFTGreen2;
-    [FieldOffset(0x1358), FixedSizeArray] internal FixedSizeArray256<float> _FFTBlue1;
-    [FieldOffset(0x1758), FixedSizeArray] internal FixedSizeArray256<float> _FFTBlue2;
+    [FieldOffset(0x360), FixedSizeArray] internal FixedSizeArray256<float> _FFTRed1;
+    [FieldOffset(0x760), FixedSizeArray] internal FixedSizeArray256<float> _FFTRed2;
+    [FieldOffset(0xB60), FixedSizeArray] internal FixedSizeArray256<float> _FFTGreen1;
+    [FieldOffset(0xF60), FixedSizeArray] internal FixedSizeArray256<float> _FFTGreen2;
+    [FieldOffset(0x1360), FixedSizeArray] internal FixedSizeArray256<float> _FFTBlue1;
+    [FieldOffset(0x1760), FixedSizeArray] internal FixedSizeArray256<float> _FFTBlue2;
 
-    [FieldOffset(0x1BE0)] public float OrchestrionPosX;
-    [FieldOffset(0x1BE4)] public float OrchestrionPosY;
-    [FieldOffset(0x1BE8)] public float OrchestrionPosZ;
-    [FieldOffset(0x1BEC), FixedSizeArray(isString: true)] internal FixedSizeArray260<byte> _orchestrionPath;
+    [FieldOffset(0x1BE8)] public float OrchestrionPosX;
+    [FieldOffset(0x1BEC)] public float OrchestrionPosY;
+    [FieldOffset(0x1BF0)] public float OrchestrionPosZ;
+    [FieldOffset(0x1BF4), FixedSizeArray(isString: true)] internal FixedSizeArray260<byte> _orchestrionPath;
 
     /// <summary>
     /// Calculates effective volume
     /// </summary>
-    /// <param name="channel">The specific sound channel. This is different from the channels visible to the user</param>
+    /// <param name="bus">The specific sound bus. This is different from the buses visible to the user</param>
     /// <returns>Volume in the ange 0-1</returns>
     [MemberFunction("F3 0F 10 0D ?? ?? ?? ?? 48 63 C2")]
-    public partial float GetEffectiveVolume(int channel);
-
-    /// <inheritdoc cref="GetEffectiveVolume(int)"/>
-    public float GetEffectiveVolume(SoundChannel channel) => GetEffectiveVolume((int)channel);
+    public partial float GetEffectiveVolume(SoundBus bus);
 
     /// <summary>
-    /// Sets channel volume
+    /// Sets bus volume
     /// </summary>
-    /// <param name="channel">The specific sound channel. This is different from the channels visible to the user</param>
+    /// <param name="bus">The specific sound bus. This is different from the buses visible to the user</param>
     /// <param name="volume">Volume in the ange 0-1</param>
     /// <param name="p3">unknown</param>
     [MemberFunction("E8 ?? ?? ?? ?? FF C7 ?? ?? 75 ?? EB")]
-    public partial void SetVolume(int channel, float volume, int p3 = 100);
-
-    /// <inheritdoc cref="SetVolume(int,float,int)"/>
-    public void SetVolume(SoundChannel channel, float volume, int p3 = 100) => SetVolume((int)channel, volume, p3);
+    public partial void SetVolume(SoundBus bus, float volume, int p3 = 100);
 
     [MemberFunction("48 89 5C 24 ?? 57 48 83 EC 20 80 79 31 00 0F B6 FA 48 8B D9 75 2B")]
     public partial void SetMasterEnabled(bool enabled);
@@ -181,67 +168,14 @@ public unsafe partial struct SoundManager {
     [MemberFunction("E8 ?? ?? ?? ?? 48 8B CB 48 8B F8 FF 15 ?? ?? ?? ?? EB"), GenerateStringOverloads]
     public partial SoundData* PlayCutsceneVoSound(CStringPointer path); // Cutscene Vo
 
+    /// <remarks> Uses <see cref="WeatherSoundData"/> field. </remarks>
+    [MemberFunction("E8 ?? ?? ?? ?? 48 8D 5F ?? BE ?? ?? ?? ?? ?? ?? ?? 48 85 C9 74 ?? 4C 39 77"), GenerateStringOverloads]
+    public partial void PlayWeatherSound(CStringPointer path, uint fadeDuration);
+
     [GenerateInterop]
     [StructLayout(LayoutKind.Explicit, Size = 256 * 0xD0)]
     public partial struct SoundDataMemory {
         [FieldOffset(0), FixedSizeArray] internal FixedSizeArray256<SoundData> _entries;
-    }
-
-    // TODO: rename to SoundBus, move out of struct?
-    /// <remarks> All busses use 44100 Hz sampling rate. </remarks>
-    public enum SoundChannel {
-        /// <remarks>  2 Tracks, 2D </remarks>
-        Music = 1,
-        /// <remarks> 20 Tracks, 3D </remarks>
-        SE = 2,
-        /// <remarks>  5 Tracks, 3D </remarks>
-        Voice = 3,
-        /// <remarks>  5 Tracks, 2D </remarks>
-        System = 4,
-        /// <remarks> 12 Tracks, 3D </remarks>
-        BG = 5,
-        /// <remarks> 15 Tracks, 3D </remarks>
-        Foot = 6,
-        /// <remarks>  5 Tracks, 3D </remarks>
-        PlacedNPC = 7,
-        /// <remarks>  2 Tracks, 2D </remarks>
-        TimeStretchBGM = 8,
-        /// <remarks>  2 Tracks, 2D </remarks>
-        Zingle = 9,
-        /// <remarks>  8 Tracks, 3D </remarks>
-        CommonVFX = 10,
-        /// <remarks>  4 Tracks, 3D </remarks>
-        BGEnv = 11,
-        /// <remarks>  2 Tracks, 3D </remarks>
-        Walla = 12,
-        /// <remarks>  2 Tracks, 2D </remarks>
-        Movie = 13,
-        /// <remarks> 28 Tracks, 3D </remarks>
-        Unknown0 = 14,
-        /// <remarks>  4 Tracks, 3D </remarks>
-        Unknown1 = 15,
-        /// <remarks>  2 Tracks, 3D </remarks>
-        Orchestrion = 16,
-        /// <remarks> 16 Tracks, 3D </remarks>
-        Instruments = 17,
-        /// <remarks>  4 Tracks, 2D </remarks>
-        Vibration = 18,
-        /// <remarks> 12 Tracks, 3D </remarks>
-        Housing = 19,
-        /// <remarks>  2 Tracks, 3D </remarks>
-        RandomWind = 20,
-
-        [Obsolete("Renamed to Music")] Bgm1 = 1,
-        [Obsolete("Renamed to SE")] Se1 = 2,
-        [Obsolete("Renamed to BG")] Env1 = 5,
-        [Obsolete("Renamed to Foot")] Se2 = 6,
-        [Obsolete("Renamed to PlacedNPC")] Se3 = 7,
-        [Obsolete("Renamed to TimeStretchBGM")] Bgm2 = 8,
-        [Obsolete("Renamed to Zingle")] Bgm3 = 9,
-        [Obsolete("Renamed to BGEnv")] Env2 = 11,
-        [Obsolete("Renamed to Walla")] Env3 = 12,
-        [Obsolete("Renamed to Orchestrion")] Bgm4 = 16,
-        [Obsolete("Renamed to Instruments")] Perform = 17,
     }
 }
 
@@ -249,6 +183,62 @@ public unsafe partial struct SoundManager {
 public unsafe partial struct ClipSoundManager {
     [FieldOffset(0x00)] public SoundManager* SoundManager;
     [FieldOffset(0x08)] private fixed byte CriticalSection[40];
+}
+
+/// <remarks> All busses use 44100 Hz sampling rate. </remarks>
+public enum SoundBus {
+    /// <remarks>  2 Tracks, 2D </remarks>
+    Music = 1,
+    /// <remarks> 20 Tracks, 3D </remarks>
+    SE = 2,
+    /// <remarks>  5 Tracks, 3D </remarks>
+    Voice = 3,
+    /// <remarks>  5 Tracks, 2D </remarks>
+    System = 4,
+    /// <remarks> 12 Tracks, 3D </remarks>
+    BG = 5,
+    /// <remarks> 15 Tracks, 3D </remarks>
+    Foot = 6,
+    /// <remarks>  5 Tracks, 3D </remarks>
+    PlacedNPC = 7,
+    /// <remarks>  2 Tracks, 2D </remarks>
+    TimeStretchBGM = 8,
+    /// <remarks>  2 Tracks, 2D </remarks>
+    Zingle = 9,
+    /// <remarks>  8 Tracks, 3D </remarks>
+    CommonVFX = 10,
+    /// <remarks>  4 Tracks, 3D </remarks>
+    BGEnv = 11,
+    /// <remarks>  2 Tracks, 3D </remarks>
+    Walla = 12,
+    /// <remarks>  2 Tracks, 2D </remarks>
+    Movie = 13,
+    /// <remarks> 28 Tracks, 3D </remarks>
+    Unknown0 = 14,
+    /// <remarks>  4 Tracks, 3D </remarks>
+    Unknown1 = 15,
+    /// <remarks>  2 Tracks, 3D </remarks>
+    Orchestrion = 16,
+    /// <remarks> 16 Tracks, 3D </remarks>
+    Instruments = 17,
+    /// <remarks>  4 Tracks, 2D </remarks>
+    Vibration = 18,
+    /// <remarks> 12 Tracks, 3D </remarks>
+    Housing = 19,
+    /// <remarks>  2 Tracks, 3D </remarks>
+    RandomWind = 20,
+
+    [Obsolete("Renamed to Music", true)] Bgm1 = 1,
+    [Obsolete("Renamed to SE", true)] Se1 = 2,
+    [Obsolete("Renamed to BG", true)] Env1 = 5,
+    [Obsolete("Renamed to Foot", true)] Se2 = 6,
+    [Obsolete("Renamed to PlacedNPC", true)] Se3 = 7,
+    [Obsolete("Renamed to TimeStretchBGM", true)] Bgm2 = 8,
+    [Obsolete("Renamed to Zingle", true)] Bgm3 = 9,
+    [Obsolete("Renamed to BGEnv", true)] Env2 = 11,
+    [Obsolete("Renamed to Walla", true)] Env3 = 12,
+    [Obsolete("Renamed to Orchestrion", true)] Bgm4 = 16,
+    [Obsolete("Renamed to Instruments", true)] Perform = 17,
 }
 
 public enum SoundVolumeCategory {

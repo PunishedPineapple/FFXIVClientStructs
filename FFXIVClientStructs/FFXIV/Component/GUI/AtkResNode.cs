@@ -11,7 +11,7 @@ namespace FFXIVClientStructs.FFXIV.Component.GUI;
 [Inherits<AtkEventTarget>]
 [StructLayout(LayoutKind.Explicit, Size = 0xC0)]
 [VirtualTable("48 8D 05 ?? ?? ?? ?? ?? ?? ?? 33 C0 48 89 41 ?? 66 C7 81", 3, 3)]
-public unsafe partial struct AtkResNode : ICreatable {
+public unsafe partial struct AtkResNode : ICreatable<AtkResNode> {
     [FieldOffset(0x8)] public uint NodeId;
     [FieldOffset(0x10)] public AtkTimeline* Timeline;
 
@@ -99,7 +99,7 @@ public unsafe partial struct AtkResNode : ICreatable {
     public partial bool IsEllipticalCollision { get; set; }
 
     [MemberFunction("E8 ?? ?? ?? ?? 48 8B D8 48 83 C4 ?? 5B C3 33 DB")]
-    public partial void Ctor();
+    public partial AtkResNode* Ctor();
 
     [MemberFunction("48 85 C9 74 14 0F B7 41 40")]
     public partial NodeType GetNodeType();
@@ -343,10 +343,10 @@ public unsafe partial struct AtkResNode : ICreatable {
     [MemberFunction("E8 ?? ?? ?? ?? 41 0F 28 C9 8B 87")]
     public partial void SetOrigin(float originX, float originY);
 
-    [MemberFunction("E8 ?? ?? ?? ?? 66 41 3B C4 75")]
+    [MemberFunction("E8 ?? ?? ?? ?? 0F B7 C0 3B C7 74")]
     public partial ushort GetTimelineLabel();
 
-    [MemberFunction("48 85 C9 74 12 48 8B 41 10")]
+    [MemberFunction("E8 ?? ?? ?? ?? 48 8B 8B ?? ?? ?? ?? 48 85 C9 74 ?? 8B D5")]
     public partial void EnableTimeline();
 
     [MemberFunction("E8 ?? ?? ?? ?? 33 FF 39 BD")]

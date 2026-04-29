@@ -54,46 +54,46 @@ public unsafe partial struct Camera {
     [FieldOffset(0x2AC)] public uint ConfigOption_LockonDefaultZoom;
     [FieldOffset(0x2B0)] public uint ConfigOption_LockonDefaultDistance;
 
-    [VirtualFunction(13)]
+    [VirtualFunction(14)]
     public partial bool UpdateTiltOffset();
 
-    [VirtualFunction(16)]
+    [VirtualFunction(17)]
     public partial CameraControlMode DetermineControlMode();
 
-    [VirtualFunction(17)]
+    [VirtualFunction(18)]
     public partial GameObject* GetCameraTargetObject();
 
-    [VirtualFunction(18)]
+    [VirtualFunction(19)]
     public partial float GetTiltOffset();
 
-    [VirtualFunction(20)]
+    [VirtualFunction(21)]
     public partial GameObject* GetTargetObject();
 
-    [VirtualFunction(21)]
+    [VirtualFunction(22)]
     public partial void Load(CameraControlMode controlMode);
 
-    [VirtualFunction(23)]
+    [VirtualFunction(24)]
     public partial void SaveConfigOptions();
 
-    [VirtualFunction(24)]
+    [VirtualFunction(25)]
     public partial void LoadConfigOptions();
 
-    [VirtualFunction(25)]
+    [VirtualFunction(26)]
     public partial void ResetConfigOptions();
 
-    [VirtualFunction(26)]
+    [VirtualFunction(27)]
     public partial void SetTiltOffset(float tiltOffset);
 
-    [VirtualFunction(27)]
+    [VirtualFunction(28)]
     public partial float GetZoomSpeed();
 
-    [VirtualFunction(28)]
+    [VirtualFunction(29)]
     public partial float GetZoomModeToggleSpeedMultiplier();
 
-    [VirtualFunction(29)]
+    [VirtualFunction(30)]
     public partial float GetInputDeltaHMultiplier();
 
-    [VirtualFunction(30)]
+    [VirtualFunction(31)]
     public partial float GetInputDeltaVMultiplier();
 }
 
@@ -115,15 +115,6 @@ public unsafe partial struct LobbyCamera {
 [StructLayout(LayoutKind.Explicit, Size = 0x310)]
 public partial struct SpectatorCamera;
 
-// TODO: remove (was replaced with SpectatorCamera)
-// Client::Game::Camera3
-//   Client::Game::Camera
-//     Client::Game::CameraBase
-[GenerateInterop]
-[Inherits<Camera>]
-[StructLayout(LayoutKind.Explicit, Size = 0x310)]
-public partial struct Camera3;
-
 // Client::Game::LowCutCamera
 //   Client::Game::CameraBase
 [GenerateInterop]
@@ -137,17 +128,6 @@ public partial struct LowCutCamera;
 [Inherits<CameraBase>]
 [StructLayout(LayoutKind.Explicit, Size = 0x380)]
 public partial struct AimingCamera {
-    [FieldOffset(0x120)] public Graphics.Scene.Camera SceneCamera0;
-    [FieldOffset(0x220)] public Graphics.Scene.Camera SceneCamera1;
-}
-
-// TODO: remove (was replaced with AimingCamera)
-// Client::Game::Camera4
-//   Client::Game::CameraBase
-[GenerateInterop]
-[Inherits<CameraBase>]
-[StructLayout(LayoutKind.Explicit, Size = 0x380)]
-public partial struct Camera4 {
     [FieldOffset(0x120)] public Graphics.Scene.Camera SceneCamera0;
     [FieldOffset(0x220)] public Graphics.Scene.Camera SceneCamera1;
 }
