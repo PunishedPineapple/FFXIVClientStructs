@@ -6,6 +6,7 @@ namespace FFXIVClientStructs.FFXIV.Client.Game.Event;
 
 // Client::Game::Event::EventHandler
 [GenerateInterop(isInherited: true)]
+[VirtualTable("48 8D 05 ?? ?? ?? ?? ?? ?? ?? 8B DA 48 8B F9", 3, 275)]
 [StructLayout(LayoutKind.Explicit, Size = 0x1B8)]
 public unsafe partial struct EventHandler {
     [FieldOffset(0x08)] public StdSet<Pointer<GameObject>> EventObjects;
@@ -20,6 +21,9 @@ public unsafe partial struct EventHandler {
     [FieldOffset(0x94)] public LuaStatus LuaStatus;
 
     [FieldOffset(0xC8)] private Utf8String UnkString0;
+
+    [VirtualFunction(0)]
+    public partial EventHandler* Dtor(byte freeFlags);
 
     [VirtualFunction(40)]
     public partial void ProcessYield(short scene, byte yieldId, int* intParams, byte intParamCount);
