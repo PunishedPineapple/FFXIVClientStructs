@@ -1985,6 +1985,7 @@ classes:
       0x140867DA0: GetLinkedItem
       0x1408682C0: GetConditionPercentage
       0x140868300: GetStain
+      0x1408683B0: SetStain
       0x1408683D0: GetMateriaCount
       0x1408684D0: IsMarketable
       0x140896530: GetCrafterContentId
@@ -9110,6 +9111,7 @@ classes:
       0x1406F37D0: GetOutdoorPlotExteriorData # static
       0x1406F3850: SetOutdoorPlotExteriorData # static
       0x1406F38B0: SetOutdoorPlotExterior # static
+      0x1406F40C0: SetInteriorFixture # static
   Client::LayoutEngine::LayoutManager:
     vtbls:
       - ea: 0x1421760C0
@@ -14100,13 +14102,13 @@ classes:
       0x140D9B100: ctor
   Client::UI::Agent::AgentInclusionShop:
     vtbls:
-      - ea: 0x1421EE1B8
+      - ea: 0x1421F1DE8
         base: Client::UI::Agent::AgentInterface
     funcs:
       0x14102C830: ctor
   Client::UI::Agent::AgentCollectablesShop:
     vtbls:
-      - ea: 0x1421F1DE8
+      - ea: 0x1421EE1B8
         base: Client::UI::Agent::AgentInterface
     funcs:
       0x140F3B610: ctor
