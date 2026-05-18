@@ -23628,6 +23628,9 @@ structs:
   - type: byte
     name: GlamourStain1Id
     offset: 6
+  - type: char
+    name: ApplyCompanyCrest
+    offset: 7
   - type: unsigned int
     name: ItemId
     offset: 8
@@ -36417,9 +36420,6 @@ structs:
   - type: unsigned int
     name: Id
     offset: 0
-  - type: byte
-    name: Stain
-    offset: 4
   - type: Common::Math::Vector3
     name: Position
     offset: 16
@@ -36429,6 +36429,9 @@ structs:
   - type: int
     name: Index
     offset: 36
+  - type: byte
+    name: Stain
+    offset: 40
   member_functions: []
 - type: Client::Game::HousingObjectManager::HousingObjectData
   name: HousingObjectData
@@ -41399,6 +41402,14 @@ structs:
   - type: Client::LayoutEngine::IndoorFloorLayoutData
     name: Floor2
     offset: 80
+  - type: Client::LayoutEngine::IndoorFloorLayoutData
+    name: Exterior
+    offset: 100
+  - type: byte
+    name: ExteriorStains
+    offset: 120
+    size: 5
+    is_string: False
   - type: float
     name: LightLevel
     offset: 128
@@ -62300,6 +62311,20 @@ structs:
     return_type: void
     name: UnloadPrefetchLayout
     parameters: []
+  - signature: 48 89 5C 24 ?? 48 89 6C 24 ?? 48 89 74 24 ?? 57 41 56 41 57 48 83 EC ?? 48 8B 05 ?? ?? ?? ?? 41 8B F1
+    return_type: int
+    name: SetInteriorFixture
+    parameters:
+    - type: unsigned int
+      name: floor
+    - type: unsigned int
+      name: part
+    - type: __int16
+      name: a3
+    - type: int
+      name: fixtureId
+    - type: __int8
+      name: stain
 - type: Client::LayoutEngine::OutdoorPlotLayoutData
   name: OutdoorPlotLayoutData
   namespace: Client.LayoutEngine
@@ -91764,6 +91789,12 @@ structs:
   - type: Client::System::String::Utf8String
     name: CopyBufferFiltered
     offset: 808
+  - type: Client::System::String::Utf8String
+    name: RawInputString
+    offset: 2160
+  - type: Client::System::String::Utf8String
+    name: EvaluatedInputString
+    offset: 2680
   - type: unsigned __int16
     name: CompletionDepth
     offset: 3096
@@ -114098,8 +114129,6 @@ structs:
       name: type
     - type: unsigned __int16
       name: parentId
-    - type: Component::GUI::AtkResNode*
-      name: targetNode
     - type: Component::GUI::AtkTooltipManager::AtkTooltipArgs*
       name: tooltipArgs
   - signature: E8 ?? ?? ?? ?? 48 8B 7E ?? 48 85 FF 75
@@ -122133,6 +122162,18 @@ structs:
       name: command
     - type: Client::UI::UIModule*
       name: uiModule
+  - signature: E8 ?? ?? ?? ?? B9 ?? ?? ?? ?? 66 39 4C 24
+    return_type: int
+    name: EvaluateTextCommand
+    parameters:
+    - type: Component::Shell::ShellCommandModule*
+      name: this
+    - type: Client::System::String::Utf8String*
+      name: command
+    - type: Component::Shell::ShellCommandInterface::CommandContext*
+      name: resultContext
+    - type: __int16
+      name: expectedCommandId
 - type: Animation::Mapper::hkaSkeletonMapperData
   name: hkaSkeletonMapperData
   namespace: Animation.Mapper
@@ -203692,10 +203733,10 @@ structs:
     name: TryonGlassesSelectAddonId
     offset: 864
   - type: char
-    name: Unk364
+    name: TryOnItemsChanged
     offset: 868
   - type: char
-    name: Unk365
+    name: GearItemsChanged
     offset: 869
   - type: char
     name: SaveDeleteOutfit
